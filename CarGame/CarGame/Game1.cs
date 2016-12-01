@@ -64,7 +64,12 @@ namespace CarGame
             // TODO: Add your initialization logic here
             IsMouseVisible = true;
 
-
+            blueCar = Content.Load<Texture2D>("BlueCar");
+            greenCar = Content.Load<Texture2D>("GreenCar");
+            greyCar = Content.Load<Texture2D>("GreyCar");
+            orangeCar = Content.Load<Texture2D>("OrangeCar");
+            redCar = Content.Load<Texture2D>("RedCar");
+            whiteCar = Content.Load<Texture2D>("WhiteCar");
 
             base.Initialize();
         }
