@@ -14,6 +14,28 @@ namespace CarGame
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        Rectangle playRectangle;
+        Rectangle endRectangle;
+        Rectangle helpRectangle;
+        Rectangle backRectangle;
+
+        Point mousePointer;
+
+        //sprites
+        Texture2D play;
+        Texture2D end;
+        Texture2D help;
+        Texture2D back;
+
+        enum GameState
+        {
+            MainMenu,
+            PlayGame,
+            HelpScreen,
+            EndGame
+        }
+        GameState state = GameState.MainMenu;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -29,6 +51,13 @@ namespace CarGame
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            IsMouseVisible = true;
+
+            playRectangle = new Rectangle(100, 200, 200, 200);
+            endRectangle = new Rectangle(300, 200, 200, 200);
+            helpRectangle = new Rectangle(500, 200, 200, 200);
+            backRectangle = new Rectangle(600, 0, 200, 200);
+
 
             base.Initialize();
         }
@@ -43,6 +72,10 @@ namespace CarGame
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
+            play = Content.Load<Texture2D>("play");
+            end = Content.Load<Texture2D>("end");
+            help = Content.Load<Texture2D>("help");
+            back = Content.Load<Texture2D>("back");
         }
 
         /// <summary>
