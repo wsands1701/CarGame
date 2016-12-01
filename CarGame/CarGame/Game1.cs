@@ -95,6 +95,22 @@ namespace CarGame
 
             // TODO: Add your update logic here
 
+            switch (state)
+            {
+                case GameState.MainMenu:
+                    
+                    break;
+
+                case GameState.HelpScreen:
+                    
+                    break;
+                case GameState.PlayGame:
+
+                    break;
+                case GameState.EndGame:
+
+                    break;
+            }
             base.Update(gameTime);
         }
 
@@ -107,12 +123,46 @@ namespace CarGame
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
+            spriteBatch.Begin();
+            switch (state)
+            {
+                case GameState.MainMenu:
+                    DisplayMainMenu();
 
+                    break;
+                case GameState.HelpScreen:
+                    DisplayHelpScreen();
+                    
+                    break;
+                case GameState.PlayGame:
+                    PlayTheGame();
+                    
+                    break;
+
+                case GameState.EndGame:
+                    EndGame();
+                    
+                    break;
+            }
+
+            spriteBatch.End();
             base.Draw(gameTime);
         }
 
+        public void DisplayMainMenu()
+        {
+            
+        }
+        public void DisplayHelpScreen()
+        {
+            
 
-        public void endGame()
+        }
+        public void PlayTheGame()
+        {
+
+        }
+        public void EndGame()
         {
 
         }
