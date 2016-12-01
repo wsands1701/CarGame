@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Input;
 namespace CarGame
 {
 
-    //getes doing it
+    
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
