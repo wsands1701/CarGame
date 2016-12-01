@@ -14,6 +14,13 @@ namespace CarGame
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        Texture2D road;
+        Texture2D tree;
+        Texture2D greenCar;
+        Texture2D redCar;
+
+
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
