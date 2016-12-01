@@ -34,7 +34,6 @@ namespace CarGame
         //font
         SpriteFont font;
 
-
         enum GameState
         {
             MainMenu,
@@ -47,6 +46,7 @@ namespace CarGame
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
+            graphics.IsFullScreen = true;
             Content.RootDirectory = "Content";
         }
 
@@ -61,6 +61,8 @@ namespace CarGame
         {
             // TODO: Add your initialization logic here
             IsMouseVisible = true;
+
+            
 
             base.Initialize();
         }
@@ -129,7 +131,10 @@ namespace CarGame
 
             spriteBatch.Begin();
 
-            DisplayMainMenu();
+
+            //DisplayMainMenu();
+            playGame();
+
             switch (state)
                {
                     case GameState.MainMenu:
@@ -160,11 +165,14 @@ namespace CarGame
         public void DisplayMainMenu()
         {
             GraphicsDevice.Clear(Color.Black);
-            spriteBatch.DrawString(font, "test", new Vector2(0, 0), Color.White);
+
+            //test
+            //spriteBatch.DrawString(font, "test", new Vector2(0, 0), Color.White);
         }
         public void playGame()
         {
-            
+            GraphicsDevice.Clear(Color.Black);
+            spriteBatch.Draw(road, new Vector2(0,0), Color.White);
         }
         public void showHelp()
         {
