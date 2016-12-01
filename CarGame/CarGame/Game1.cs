@@ -131,5 +131,10 @@ namespace CarGame
         {
 
         }
+
+        public void randomVegetation()
+        {
+
+        }
     }
 }
