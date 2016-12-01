@@ -48,6 +48,7 @@ namespace CarGame
             Content.RootDirectory = "Content";
         }
 
+
         /// <summary>
         /// Allows the game to perform any initialization it needs to before starting to run.
         /// This is where it can query for any required services and load any non-graphic
@@ -57,7 +58,7 @@ namespace CarGame
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
+            IsMouseVisible = true;
             base.Initialize();
         }
 
