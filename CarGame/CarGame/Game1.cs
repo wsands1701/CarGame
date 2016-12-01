@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Input;
 namespace CarGame
 {
     //I'm watching you all ~ McCloskey
+   
     
     /// <summary>
     /// This is the main type for your game.
@@ -12,14 +13,9 @@ namespace CarGame
     public class Game1 : Game
     {
         GraphicsDeviceManager graphics;
-
         SpriteBatch spriteBatch;
-
-        //vectors
         Vector2 stationaryObjSpeed;
-        Vector2 movingObjectsSpeed;
-
-        //all of the textures
+        
         Texture2D road;
         Texture2D tree;
         Texture2D flower;
@@ -30,11 +26,28 @@ namespace CarGame
         Texture2D whiteCar;
         Texture2D greyCar;
 
+
+
+
+
+
+        enum GameState
+        {
+            
+            MainMenu,
+            PlayGame,
+            HelpScreen,
+            EndGame,
+
+        }
+        GameState state = GameState.MainMenu;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
         }
+
 
         /// <summary>
         /// Allows the game to perform any initialization it needs to before starting to run.
@@ -45,7 +58,7 @@ namespace CarGame
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
+            IsMouseVisible = true;
             base.Initialize();
         }
 
@@ -94,11 +107,27 @@ namespace CarGame
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
+            switch (state)
+               {
+                    case GameState.MainMenu:
+                        DisplayMainMenu();
+                        break;
+                    case GameState.PlayGame:
+                        playGame(gameTime);
 
+                        break;
+                   case GameState.HelpScreen:
+                       showHelp();
+                       break;
+                    case GameState.EndGame:
+                       endGame();
+                       break;
+            }
             base.Draw(gameTime);
         }
 
-        public void randomVegetation()
+
+        public void endGame()
         {
 
         }
