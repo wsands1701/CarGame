@@ -14,8 +14,12 @@ namespace CarGame
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        //vectors
         Vector2 stationaryObjSpeed;
+        Vector2 enemyCarObjSpeed;
+        Vector2 playerCarObjSpeed;
         
+        //textures
         Texture2D road;
         Texture2D tree;
         Texture2D flower;
@@ -59,6 +63,9 @@ namespace CarGame
         {
             // TODO: Add your initialization logic here
             IsMouseVisible = true;
+
+
+
             base.Initialize();
         }
 
