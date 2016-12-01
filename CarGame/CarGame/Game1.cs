@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-//austin's code
+
 namespace CarGame
 {
     //I'm watching you all ~ McCloskey
