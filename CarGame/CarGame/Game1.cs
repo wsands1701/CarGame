@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Input;
 namespace CarGame
 {
     //I'm watching you all ~ McCloskey
+    //nice
     
     /// <summary>
     /// This is the main type for your game.
@@ -13,26 +14,31 @@ namespace CarGame
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        Vector2 stationaryObjSpeed;
+        
+        Texture2D road;
+        Texture2D tree;
+        Texture2D flower;
+        Texture2D greenCar;
+        Texture2D redCar;
+        Texture2D blueCar;
+        Texture2D orangeCar;
+        Texture2D whiteCar;
+        Texture2D greyCar;
 
-        Rectangle playRectangle;
-        Rectangle endRectangle;
-        Rectangle helpRectangle;
-        Rectangle backRectangle;
 
-        Point mousePointer;
 
-        //sprites
-        Texture2D play;
-        Texture2D end;
-        Texture2D help;
-        Texture2D back;
+
+
 
         enum GameState
         {
+            
             MainMenu,
             PlayGame,
             HelpScreen,
-            EndGame
+            EndGame,
+
         }
         GameState state = GameState.MainMenu;
 
@@ -41,6 +47,7 @@ namespace CarGame
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
         }
+
 
         /// <summary>
         /// Allows the game to perform any initialization it needs to before starting to run.
@@ -52,13 +59,6 @@ namespace CarGame
         {
             // TODO: Add your initialization logic here
             IsMouseVisible = true;
-
-            playRectangle = new Rectangle(100, 200, 200, 200);
-            endRectangle = new Rectangle(300, 200, 200, 200);
-            helpRectangle = new Rectangle(500, 200, 200, 200);
-            backRectangle = new Rectangle(600, 0, 200, 200);
-
-
             base.Initialize();
         }
 
@@ -72,10 +72,6 @@ namespace CarGame
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
-            play = Content.Load<Texture2D>("play");
-            end = Content.Load<Texture2D>("end");
-            help = Content.Load<Texture2D>("help");
-            back = Content.Load<Texture2D>("back");
         }
 
         /// <summary>
@@ -113,6 +109,12 @@ namespace CarGame
             // TODO: Add your drawing code here
 
             base.Draw(gameTime);
+        }
+
+
+        public void endGame()
+        {
+
         }
     }
 }
