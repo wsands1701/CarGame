@@ -143,6 +143,18 @@ namespace CarGame
         {
 
         }
+        public void DisplayMainMenu()
+        {
+
+        }
+        public void playGame()
+        {
+
+        }
+        public void showHelp()
+        {
+
+        }
 
         public void randomVegetation()
         {
