@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Input;
 namespace CarGame
 {
     //I'm watching you all ~ McCloskey
+    //nice
     
     /// <summary>
     /// This is the main type for your game.
@@ -13,6 +14,20 @@ namespace CarGame
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+
+
+
+
+        enum GameState
+        {
+            
+            MainMenu,
+            PlayGame,
+            HelpScreen,
+            EndGame,
+
+        }
+        GameState state = GameState.MainMenu;
 
         public Game1()
         {
@@ -80,6 +95,12 @@ namespace CarGame
             // TODO: Add your drawing code here
 
             base.Draw(gameTime);
+        }
+
+
+        public void endGame()
+        {
+
         }
     }
 }
