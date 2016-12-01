@@ -1,10 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-//austin's code
+
 namespace CarGame
 {
     //I'm watching you all ~ McCloskey
+    //nice
     
     /// <summary>
     /// This is the main type for your game.
@@ -13,6 +14,33 @@ namespace CarGame
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        Vector2 stationaryObjSpeed;
+        
+        Texture2D road;
+        Texture2D tree;
+        Texture2D flower;
+        Texture2D greenCar;
+        Texture2D redCar;
+        Texture2D blueCar;
+        Texture2D orangeCar;
+        Texture2D whiteCar;
+        Texture2D greyCar;
+
+
+
+
+
+
+        enum GameState
+        {
+            
+            MainMenu,
+            PlayGame,
+            HelpScreen,
+            EndGame,
+
+        }
+        GameState state = GameState.MainMenu;
 
         public Game1()
         {
@@ -90,6 +118,12 @@ namespace CarGame
             // TODO: Add your drawing code here
 
             base.Draw(gameTime);
+        }
+
+
+        public void endGame()
+        {
+
         }
     }
 }
