@@ -16,9 +16,13 @@ namespace CarGame
 
         Texture2D road;
         Texture2D tree;
+        Texture2D flower;
         Texture2D greenCar;
         Texture2D redCar;
-
+        Texture2D blueCar;
+        Texture2D orangeCar;
+        Texture2D whiteCar;
+        Texture2D greyCar;
 
 
         public Game1()
