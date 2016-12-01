@@ -12,9 +12,14 @@ namespace CarGame
     public class Game1 : Game
     {
         GraphicsDeviceManager graphics;
+
         SpriteBatch spriteBatch;
+
+        //vectors
         Vector2 stationaryObjSpeed;
-        
+        Vector2 movingObjectsSpeed;
+
+        //all of the textures
         Texture2D road;
         Texture2D tree;
         Texture2D flower;
@@ -24,8 +29,6 @@ namespace CarGame
         Texture2D orangeCar;
         Texture2D whiteCar;
         Texture2D greyCar;
-
-
 
         public Game1()
         {
@@ -93,6 +96,11 @@ namespace CarGame
             // TODO: Add your drawing code here
 
             base.Draw(gameTime);
+        }
+
+        public void randomVegetation()
+        {
+
         }
     }
 }
