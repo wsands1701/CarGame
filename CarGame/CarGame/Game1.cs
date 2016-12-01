@@ -13,11 +13,13 @@ namespace CarGame
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-
+        Vector2 stationaryObjSpeed;
+        
         Texture2D road;
         Texture2D tree;
         Texture2D greenCar;
         Texture2D redCar;
+
 
 
 
