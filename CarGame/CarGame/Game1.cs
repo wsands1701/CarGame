@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Input;
 namespace CarGame
 {
     //I'm watching you all ~ McCloskey
-   
+   //demo1 test branch comment
     
     /// <summary>
     /// This is the main type for your game.
@@ -14,6 +14,7 @@ namespace CarGame
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        
         //vectors
         Vector2 stationaryObjSpeed;
         Vector2 enemyCarObjSpeed;
@@ -23,6 +24,7 @@ namespace CarGame
         Texture2D road;
         Texture2D tree;
         Texture2D flower;
+        
         //car textures
         Texture2D greenCar;
         Texture2D redCar;
@@ -140,13 +142,14 @@ namespace CarGame
                     case GameState.MainMenu:
                         DisplayMainMenu();
                         break;
-                    case GameState.PlayGame:
-                        //playGame(gameTime);
 
+                    case GameState.PlayGame:
+                        //playGame(gameTime)
                         break;
                    case GameState.HelpScreen:
                        showHelp();
                        break;
+
                     case GameState.EndGame:
                        endGame();
                        break;
@@ -165,8 +168,6 @@ namespace CarGame
         public void DisplayMainMenu()
         {
             GraphicsDevice.Clear(Color.Black);
-
-            //test
             //spriteBatch.DrawString(font, "test", new Vector2(0, 0), Color.White);
         }
         public void playGame()
@@ -174,6 +175,7 @@ namespace CarGame
             GraphicsDevice.Clear(Color.Black);
             spriteBatch.Draw(road, new Vector2(0,0), Color.White);
         }
+
         public void showHelp()
         {
 
