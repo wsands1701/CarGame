@@ -145,33 +145,7 @@ namespace CarGame
             GraphicsDevice.Clear(Color.CornflowerBlue);
             // TODO: Add your drawing code here
 
-            spriteBatch.Begin();
-            switch (state)
-            {
-                case GameState.MainMenu:
-                    DisplayMainMenu();
-
-                    break;
-                case GameState.HelpScreen:
-                    DisplayHelpScreen();
-                    
-                    break;
-                case GameState.PlayGame:
-                    PlayTheGame();
-                    
-                    break;
-
-                case GameState.EndGame:
-                    EndGame();
-                    
-                    break;
-            }
-
-            spriteBatch.End();
-
-
-            spriteBatch.Begin();
-
+            
 
             //DisplayMainMenu();
             playGame();
