@@ -8,9 +8,11 @@ namespace CarGame.Content
 {
     class NotMoving : Obstacles
     {
+        
+
         public void trees()
         {
-
+            
         }
         public void lines()
         {
