@@ -34,6 +34,7 @@ namespace CarGame
         Texture2D road;
         Texture2D tree;
         Texture2D flower;
+
         //car textures
         Texture2D greenCar;
         Texture2D redCar;
@@ -62,6 +63,10 @@ namespace CarGame
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
+
+            graphics.PreferredBackBufferHeight = 800;
+            graphics.PreferredBackBufferWidth = 1280;
+
             //graphics.IsFullScreen = true;
             Content.RootDirectory = "Content";
         }
@@ -78,10 +83,13 @@ namespace CarGame
             // TODO: Add your initialization logic here
             IsMouseVisible = true;
 
-            playRectangle = new Rectangle(100, 200, 200, 200);
-            endRectangle = new Rectangle(300, 200, 200, 200);
-            helpRectangle = new Rectangle(500, 200, 200, 200);
-            backRectangle = new Rectangle(600, 0, 200, 200);
+
+
+
+            playRectangle = new Rectangle(50, 200, 300, 150);
+            endRectangle = new Rectangle(350, 200, 300, 150);
+            helpRectangle = new Rectangle(650, 200, 300, 150);
+            backRectangle = new Rectangle(900, 0, 300, 300);
 
             base.Initialize();
         }
@@ -110,6 +118,8 @@ namespace CarGame
             orangeCar = Content.Load<Texture2D>("OrangeCar");
             redCar = Content.Load<Texture2D>("RedCar");
             whiteCar = Content.Load<Texture2D>("WhiteCar");
+
+            //button textures
             play = Content.Load<Texture2D>("play");
             end = Content.Load<Texture2D>("end");
             back = Content.Load<Texture2D>("back");
@@ -155,6 +165,7 @@ namespace CarGame
 
                     if (helpRectangle.Contains(mousePointer))
                         state = GameState.HelpScreen;
+                  
                     break;
 
                 case GameState.HelpScreen:
@@ -190,7 +201,7 @@ namespace CarGame
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Gray);
 
             // TODO: Add your drawing code here
 <<<<<<< HEAD
@@ -241,7 +252,6 @@ namespace CarGame
                        break;
                 case GameState.EndGame:
                     EndGame();
-                    
                     break;
             }
 
@@ -252,19 +262,22 @@ namespace CarGame
 
         public void DisplayMainMenu()
         {
-            
-            
-
+            spriteBatch.DrawString(font, "Welcome to the Car Game!", new Vector2(50, 50), Color.White);
+            spriteBatch.Draw(play, playRectangle, Color.White);
+            spriteBatch.Draw(help, helpRectangle, Color.White);
+            spriteBatch.Draw(end, endRectangle, Color.White);
         }
 
         public void PlayTheGame()
         {
+            spriteBatch.DrawString(font, "Help", new Vector2(50, 50), Color.White);
+            spriteBatch.Draw(back, backRectangle, Color.White);
 
         public void DisplayChooseColor()
         {
 
         }
-        
+
         public void showHelp()
         {
         
@@ -274,11 +287,14 @@ namespace CarGame
             spriteBatch.Draw(road, new Vector2(0,0), Color.White);
         }
 
+            spriteBatch.DrawString(font, "Please choose a car color listed below.", new Vector2(50, 50), Color.White);
         }
 
         public void EndTheGame()
         {
-
+            GraphicsDevice.Clear(Color.Gray);
+            spriteBatch.DrawString(font, "GAME OVER", new Vector2(50, 50), Color.White);
+            spriteBatch.Draw(back, backRectangle, Color.White);
         }
     
     }
