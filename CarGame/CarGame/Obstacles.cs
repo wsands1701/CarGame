@@ -6,8 +6,22 @@ using System.Threading.Tasks;
 
 namespace CarGame
 {
-    class Obstacles
+    abstract class Obstacles
     {
+        private int x;
+        private int y;
+
+        public int getX()
+        {
+            return x;
+        }
+
+        public int getY()
+    {
+            return y;
+        }
+
+
         new object car1(int xCoord, int yCoord, Boolean collison, int speed);
 
         public int getX()
