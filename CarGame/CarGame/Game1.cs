@@ -79,7 +79,7 @@ namespace CarGame
             // TODO: use this.Content to load your game content here
 
             //vegetation / background textures
-            road = Content.Load<Texture2D>("road");
+            road = Content.Load<Texture2D>("Road");
             tree = Content.Load<Texture2D>("tree");
             //can we use a gif in MVS? we could line the road with this
             //flower = Content.Load<Texture2D>("");
@@ -145,7 +145,33 @@ namespace CarGame
             GraphicsDevice.Clear(Color.CornflowerBlue);
             // TODO: Add your drawing code here
 
-            
+            spriteBatch.Begin();
+            switch (state)
+            {
+                case GameState.MainMenu:
+                    DisplayMainMenu();
+
+                    break;
+                case GameState.HelpScreen:
+                    DisplayHelpScreen();
+                    
+                    break;
+                case GameState.PlayGame:
+                    PlayTheGame();
+                    
+                    break;
+
+                case GameState.EndGame:
+                    EndGame();
+                    
+                    break;
+            }
+
+            spriteBatch.End();
+
+
+            spriteBatch.Begin();
+
 
             //DisplayMainMenu();
             playGame();
