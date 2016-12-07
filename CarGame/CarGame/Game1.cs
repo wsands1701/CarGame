@@ -144,7 +144,7 @@ namespace CarGame
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             // TODO: Add your drawing code here
-<<<<<<< HEAD
+
             spriteBatch.Begin();
             switch (state)
             {
@@ -168,7 +168,7 @@ namespace CarGame
             }
 
             spriteBatch.End();
-=======
+
 
             spriteBatch.Begin();
 
@@ -195,7 +195,7 @@ namespace CarGame
 
             spriteBatch.End();
 
->>>>>>> origin/master
+
             base.Draw(gameTime);
         }
 
