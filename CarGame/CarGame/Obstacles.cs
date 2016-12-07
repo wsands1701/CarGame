@@ -11,52 +11,66 @@ namespace CarGame
         private int x;
         private int y;
         private int wastfilly;
-        Boolean Collide;
+        Boolean collide;
 
         //overloaded constructor method
-        public Obstacles(int x,int y, int speed, )
+        //If NotMoving
+        public Obstacles(int x, int y, int speed, Boolean collision)
+        {
+            this.x = x;
+            this.y = y;
+            wastfilly = speed;
+            collide = collision;
+        }
+
+        //if traffic(Moving)
+        public Obstacles(int x,int y, int speed, /* ¿Color?*/, Boolean collision)
             {
-
+            this.x = x;
+            this.y = y;
+            wastfilly = speed;
+            /*traffic Color code*/
+            collide = collision;
             } 
-
-        //Gets
-        public int getX()
-        {
-            return x;
-        }
-
-        public int getY()
-    {
-            return y;
-        }
-        private int getWastFilly()
-        {
-            return wastfilly;
-        }
-        public Boolean getCollide()
-        {
-            return Collide;
-        }
-
-        //Sets
+         //Sets
         public void setX(int X)
-        {
-            x = X;
-        }
-        public void setY(int Y)
-        {
-            y = Y;
-        }
+            {
+                 x = X;
+            }
+         public void setY(int Y)
+            {
+              y = Y;
+            }
         
         public void setWastFilly(int WastFilly)
-        {
-            wastfilly = WastFilly;
+            {
+                wastfilly = WastFilly;
            
-        }
-        public void setCollide(Boolean collide)
-        {
-            Collide = collide;
-        }
+            }
+        public void setCollide(Boolean collision)
+            {
+                collide = collision;
+            }
+        //Gets
+        public int getX()
+            {
+                 return x;
+            }
+
+        public int getY()
+            {
+                return y;
+            }
+        private int getWastFilly()
+            {
+                return wastfilly;
+            }
+        public Boolean getCollide()
+            {
+                return collide;
+            }
+
+       
 
         new object car1(int xCoord, int yCoord, Boolean collison, int speed);
 
