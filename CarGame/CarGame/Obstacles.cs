@@ -13,6 +13,12 @@ namespace CarGame
         private int wastfilly;
         Boolean Collide;
 
+        //overloaded constructor method
+        public Obstacles(int x,int y, int speed, )
+            {
+
+            } 
+
         //Gets
         public int getX()
         {
