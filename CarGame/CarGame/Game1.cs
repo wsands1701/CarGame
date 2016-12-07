@@ -17,6 +17,14 @@ namespace CarGame
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+
+        Rectangle playRectangle;
+        Rectangle endRectangle;
+        Rectangle helpRectangle;
+        Rectangle backRectangle;
+
+        Point mousePointer;
+
         //vectors
         Vector2 stationaryObjSpeed;
         Vector2 enemyCarObjSpeed;
@@ -33,6 +41,10 @@ namespace CarGame
         Texture2D orangeCar;
         Texture2D whiteCar;
         Texture2D greyCar;
+        Texture2D play;
+        Texture2D end;
+        Texture2D help;
+        Texture2D back;
 
         //font
         SpriteFont font;
@@ -66,8 +78,11 @@ namespace CarGame
             // TODO: Add your initialization logic here
             IsMouseVisible = true;
 
+            playRectangle = new Rectangle(100, 200, 200, 200);
+            endRectangle = new Rectangle(300, 200, 200, 200);
+            helpRectangle = new Rectangle(500, 200, 200, 200);
+            backRectangle = new Rectangle(600, 0, 200, 200);
             
-
             base.Initialize();
         }
 
@@ -95,6 +110,11 @@ namespace CarGame
             orangeCar = Content.Load<Texture2D>("OrangeCar");
             redCar = Content.Load<Texture2D>("RedCar");
             whiteCar = Content.Load<Texture2D>("WhiteCar");
+            play = Content.Load<Texture2D>("play");
+            end = Content.Load<Texture2D>("end");
+            back = Content.Load<Texture2D>("back");
+            help = Content.Load<Texture2D>("help");
+
 
             //font
             font = Content.Load<SpriteFont>("fastFont");
@@ -124,11 +144,25 @@ namespace CarGame
             switch (state)
             {
                 case GameState.MainMenu:
+                    if (Mouse.GetState().LeftButton == ButtonState.Pressed)
+                        mousePointer = new Point(Mouse.GetState().X, Mouse.GetState().Y);
                     
+                    if (playRectangle.Contains(mousePointer))
+                        state = GameState.PlayGame;
+
+                    if (endRectangle.Contains(mousePointer))
+                        state = GameState.EndGame;
+
+                    if (helpRectangle.Contains(mousePointer))
+                        state = GameState.HelpScreen;
                     break;
 
                 case GameState.HelpScreen:
+                    if (Mouse.GetState().LeftButton == ButtonState.Pressed)
+                        mousePointer = new Point(Mouse.GetState().X, Mouse.GetState().Y);
                     
+                    if (backRectangle.Contains(mousePointer))
+                        state = GameState.MainMenu;
                     break;
 
                 case GameState.ChooseColor:
@@ -138,8 +172,13 @@ namespace CarGame
                 case GameState.PlayGame:
 
                     break;
-                case GameState.EndGame:
 
+                case GameState.EndGame:
+                    if (Mouse.GetState().LeftButton == ButtonState.Pressed)
+                        mousePointer = new Point(Mouse.GetState().X, Mouse.GetState().Y);
+
+                    if (backRectangle.Contains(mousePointer))
+                        state = GameState.MainMenu;
                     break;
             }
             base.Update(gameTime);
@@ -152,18 +191,23 @@ namespace CarGame
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-            // TODO: Add your drawing code here
 
+            // TODO: Add your drawing code here
+<<<<<<< HEAD
             spriteBatch.Begin();
             switch (state)
             {
                 case GameState.MainMenu:
                     DisplayMainMenu();
-
                     break;
+
                 case GameState.HelpScreen:
                     DisplayHelpScreen();
+                    break;
                     
+                case GameState.PlayGame:
+                    PlayTheGame();
+                    break;
                     break;
                     
                 case GameState.ChooseColor:
@@ -195,11 +239,13 @@ namespace CarGame
                     EndTheGame();
                     
                        break;
+                case GameState.EndGame:
+                    EndGame();
+                    
+                    break;
             }
 
             spriteBatch.End();
-
->>>>>>> origin/master
             base.Draw(gameTime);
         }
 
@@ -210,6 +256,9 @@ namespace CarGame
             
 
         }
+
+        public void PlayTheGame()
+        {
 
         public void DisplayChooseColor()
         {
