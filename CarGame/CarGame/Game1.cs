@@ -114,7 +114,6 @@ namespace CarGame
                         break;
                     case GameState.PlayGame:
                         playGame(gameTime);
-
                         break;
                    case GameState.HelpScreen:
                        showHelp();
@@ -126,7 +125,7 @@ namespace CarGame
             base.Draw(gameTime);
         }
 
-
+        //when the car crashes, this menu will display
         public void endGame()
         {
 
