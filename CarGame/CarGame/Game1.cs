@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -6,7 +7,7 @@ namespace CarGame
 {
     //I'm watching you all ~ McCloskey
     //nice
-
+    
         //create image to follow mouse when pressed. Can use this, our branch
    
     /// <summary>
@@ -39,8 +40,9 @@ namespace CarGame
         enum GameState
         {
             MainMenu,
-            PlayGame,
             HelpScreen,
+            ChooseColor,
+            PlayGame,
             EndGame
         }
         GameState state = GameState.MainMenu;
@@ -128,6 +130,11 @@ namespace CarGame
                 case GameState.HelpScreen:
                     
                     break;
+
+                case GameState.ChooseColor:
+
+                    break;
+                
                 case GameState.PlayGame:
 
                     break;
@@ -158,16 +165,13 @@ namespace CarGame
                     DisplayHelpScreen();
                     
                     break;
-                case GameState.PlayGame:
-                    PlayTheGame();
                     
-                    break;
+                case GameState.ChooseColor:
+                    DisplayChooseColor();
 
-                case GameState.EndGame:
-                    EndGame();
-                    
                     break;
-            }
+                case GameState.PlayGame:
+                    PlayGame();
 
             spriteBatch.End();
 
@@ -187,26 +191,43 @@ namespace CarGame
                     case GameState.PlayGame:
                         playGame(gameTime);
 
-                        break;
-                   case GameState.HelpScreen:
-                       showHelp();
-                       break;
                     case GameState.EndGame:
-                       endGame();
+                    EndTheGame();
+                    
                        break;
             }
 
             spriteBatch.End();
 
-
+>>>>>>> origin/master
             base.Draw(gameTime);
         }
 
 
-       
-        public void endGame()
+        public void DisplayMainMenu()
+        {
+            
+            
+
+        }
+
+        public void DisplayChooseColor()
         {
 
         }
+        
+        public void PlayGame()
+        {
+            GraphicsDevice.Clear(Color.Black);
+            spriteBatch.Draw(road, new Vector2(0,0), Color.White);
+        }
+
+        }
+
+        public void EndTheGame()
+        {
+
+        }
+    
     }
 }
