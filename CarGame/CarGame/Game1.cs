@@ -224,11 +224,7 @@ namespace CarGame
         {
 
         }
-        public void playGame()
-        {
-            GraphicsDevice.Clear(Color.Black);
-            spriteBatch.Draw(road, new Vector2(0,0), Color.White);
-        }
+        
         public void showHelp()
         {
 
