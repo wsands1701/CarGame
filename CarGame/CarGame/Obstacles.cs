@@ -6,25 +6,21 @@ using System.Threading.Tasks;
 
 namespace CarGame
 {
-    class Obstacles
+    abstract class Obstacles
     {
-        new object car1(int xCoord, int yCoord, Boolean collison, int speed);
+        private int x;
+        private int y;
+
+        public int getX()
+        {
+            return x;
+        }
+
+        public int getY()
+        {
+            return y;
+        }
 
 
-        
     }
-
-
-
-    /* What we need to do:
-    make an ArrayList of Obejcts that we can add/subtract from. Each object will need to have the following properties:
-                -Spawning position
-                -speed (tree vs. oncoming traffic)
-                -collision (boolean)
-
-    Make a Traffic Class
-        -adds color
-
-
-    */
 }
