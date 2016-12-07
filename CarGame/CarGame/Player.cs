@@ -11,16 +11,19 @@ namespace CarGame
 {
     class Player
     {
+        //car texture
         Texture2D player;
 
+        //method that returns mouse position in a point
         public Point GetMousePosition()
         {
             return new Point(Mouse.GetState().X, Mouse.GetState().Y); 
         }
 
+        //hello thomas i see you
         
 
-        
+
     }
 
     

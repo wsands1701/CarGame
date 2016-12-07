@@ -6,6 +6,8 @@ namespace CarGame
 {
     //I'm watching you all ~ McCloskey
     //nice
+
+        //create image to follow mouse when pressed. Can use this, our branch
    
     /// <summary>
     /// This is the main type for your game.
@@ -180,6 +182,7 @@ namespace CarGame
                {
                     case GameState.MainMenu:
                         DisplayMainMenu();
+                    
                         break;
                     case GameState.PlayGame:
                         playGame(gameTime);
@@ -200,6 +203,7 @@ namespace CarGame
         }
 
 
+       
         public void endGame()
         {
 
