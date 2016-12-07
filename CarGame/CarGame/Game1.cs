@@ -6,7 +6,7 @@ namespace CarGame
 {
     //I'm watching you all ~ McCloskey
     //nice
-    
+   
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
@@ -182,7 +182,7 @@ namespace CarGame
                         DisplayMainMenu();
                         break;
                     case GameState.PlayGame:
-                        //playGame(gameTime);
+                        playGame(gameTime);
 
                         break;
                    case GameState.HelpScreen:
@@ -199,39 +199,8 @@ namespace CarGame
             base.Draw(gameTime);
         }
 
-        public void DisplayMainMenu()
-        {
-            
-        }
-        public void DisplayHelpScreen()
-        {
-            
 
-        }
-<<<<<<< HEAD
-        public void PlayTheGame()
-        {
-=======
-        public void DisplayMainMenu()
-        {
-            GraphicsDevice.Clear(Color.Black);
-
-            //test
-            //spriteBatch.DrawString(font, "test", new Vector2(0, 0), Color.White);
-        }
-        public void playGame()
-        {
-            GraphicsDevice.Clear(Color.Black);
-            spriteBatch.Draw(road, new Vector2(0,0), Color.White);
-        }
-        public void showHelp()
-        {
-
-        }
->>>>>>> origin/master
-
-        }
-        public void EndGame()
+        public void endGame()
         {
 
         }
