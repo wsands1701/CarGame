@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Input;
 namespace CarGame
 {
     //I'm watching you all ~ McCloskey
-   
+    //nice
     
     /// <summary>
     /// This is the main type for your game.
@@ -14,11 +14,16 @@ namespace CarGame
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        //vectors
         Vector2 stationaryObjSpeed;
+        Vector2 enemyCarObjSpeed;
+        Vector2 playerCarObjSpeed;
         
+        //textures
         Texture2D road;
         Texture2D tree;
         Texture2D flower;
+        //car textures
         Texture2D greenCar;
         Texture2D redCar;
         Texture2D blueCar;
@@ -26,25 +31,22 @@ namespace CarGame
         Texture2D whiteCar;
         Texture2D greyCar;
 
-
-
-
-
+        //font
+        SpriteFont font;
 
         enum GameState
         {
-            
             MainMenu,
             PlayGame,
             HelpScreen,
-            EndGame,
-
+            EndGame
         }
         GameState state = GameState.MainMenu;
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
+            //graphics.IsFullScreen = true;
             Content.RootDirectory = "Content";
         }
 
@@ -59,6 +61,9 @@ namespace CarGame
         {
             // TODO: Add your initialization logic here
             IsMouseVisible = true;
+
+            
+
             base.Initialize();
         }
 
@@ -72,6 +77,23 @@ namespace CarGame
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
+
+            //vegetation / background textures
+            road = Content.Load<Texture2D>("road");
+            tree = Content.Load<Texture2D>("tree");
+            //can we use a gif in MVS? we could line the road with this
+            //flower = Content.Load<Texture2D>("");
+
+            //car textures
+            blueCar = Content.Load<Texture2D>("BlueCar");
+            greenCar = Content.Load<Texture2D>("GreenCar");
+            greyCar = Content.Load<Texture2D>("GreyCar");
+            orangeCar = Content.Load<Texture2D>("OrangeCar");
+            redCar = Content.Load<Texture2D>("RedCar");
+            whiteCar = Content.Load<Texture2D>("WhiteCar");
+
+            //font
+            font = Content.Load<SpriteFont>("fastFont");
         }
 
         /// <summary>
@@ -95,6 +117,22 @@ namespace CarGame
 
             // TODO: Add your update logic here
 
+            switch (state)
+            {
+                case GameState.MainMenu:
+                    
+                    break;
+
+                case GameState.HelpScreen:
+                    
+                    break;
+                case GameState.PlayGame:
+
+                    break;
+                case GameState.EndGame:
+
+                    break;
+            }
             base.Update(gameTime);
         }
 
@@ -105,15 +143,47 @@ namespace CarGame
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-
             // TODO: Add your drawing code here
+<<<<<<< HEAD
+            spriteBatch.Begin();
+            switch (state)
+            {
+                case GameState.MainMenu:
+                    DisplayMainMenu();
+
+                    break;
+                case GameState.HelpScreen:
+                    DisplayHelpScreen();
+                    
+                    break;
+                case GameState.PlayGame:
+                    PlayTheGame();
+                    
+                    break;
+
+                case GameState.EndGame:
+                    EndGame();
+                    
+                    break;
+            }
+
+            spriteBatch.End();
+=======
+
+            spriteBatch.Begin();
+
+
+            //DisplayMainMenu();
+            playGame();
+
             switch (state)
                {
                     case GameState.MainMenu:
                         DisplayMainMenu();
                         break;
                     case GameState.PlayGame:
-                        playGame(gameTime);
+                        //playGame(gameTime);
+
                         break;
                    case GameState.HelpScreen:
                        showHelp();
@@ -122,11 +192,46 @@ namespace CarGame
                        endGame();
                        break;
             }
+
+            spriteBatch.End();
+
+>>>>>>> origin/master
             base.Draw(gameTime);
         }
 
-        //when the car crashes, this menu will display
-        public void endGame()
+        public void DisplayMainMenu()
+        {
+            
+        }
+        public void DisplayHelpScreen()
+        {
+            
+
+        }
+<<<<<<< HEAD
+        public void PlayTheGame()
+        {
+=======
+        public void DisplayMainMenu()
+        {
+            GraphicsDevice.Clear(Color.Black);
+
+            //test
+            //spriteBatch.DrawString(font, "test", new Vector2(0, 0), Color.White);
+        }
+        public void playGame()
+        {
+            GraphicsDevice.Clear(Color.Black);
+            spriteBatch.Draw(road, new Vector2(0,0), Color.White);
+        }
+        public void showHelp()
+        {
+
+        }
+>>>>>>> origin/master
+
+        }
+        public void EndGame()
         {
 
         }
