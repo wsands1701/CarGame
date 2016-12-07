@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -37,8 +38,9 @@ namespace CarGame
         enum GameState
         {
             MainMenu,
-            PlayGame,
             HelpScreen,
+            ChooseColor,
+            PlayGame,
             EndGame
         }
         GameState state = GameState.MainMenu;
@@ -126,6 +128,11 @@ namespace CarGame
                 case GameState.HelpScreen:
                     
                     break;
+
+                case GameState.ChooseColor:
+
+                    break;
+                
                 case GameState.PlayGame:
 
                     break;
@@ -144,7 +151,7 @@ namespace CarGame
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             // TODO: Add your drawing code here
-<<<<<<< HEAD
+
             spriteBatch.Begin();
             switch (state)
             {
@@ -156,48 +163,26 @@ namespace CarGame
                     DisplayHelpScreen();
                     
                     break;
+
+                case GameState.ChooseColor:
+                    DisplayChooseColor();
+
+                    break;
                 case GameState.PlayGame:
-                    PlayTheGame();
+                    PlayGame();
                     
                     break;
 
                 case GameState.EndGame:
-                    EndGame();
+                    EndTheGame();
                     
                     break;
             }
 
             spriteBatch.End();
-=======
-
-            spriteBatch.Begin();
-
-
-            //DisplayMainMenu();
-            playGame();
-
-            switch (state)
-               {
-                    case GameState.MainMenu:
-                        DisplayMainMenu();
-                        break;
-                    case GameState.PlayGame:
-                        //playGame(gameTime);
-
-                        break;
-                   case GameState.HelpScreen:
-                       showHelp();
-                       break;
-                    case GameState.EndGame:
-                       endGame();
-                       break;
-            }
-
-            spriteBatch.End();
-
->>>>>>> origin/master
             base.Draw(gameTime);
         }
+
 
         public void DisplayMainMenu()
         {
@@ -208,32 +193,24 @@ namespace CarGame
             
 
         }
-<<<<<<< HEAD
-        public void PlayTheGame()
-        {
-=======
-        public void DisplayMainMenu()
-        {
-            GraphicsDevice.Clear(Color.Black);
 
-            //test
-            //spriteBatch.DrawString(font, "test", new Vector2(0, 0), Color.White);
+        public void DisplayChooseColor()
+        {
+
         }
-        public void playGame()
+        
+        public void PlayGame()
         {
             GraphicsDevice.Clear(Color.Black);
             spriteBatch.Draw(road, new Vector2(0,0), Color.White);
         }
-        public void showHelp()
+
+        }
+
+        public void EndTheGame()
         {
-
+            
         }
->>>>>>> origin/master
-
-        }
-        public void EndGame()
-        {
-
-        }
+    
     }
 }
