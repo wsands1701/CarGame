@@ -8,7 +8,13 @@ namespace CarGame.Content
 {
     class NotMoving : Obstacles
     {
-        
+        /*
+            Things that we need to do:
+            
+            Figure out Arnas' and Brian's "code" can benefit our class
+
+            Start programming
+        */
 
         public void trees()
         {
