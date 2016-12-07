@@ -82,7 +82,7 @@ namespace CarGame
             endRectangle = new Rectangle(300, 200, 200, 200);
             helpRectangle = new Rectangle(500, 200, 200, 200);
             backRectangle = new Rectangle(600, 0, 200, 200);
-            
+
             base.Initialize();
         }
 
@@ -146,7 +146,7 @@ namespace CarGame
                 case GameState.MainMenu:
                     if (Mouse.GetState().LeftButton == ButtonState.Pressed)
                         mousePointer = new Point(Mouse.GetState().X, Mouse.GetState().Y);
-                    
+
                     if (playRectangle.Contains(mousePointer))
                         state = GameState.PlayGame;
 
@@ -160,7 +160,7 @@ namespace CarGame
                 case GameState.HelpScreen:
                     if (Mouse.GetState().LeftButton == ButtonState.Pressed)
                         mousePointer = new Point(Mouse.GetState().X, Mouse.GetState().Y);
-                    
+
                     if (backRectangle.Contains(mousePointer))
                         state = GameState.MainMenu;
                     break;
@@ -204,7 +204,7 @@ namespace CarGame
                 case GameState.HelpScreen:
                     DisplayHelpScreen();
                     break;
-                    
+
                 case GameState.PlayGame:
                     PlayTheGame();
                     break;
@@ -235,7 +235,7 @@ namespace CarGame
                     case GameState.PlayGame:
                         playGame(gameTime);
 
-                    case GameState.EndGame:
+                case GameState.EndGame:
                     EndTheGame();
                     
                        break;
@@ -264,6 +264,9 @@ namespace CarGame
         {
 
         }
+        
+        public void showHelp()
+        {
         
         public void PlayGame()
         {
