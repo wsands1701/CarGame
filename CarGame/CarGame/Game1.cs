@@ -83,7 +83,7 @@ namespace CarGame
             // TODO: Add your initialization logic here
             IsMouseVisible = true;
 
-
+            
 
 
             playRectangle = new Rectangle(50, 200, 300, 150);
@@ -156,7 +156,7 @@ namespace CarGame
                 case GameState.MainMenu:
                     if (Mouse.GetState().LeftButton == ButtonState.Pressed)
                         mousePointer = new Point(Mouse.GetState().X, Mouse.GetState().Y);
-
+                    
                     if (playRectangle.Contains(mousePointer))
                         state = GameState.PlayGame;
 
@@ -171,7 +171,7 @@ namespace CarGame
                 case GameState.HelpScreen:
                     if (Mouse.GetState().LeftButton == ButtonState.Pressed)
                         mousePointer = new Point(Mouse.GetState().X, Mouse.GetState().Y);
-
+                    
                     if (backRectangle.Contains(mousePointer))
                         state = GameState.MainMenu;
                     break;
@@ -215,7 +215,7 @@ namespace CarGame
                 case GameState.HelpScreen:
                     DisplayHelpScreen();
                     break;
-
+                    
                 case GameState.PlayGame:
                     PlayTheGame();
                     break;
@@ -248,11 +248,14 @@ namespace CarGame
 
                 case GameState.EndGame:
                     EndTheGame();
-                    
+
+                        break;
+                   case GameState.HelpScreen:
+                       showHelp();
                        break;
-                case GameState.EndGame:
+                    case GameState.EndGame:
                     EndGame();
-                    break;
+                       break;
             }
 
             spriteBatch.End();
@@ -269,6 +272,12 @@ namespace CarGame
         }
 
         public void PlayTheGame()
+            spriteBatch.DrawString(font, "Welcome to the Car Game!", new Vector2(50, 50), Color.White);
+            spriteBatch.Draw(play, playRectangle, Color.White);
+            spriteBatch.Draw(help, helpRectangle, Color.White);
+            spriteBatch.Draw(end, endRectangle, Color.White);
+        }
+        public void DisplayHelpScreen()
         {
             spriteBatch.DrawString(font, "Help", new Vector2(50, 50), Color.White);
             spriteBatch.Draw(back, backRectangle, Color.White);
@@ -276,10 +285,14 @@ namespace CarGame
         public void DisplayChooseColor()
         {
 
+            spriteBatch.DrawString(font, "Help", new Vector2(50, 50), Color.White);
+            spriteBatch.Draw(back, backRectangle, Color.White);
         }
 
         public void showHelp()
         {
+
+        }
         
         public void PlayGame()
         {
@@ -296,6 +309,12 @@ namespace CarGame
             spriteBatch.DrawString(font, "GAME OVER", new Vector2(50, 50), Color.White);
             spriteBatch.Draw(back, backRectangle, Color.White);
         }
-    
+        public void EndGame()
+        {
+            GraphicsDevice.Clear(Color.Gray);
+            spriteBatch.DrawString(font, "GAME OVER", new Vector2(50, 50), Color.White);
+            spriteBatch.Draw(back, backRectangle, Color.White);
+        }
+
+        }
     }
-}
