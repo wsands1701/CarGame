@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Collections;
 
 namespace CarGame
 {
@@ -90,6 +91,15 @@ namespace CarGame
             endRectangle = new Rectangle(350, 200, 300, 150);
             helpRectangle = new Rectangle(650, 200, 300, 150);
             backRectangle = new Rectangle(900, 0, 300, 300);
+
+            //arraylist of cars
+            ArrayList TrafficOptions = new ArrayList();
+            //add cars
+            Obstacles redCar = new Traffic(50, 50, 150, true);
+
+            //add car to arraylist
+            TrafficOptions.Add(redCar);
+
 
             base.Initialize();
         }
