@@ -203,7 +203,7 @@ namespace CarGame
                     {
                         mousePointer= new Point(Mouse.GetState().X, Mouse.GetState().Y);
                         playerRectangle = new Rectangle(mousePointer.X,mousePointer.Y, 600, 297);
-                        spriteBatch.Draw(redCar, playerRectangle, Color.White);
+                        //spriteBatch.Draw(redCar, playerRectangle, Color.White);
                     }
 
                     break;
