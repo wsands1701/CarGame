@@ -24,14 +24,14 @@ namespace CarGame
         }
 
         //if traffic(Moving)
-        public Obstacles(int x,int y, int speed, /* ¿Color?*/, Boolean collision)
-            {
-            this.x = x;
-            this.y = y;
-            wastfilly = speed;
+      //public Obstacles(int x,int y, int speed, /* ¿Color?*/, Boolean collision)
+        //    {
+          //  this.x = x;
+           // this.y = y;
+            //wastfilly = speed;
             /*traffic Color code*/
-            collide = collision;
-            } 
+           // collide = collision;
+            //} 
          //Sets
         public void setX(int X)
             {
@@ -72,7 +72,7 @@ namespace CarGame
 
        
 
-        new object car1(int xCoord, int yCoord, Boolean collison, int speed);
+       // new object car1(int xCoord, int yCoord, Boolean collison, int speed);
 
 
         

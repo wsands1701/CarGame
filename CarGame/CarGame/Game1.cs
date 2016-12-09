@@ -204,61 +204,36 @@ namespace CarGame
             GraphicsDevice.Clear(Color.Gray);
 
             // TODO: Add your drawing code here
-<<<<<<< HEAD
+
             spriteBatch.Begin();
-            switch (state)
-            {
+            switch (state) { 
+            
                 case GameState.MainMenu:
                     DisplayMainMenu();
-                    break;
+            break;
 
                 case GameState.HelpScreen:
                     DisplayHelpScreen();
-                    break;
+            break;
                     
                 case GameState.PlayGame:
                     PlayTheGame();
-                    break;
-                    break;
+            break;
+                   
                     
                 case GameState.ChooseColor:
                     DisplayChooseColor();
 
-                    break;
-                case GameState.PlayGame:
-                    PlayGame();
+            break;
+        }
 
             spriteBatch.End();
 
 
-            spriteBatch.Begin();
+            
 
 
-            //DisplayMainMenu();
-            playGame();
-
-            switch (state)
-               {
-                    case GameState.MainMenu:
-                        DisplayMainMenu();
-                    
-                        break;
-                    case GameState.PlayGame:
-                        playGame(gameTime);
-
-                case GameState.EndGame:
-                    EndTheGame();
-
-                        break;
-                   case GameState.HelpScreen:
-                       showHelp();
-                       break;
-                    case GameState.EndGame:
-                    EndGame();
-                       break;
-            }
-
-            spriteBatch.End();
+          
             base.Draw(gameTime);
         }
 
@@ -271,7 +246,7 @@ namespace CarGame
             spriteBatch.Draw(end, endRectangle, Color.White);
         }
 
-        public void PlayTheGame()
+        public void PlayTheGame() { 
             spriteBatch.DrawString(font, "Welcome to the Car Game!", new Vector2(50, 50), Color.White);
             spriteBatch.Draw(play, playRectangle, Color.White);
             spriteBatch.Draw(help, helpRectangle, Color.White);
@@ -281,7 +256,7 @@ namespace CarGame
         {
             spriteBatch.DrawString(font, "Help", new Vector2(50, 50), Color.White);
             spriteBatch.Draw(back, backRectangle, Color.White);
-
+        }
         public void DisplayChooseColor()
         {
 
@@ -298,8 +273,7 @@ namespace CarGame
         {
             GraphicsDevice.Clear(Color.Black);
             spriteBatch.Draw(road, new Vector2(0,0), Color.White);
-        }
-
+        
             spriteBatch.DrawString(font, "Please choose a car color listed below.", new Vector2(50, 50), Color.White);
         }
 
