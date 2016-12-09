@@ -23,6 +23,7 @@ namespace CarGame
         Rectangle helpRectangle;
         Rectangle backRectangle;
         Rectangle choose_colorRectangle;
+        Rectangle playerRectangle;
 
         Point mousePointer;
 
@@ -33,6 +34,7 @@ namespace CarGame
         
         //textures
         Texture2D road;
+        Texture2D line;
         Texture2D tree;
         Texture2D flower;
 
@@ -96,6 +98,7 @@ namespace CarGame
             backRectangle = new Rectangle(950, 500, 300, 300);
             choose_colorRectangle = new Rectangle(950, 200, 300, 150);
 
+
             base.Initialize();
         }
 
@@ -113,6 +116,7 @@ namespace CarGame
             //vegetation / background textures
             road = Content.Load<Texture2D>("Road");
             tree = Content.Load<Texture2D>("tree");
+            line = Content.Load<Texture2D>("line");
             //can we use a gif in MVS? we could line the road with this
             //flower = Content.Load<Texture2D>("");
 
@@ -171,7 +175,7 @@ namespace CarGame
 
                     if (helpRectangle.Contains(mousePointer))
                         state = GameState.HelpScreen;
-
+                  
                     if (choose_colorRectangle.Contains(mousePointer))
                         state = GameState.ChooseColor;
                   
@@ -194,6 +198,13 @@ namespace CarGame
                     break;
                 
                 case GameState.PlayGame:
+                    //if left mouse is pressed/collect mouse location data, then make and draw playerrectangle with said pointer data
+                    if(Mouse.GetState().LeftButton==ButtonState.Pressed)
+                    {
+                        mousePointer= new Point(Mouse.GetState().X, Mouse.GetState().Y);
+                        playerRectangle = new Rectangle(mousePointer.X,mousePointer.Y, 600, 297);
+                        spriteBatch.Draw(redCar, playerRectangle, Color.White);
+                    }
 
                     break;
 
@@ -267,6 +278,8 @@ namespace CarGame
         public void PlayTheGame() {
             GraphicsDevice.Clear(Color.Black);
             spriteBatch.Draw(road, new Vector2(0, 0), Color.White);
+
+            spriteBatch.DrawString(font, "Please choose a car color listed below.", new Vector2(50, 50), Color.White);
         }
         public void DisplayHelpScreen()
         {

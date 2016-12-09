@@ -71,16 +71,14 @@
     <Content Include="Content\GreyCar.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\help.jpg">
+    <Content Include="Content\help.jpg" />
+    <Content Include="Content\line.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\OrangeCar.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\play.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\play_button.png" />
+    <Content Include="Content\play.jpg" />
     <Content Include="Content\RedCar.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
