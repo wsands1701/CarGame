@@ -22,6 +22,7 @@ namespace CarGame
         Rectangle endRectangle;
         Rectangle helpRectangle;
         Rectangle backRectangle;
+        Rectangle choose_colorRectangle;
         Rectangle playerRectangle;
 
         Point mousePointer;
@@ -44,10 +45,13 @@ namespace CarGame
         Texture2D orangeCar;
         Texture2D whiteCar;
         Texture2D greyCar;
+
+        //button textures
         Texture2D play;
         Texture2D end;
         Texture2D help;
         Texture2D back;
+        Texture2D ChooseColor;
 
         //font
         SpriteFont font;
@@ -91,7 +95,8 @@ namespace CarGame
             playRectangle = new Rectangle(50, 200, 300, 150);
             endRectangle = new Rectangle(350, 200, 300, 150);
             helpRectangle = new Rectangle(650, 200, 300, 150);
-            backRectangle = new Rectangle(900, 0, 300, 300);
+            backRectangle = new Rectangle(950, 500, 300, 300);
+            choose_colorRectangle = new Rectangle(950, 200, 300, 150);
            
 
             base.Initialize();
@@ -128,6 +133,7 @@ namespace CarGame
             end = Content.Load<Texture2D>("end");
             back = Content.Load<Texture2D>("back");
             help = Content.Load<Texture2D>("help");
+            ChooseColor = Content.Load<Texture2D>("ChooseColor");
 
 
             //font
@@ -170,6 +176,9 @@ namespace CarGame
                     if (helpRectangle.Contains(mousePointer))
                         state = GameState.HelpScreen;
                   
+                    if (choose_colorRectangle.Contains(mousePointer))
+                        state = GameState.ChooseColor;
+                  
                     break;
 
                 case GameState.HelpScreen:
@@ -181,7 +190,11 @@ namespace CarGame
                     break;
 
                 case GameState.ChooseColor:
+                    if (Mouse.GetState().LeftButton == ButtonState.Pressed)
+                        mousePointer = new Point(Mouse.GetState().X, Mouse.GetState().Y);
 
+                    if (backRectangle.Contains(mousePointer))
+                        state = GameState.MainMenu;
                     break;
                 
                 case GameState.PlayGame:
@@ -262,12 +275,12 @@ namespace CarGame
             spriteBatch.Draw(play, playRectangle, Color.White);
             spriteBatch.Draw(help, helpRectangle, Color.White);
             spriteBatch.Draw(end, endRectangle, Color.White);
+            spriteBatch.Draw(ChooseColor, choose_colorRectangle, Color.White);
         }
 
         public void PlayTheGame() {
             GraphicsDevice.Clear(Color.Black);
-            spriteBatch.Draw(road, new Vector2(0, 0), Color.White);
-            spriteBatch.Draw(line, new Vector2(30, 30), Color.White);
+            spriteBatch.Draw(road, GraphicsDevice.Viewport.Bounds, Color.White);
 
             spriteBatch.DrawString(font, "Please choose a car color listed below.", new Vector2(50, 50), Color.White);
         }
@@ -278,16 +291,14 @@ namespace CarGame
         }
         public void DisplayChooseColor()
         {
-
-            spriteBatch.DrawString(font, "Help", new Vector2(50, 50), Color.White);
+            spriteBatch.DrawString(font, "Please choose a car color listed below.", new Vector2(50, 50), Color.White);
             spriteBatch.Draw(back, backRectangle, Color.White);
         }
 
         public void EndTheGame()
         {
             GraphicsDevice.Clear(Color.Gray);
-            spriteBatch.DrawString(font, "GAME OVER", new Vector2(50, 50), Color.White);
-            spriteBatch.Draw(back, backRectangle, Color.White);
+            Exit();
         }
 
         }
