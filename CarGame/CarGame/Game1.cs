@@ -243,7 +243,6 @@ namespace CarGame
             break;
                     
                 case GameState.PlayGame:
-                    spriteBatch.Draw(redCar, playerRectangle, Color.White);
                     PlayTheGame();
             break;
 
@@ -281,6 +280,7 @@ namespace CarGame
         public void PlayTheGame() {
             GraphicsDevice.Clear(Color.Black);
             spriteBatch.Draw(road, GraphicsDevice.Viewport.Bounds, Color.White);
+            spriteBatch.Draw(redCar, playerRectangle, Color.White);
         }
         public void DisplayHelpScreen()
         {
