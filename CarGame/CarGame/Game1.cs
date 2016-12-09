@@ -32,6 +32,7 @@ namespace CarGame
         
         //textures
         Texture2D road;
+        Texture2D line;
         Texture2D tree;
         Texture2D flower;
 
@@ -108,6 +109,7 @@ namespace CarGame
             //vegetation / background textures
             road = Content.Load<Texture2D>("Road");
             tree = Content.Load<Texture2D>("tree");
+            line = Content.Load<Texture2D>("line");
             //can we use a gif in MVS? we could line the road with this
             //flower = Content.Load<Texture2D>("");
 
@@ -253,6 +255,7 @@ namespace CarGame
         public void PlayTheGame() {
             GraphicsDevice.Clear(Color.Black);
             spriteBatch.Draw(road, new Vector2(0, 0), Color.White);
+            spriteBatch.Draw(line, new Vector2(30, 30), Color.White);
 
             spriteBatch.DrawString(font, "Please choose a car color listed below.", new Vector2(50, 50), Color.White);
         }
