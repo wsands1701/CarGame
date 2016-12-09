@@ -2,12 +2,13 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Collections;
 
 namespace CarGame
 {
     //I'm watching you all ~ McCloskey
     //nice
-      
+    
         //create image to follow mouse when pressed. Can use this, our branch
    
     /// <summary>
@@ -36,7 +37,7 @@ namespace CarGame
         Rectangle line1Rectangle3;
         Rectangle line1Rectangle4;
         bool mousePressed = false;
-      
+
         int r=250;
         int g=250;
         int b=250;
@@ -92,7 +93,7 @@ namespace CarGame
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
-      
+
             graphics.PreferredBackBufferHeight = 800;
             graphics.PreferredBackBufferWidth = 1280;
 
@@ -128,7 +129,16 @@ namespace CarGame
             aquaRectangle = new Rectangle(500, 300, 200, 100);
             yellowRectangle = new Rectangle(300, 300, 200, 100); 
             choose_colorRectangle = new Rectangle(950, 200, 300, 150);
-           
+
+            //arraylist of cars
+            ArrayList TrafficOptions = new ArrayList();
+            //add cars
+            Obstacles redCar = new Traffic(50, 50, 150, true);
+
+            //add car to arraylist
+            TrafficOptions.Add(redCar);
+
+
             base.Initialize();
         }
 
@@ -167,7 +177,7 @@ namespace CarGame
             back = Content.Load<Texture2D>("back");
             help = Content.Load<Texture2D>("help");
             ChooseColor = Content.Load<Texture2D>("ChooseColor.jpg");
-          
+
 
             //font
             font = Content.Load<SpriteFont>("fastFont");
@@ -339,7 +349,7 @@ namespace CarGame
                     
                 case GameState.PlayGame:
                      plCl = new Color(r, g, b);
-                     PlayTheGame();
+                    PlayTheGame();
             break;
 
                 case GameState.EndGame:
