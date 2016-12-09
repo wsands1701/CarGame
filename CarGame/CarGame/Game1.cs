@@ -293,8 +293,7 @@ namespace CarGame
         public void EndTheGame()
         {
             GraphicsDevice.Clear(Color.Gray);
-            spriteBatch.DrawString(font, "GAME OVER", new Vector2(50, 50), Color.White);
-            spriteBatch.Draw(back, backRectangle, Color.White);
+            Exit();
         }
 
         }
