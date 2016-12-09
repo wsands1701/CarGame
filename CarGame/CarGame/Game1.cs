@@ -219,7 +219,11 @@ namespace CarGame
                 case GameState.PlayGame:
                     PlayTheGame();
             break;
-                   
+
+                case GameState.EndGame:
+                    EndTheGame();
+
+            break;
                     
                 case GameState.ChooseColor:
                     DisplayChooseColor();
@@ -246,11 +250,11 @@ namespace CarGame
             spriteBatch.Draw(end, endRectangle, Color.White);
         }
 
-        public void PlayTheGame() { 
-            spriteBatch.DrawString(font, "Welcome to the Car Game!", new Vector2(50, 50), Color.White);
-            spriteBatch.Draw(play, playRectangle, Color.White);
-            spriteBatch.Draw(help, helpRectangle, Color.White);
-            spriteBatch.Draw(end, endRectangle, Color.White);
+        public void PlayTheGame() {
+            GraphicsDevice.Clear(Color.Black);
+            spriteBatch.Draw(road, new Vector2(0, 0), Color.White);
+
+            spriteBatch.DrawString(font, "Please choose a car color listed below.", new Vector2(50, 50), Color.White);
         }
         public void DisplayHelpScreen()
         {
@@ -264,26 +268,7 @@ namespace CarGame
             spriteBatch.Draw(back, backRectangle, Color.White);
         }
 
-        public void showHelp()
-        {
-
-        }
-        
-        public void PlayGame()
-        {
-            GraphicsDevice.Clear(Color.Black);
-            spriteBatch.Draw(road, new Vector2(0,0), Color.White);
-        
-            spriteBatch.DrawString(font, "Please choose a car color listed below.", new Vector2(50, 50), Color.White);
-        }
-
         public void EndTheGame()
-        {
-            GraphicsDevice.Clear(Color.Gray);
-            spriteBatch.DrawString(font, "GAME OVER", new Vector2(50, 50), Color.White);
-            spriteBatch.Draw(back, backRectangle, Color.White);
-        }
-        public void EndGame()
         {
             GraphicsDevice.Clear(Color.Gray);
             spriteBatch.DrawString(font, "GAME OVER", new Vector2(50, 50), Color.White);
