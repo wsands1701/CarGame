@@ -88,23 +88,16 @@ namespace CarGame
         {
             // TODO: Add your initialization logic here
             IsMouseVisible = true;
-
-            
-
-
             playRectangle = new Rectangle(50, 200, 300, 150);
             endRectangle = new Rectangle(350, 200, 300, 150);
             helpRectangle = new Rectangle(650, 200, 300, 150);
             backRectangle = new Rectangle(950, 500, 300, 300);
             choose_colorRectangle = new Rectangle(950, 200, 300, 150);
-           
-
             base.Initialize();
         }
 
         /// <summary>
-        /// LoadContent will be called once per game and is the place to load
-        /// all of your content.
+
         /// </summary>
         protected override void LoadContent()
         {
@@ -199,14 +192,16 @@ namespace CarGame
                 
                 case GameState.PlayGame:
                     //if left mouse is pressed/collect mouse location data, then make and draw playerrectangle with said pointer data
-                    //if (playerRectangle.Contains(mousePointer))
+                    playerRectangle = new Rectangle(150,150,300, 150);
+                    if (playerRectangle.Contains(mousePointer))
                     {
 
                         
                         if (Mouse.GetState().LeftButton == ButtonState.Pressed)
                         {
-                            
-                            
+                            mousePointer = new Point(Mouse.GetState().X, Mouse.GetState().Y);
+                            playerRectangle.X = Mouse.GetState().X;
+                            playerRectangle.Y = Mouse.GetState().Y;
                         }
                     }
 
