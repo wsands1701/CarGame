@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -6,7 +7,7 @@ namespace CarGame
 {
     //I'm watching you all ~ McCloskey
     //nice
-
+    
         //create image to follow mouse when pressed. Can use this, our branch
    
     /// <summary>
@@ -16,6 +17,14 @@ namespace CarGame
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+
+        Rectangle playRectangle;
+        Rectangle endRectangle;
+        Rectangle helpRectangle;
+        Rectangle backRectangle;
+
+        Point mousePointer;
+
         //vectors
         Vector2 stationaryObjSpeed;
         Vector2 enemyCarObjSpeed;
@@ -25,6 +34,7 @@ namespace CarGame
         Texture2D road;
         Texture2D tree;
         Texture2D flower;
+
         //car textures
         Texture2D greenCar;
         Texture2D redCar;
@@ -32,6 +42,10 @@ namespace CarGame
         Texture2D orangeCar;
         Texture2D whiteCar;
         Texture2D greyCar;
+        Texture2D play;
+        Texture2D end;
+        Texture2D help;
+        Texture2D back;
 
         //font
         SpriteFont font;
@@ -39,8 +53,9 @@ namespace CarGame
         enum GameState
         {
             MainMenu,
-            PlayGame,
             HelpScreen,
+            ChooseColor,
+            PlayGame,
             EndGame
         }
         GameState state = GameState.MainMenu;
@@ -48,6 +63,10 @@ namespace CarGame
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
+
+            graphics.PreferredBackBufferHeight = 800;
+            graphics.PreferredBackBufferWidth = 1280;
+
             //graphics.IsFullScreen = true;
             Content.RootDirectory = "Content";
         }
@@ -65,6 +84,12 @@ namespace CarGame
             IsMouseVisible = true;
 
             
+
+
+            playRectangle = new Rectangle(50, 200, 300, 150);
+            endRectangle = new Rectangle(350, 200, 300, 150);
+            helpRectangle = new Rectangle(650, 200, 300, 150);
+            backRectangle = new Rectangle(900, 0, 300, 300);
 
             base.Initialize();
         }
@@ -94,6 +119,13 @@ namespace CarGame
             redCar = Content.Load<Texture2D>("RedCar");
             whiteCar = Content.Load<Texture2D>("WhiteCar");
 
+            //button textures
+            play = Content.Load<Texture2D>("play");
+            end = Content.Load<Texture2D>("end");
+            back = Content.Load<Texture2D>("back");
+            help = Content.Load<Texture2D>("help");
+
+
             //font
             font = Content.Load<SpriteFont>("fastFont");
         }
@@ -122,17 +154,42 @@ namespace CarGame
             switch (state)
             {
                 case GameState.MainMenu:
+                    if (Mouse.GetState().LeftButton == ButtonState.Pressed)
+                        mousePointer = new Point(Mouse.GetState().X, Mouse.GetState().Y);
                     
+                    if (playRectangle.Contains(mousePointer))
+                        state = GameState.PlayGame;
+
+                    if (endRectangle.Contains(mousePointer))
+                        state = GameState.EndGame;
+
+                    if (helpRectangle.Contains(mousePointer))
+                        state = GameState.HelpScreen;
+                  
                     break;
 
                 case GameState.HelpScreen:
+                    if (Mouse.GetState().LeftButton == ButtonState.Pressed)
+                        mousePointer = new Point(Mouse.GetState().X, Mouse.GetState().Y);
                     
+                    if (backRectangle.Contains(mousePointer))
+                        state = GameState.MainMenu;
                     break;
+
+                case GameState.ChooseColor:
+
+                    break;
+                
                 case GameState.PlayGame:
 
                     break;
-                case GameState.EndGame:
 
+                case GameState.EndGame:
+                    if (Mouse.GetState().LeftButton == ButtonState.Pressed)
+                        mousePointer = new Point(Mouse.GetState().X, Mouse.GetState().Y);
+
+                    if (backRectangle.Contains(mousePointer))
+                        state = GameState.MainMenu;
                     break;
             }
             base.Update(gameTime);
@@ -144,30 +201,32 @@ namespace CarGame
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
-            // TODO: Add your drawing code here
+            GraphicsDevice.Clear(Color.Gray);
 
+            // TODO: Add your drawing code here
+<<<<<<< HEAD
             spriteBatch.Begin();
             switch (state)
             {
                 case GameState.MainMenu:
                     DisplayMainMenu();
-
                     break;
+
                 case GameState.HelpScreen:
                     DisplayHelpScreen();
-                    
                     break;
+                    
                 case GameState.PlayGame:
                     PlayTheGame();
-                    
                     break;
+                    break;
+                    
+                case GameState.ChooseColor:
+                    DisplayChooseColor();
 
-                case GameState.EndGame:
-                    EndGame();
-                    
                     break;
-            }
+                case GameState.PlayGame:
+                    PlayGame();
 
             spriteBatch.End();
 
@@ -187,26 +246,75 @@ namespace CarGame
                     case GameState.PlayGame:
                         playGame(gameTime);
 
+                case GameState.EndGame:
+                    EndTheGame();
+
                         break;
                    case GameState.HelpScreen:
                        showHelp();
                        break;
                     case GameState.EndGame:
-                       endGame();
+                    EndGame();
                        break;
             }
 
             spriteBatch.End();
-
-
             base.Draw(gameTime);
         }
 
 
-       
-        public void endGame()
+        public void DisplayMainMenu()
+        {
+            spriteBatch.DrawString(font, "Welcome to the Car Game!", new Vector2(50, 50), Color.White);
+            spriteBatch.Draw(play, playRectangle, Color.White);
+            spriteBatch.Draw(help, helpRectangle, Color.White);
+            spriteBatch.Draw(end, endRectangle, Color.White);
+        }
+
+        public void PlayTheGame()
+            spriteBatch.DrawString(font, "Welcome to the Car Game!", new Vector2(50, 50), Color.White);
+            spriteBatch.Draw(play, playRectangle, Color.White);
+            spriteBatch.Draw(help, helpRectangle, Color.White);
+            spriteBatch.Draw(end, endRectangle, Color.White);
+        }
+        public void DisplayHelpScreen()
+        {
+            spriteBatch.DrawString(font, "Help", new Vector2(50, 50), Color.White);
+            spriteBatch.Draw(back, backRectangle, Color.White);
+
+        public void DisplayChooseColor()
+        {
+
+            spriteBatch.DrawString(font, "Help", new Vector2(50, 50), Color.White);
+            spriteBatch.Draw(back, backRectangle, Color.White);
+        }
+
+        public void showHelp()
         {
 
         }
+        
+        public void PlayGame()
+        {
+            GraphicsDevice.Clear(Color.Black);
+            spriteBatch.Draw(road, new Vector2(0,0), Color.White);
+        }
+
+            spriteBatch.DrawString(font, "Please choose a car color listed below.", new Vector2(50, 50), Color.White);
+        }
+
+        public void EndTheGame()
+        {
+            GraphicsDevice.Clear(Color.Gray);
+            spriteBatch.DrawString(font, "GAME OVER", new Vector2(50, 50), Color.White);
+            spriteBatch.Draw(back, backRectangle, Color.White);
+        }
+        public void EndGame()
+        {
+            GraphicsDevice.Clear(Color.Gray);
+            spriteBatch.DrawString(font, "GAME OVER", new Vector2(50, 50), Color.White);
+            spriteBatch.Draw(back, backRectangle, Color.White);
+        }
+
+        }
     }
-}
