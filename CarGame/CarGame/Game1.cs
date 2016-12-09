@@ -88,29 +88,22 @@ namespace CarGame
         {
             // TODO: Add your initialization logic here
             IsMouseVisible = true;
-
-            
-
-
             playRectangle = new Rectangle(50, 200, 300, 150);
             endRectangle = new Rectangle(350, 200, 300, 150);
             helpRectangle = new Rectangle(650, 200, 300, 150);
             backRectangle = new Rectangle(950, 500, 300, 300);
             choose_colorRectangle = new Rectangle(950, 200, 300, 150);
-           
-
             base.Initialize();
         }
 
         /// <summary>
-        /// LoadContent will be called once per game and is the place to load
-        /// all of your content.
+
         /// </summary>
         protected override void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
+       
             // TODO: use this.Content to load your game content here
 
             //vegetation / background textures
