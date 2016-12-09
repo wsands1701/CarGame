@@ -186,11 +186,13 @@ namespace CarGame
                 
                 case GameState.PlayGame:
                     //if left mouse is pressed/collect mouse location data, then make and draw playerrectangle with said pointer data
-                    if(Mouse.GetState().LeftButton==ButtonState.Pressed)
+                    //if (playerRectangle.Contains(mousePointer))
                     {
-                        mousePointer= new Point(Mouse.GetState().X, Mouse.GetState().Y);
-                        playerRectangle = new Rectangle(mousePointer.X,mousePointer.Y, 600, 297);
-                        spriteBatch.Draw(redCar, playerRectangle, Color.White);
+                        if (Mouse.GetState().LeftButton == ButtonState.Pressed)
+                        {
+                            mousePointer = new Point(Mouse.GetState().X, Mouse.GetState().Y);
+                            playerRectangle = new Rectangle(mousePointer.X - 150, mousePointer.Y - 75, 300, 150);
+                        }
                     }
 
                     break;
@@ -228,6 +230,7 @@ namespace CarGame
             break;
                     
                 case GameState.PlayGame:
+                    spriteBatch.Draw(redCar, playerRectangle, Color.White);
                     PlayTheGame();
             break;
 
