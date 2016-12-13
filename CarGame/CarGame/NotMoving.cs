@@ -11,7 +11,7 @@ namespace CarGame.Content
         /*
             Things that we need to do:
             
-            Figure out Arnas' and Brian's "code" can benefit our class
+            Figure out Arnas' and Brian's "grades" can benefit our class
 
             Start programming
         */
