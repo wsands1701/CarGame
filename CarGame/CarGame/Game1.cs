@@ -95,7 +95,7 @@ namespace CarGame
             //arraylist of cars
             ArrayList TrafficOptions = new ArrayList();
             //add cars
-            Obstacles redTraffic = new Moving(Obstacles.getX(), Obstacles.getY(), speed, false, redCar);
+            Obstacles redTraffic = new Moving(x, y, speed, false, redCar);
             Obstacles blueTraffic = new Moving(50, 50, 150, false, blueCar);
             Obstacles greenTraffic = new Moving(50, 50, 150, false, greenCar);
             Obstacles greyTraffic = new Moving(50, 50, 150, false, greyCar);

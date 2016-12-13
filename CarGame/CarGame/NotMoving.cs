@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CarGame.Content
 {
-    class NotMoving 
+    class NotMoving //: Obstacles
     {
         /*
             Things that we need to do:
