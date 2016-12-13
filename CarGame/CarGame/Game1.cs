@@ -276,7 +276,7 @@ namespace CarGame
         public void PlayTheGame() {
             GraphicsDevice.Clear(Color.Black);
             spriteBatch.Draw(road, GraphicsDevice.Viewport.Bounds, Color.White);
-            spriteBatch.Draw(redCar, playerRectangle, Color.White);
+            spriteBatch.Draw(whiteCar, playerRectangle, Color.White);
         }
         public void DisplayHelpScreen()
         {
