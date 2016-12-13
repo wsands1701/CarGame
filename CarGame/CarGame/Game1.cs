@@ -95,10 +95,19 @@ namespace CarGame
             //arraylist of cars
             ArrayList TrafficOptions = new ArrayList();
             //add cars
-            Obstacles redCar = new Traffic(50, 50, 150, true);
-
+            Obstacles redTraffic = new Moving(Obstacles.getX(), Obstacles.getY(), speed, false, redCar);
+            Obstacles blueTraffic = new Moving(50, 50, 150, false, blueCar);
+            Obstacles greenTraffic = new Moving(50, 50, 150, false, greenCar);
+            Obstacles greyTraffic = new Moving(50, 50, 150, false, greyCar);
+            Obstacles orangeTraffic = new Moving(50, 50, 150, false, orangeCar);
+            Obstacles whiteTraffic = new Moving(50, 50, 150, false, whiteCar);
             //add car to arraylist
-            TrafficOptions.Add(redCar);
+            TrafficOptions.Add(redTraffic);
+            TrafficOptions.Add(blueTraffic);
+            TrafficOptions.Add(greenTraffic);
+            TrafficOptions.Add(greyTraffic);
+            TrafficOptions.Add(orangeTraffic);
+            TrafficOptions.Add(whiteTraffic);
 
 
             base.Initialize();
