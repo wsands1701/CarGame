@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace CarGame
 {
-    class Traffic : Obstacles
+    class Moving : Obstacles
     {
      
 
-        public Traffic(int x, int y, int speed, Boolean collision)
+        public Moving(int x, int y, int speed, Boolean collision, Texture2D image)
         {
-            super(x, y, speed, collision);
+            super(x, y, speed, collision, image);
    
         }
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,28 +11,30 @@ namespace CarGame
     {
         private int x;
         private int y;
-        private int wastfilly;
+        private int speed;
         Boolean collide;
-
+        Texture2D image;
         //overloaded constructor method
         //If NotMoving
-        public Obstacles(int x, int y, int speed, Boolean collision)
+   
+            /*    public Obstacles(int X, int Y, int Speed, Boolean Collision)
         {
-            this.x = x;
-            this.y = y;
-            wastfilly = speed;
-            collide = collision;
-        }
+            this.x = X;
+            this.y = Y;
+            this.speed = Speed;
+            collide = Collision;
+            
+        }*/
 
         //if traffic(Moving)
-      //public Obstacles(int x,int y, int speed, /* ¿Color?*/, Boolean collision)
-        //    {
-          //  this.x = x;
-           // this.y = y;
-            //wastfilly = speed;
-            /*traffic Color code*/
-           // collide = collision;
-            //} 
+      public Obstacles(int x,int y, int Speed, Boolean collision, Texture2D Image)
+            {
+           this.x = x;
+           this.y = y;
+           this.speed = Speed;
+           image = Image;
+           collide = collision;
+           } 
          //Sets
         public void setX(int X)
             {
@@ -42,9 +45,9 @@ namespace CarGame
               y = Y;
             }
         
-        public void setWastFilly(int WastFilly)
+        public void setSpeed(int Speed)
             {
-                wastfilly = WastFilly;
+                speed = Speed;
            
             }
         public void setCollide(Boolean collision)
@@ -61,9 +64,9 @@ namespace CarGame
             {
                 return y;
             }
-        private int getWastFilly()
+        private int getSpeed()
             {
-                return wastfilly;
+                return speed;
             }
         public Boolean getCollide()
             {
