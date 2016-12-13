@@ -12,8 +12,17 @@ namespace CarGame
         private int x;
         private int y;
         private int speed;
-        Boolean collide;
+        bool collide;
         Texture2D image;
+
+        //arrays of x and y coordinates
+        int[] yCoords = new int[] { 150, 310, 450, 620 };
+        int[] xCoords = new int[] { -20, 1300 };
+
+
+        //generates a random number
+        Random rnd = new Random();
+
         //overloaded constructor method
         //If NotMoving
    
@@ -26,19 +35,26 @@ namespace CarGame
             
         }*/
 
+
+
         //if traffic(Moving)
-      public Obstacles(int x,int y, int Speed, Boolean collision, Texture2D Image)
+      public Obstacles(int x,int y, int Speed, bool collision, Texture2D Image)
             {
            this.x = x;
            this.y = y;
            this.speed = Speed;
-           image = Image;
-           collide = collision;
+           this.image = Image;
+           this.collide = collision;
            } 
          //Sets
         public void setX(int X)
-            {
-                 x = X;
+            {               //How do i make it so that it doesnt generate two random numbers, but instead compares to value of the same, randomly- generated, number?
+            int rand = rnd.Next(0,3)
+            if (yCoords[rand] == 150) || yCoords[rand] == 310)
+                {
+                    x = 1300;
+                }
+                    
             }
          public void setY(int Y)
             {

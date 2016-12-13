@@ -11,11 +11,9 @@ namespace CarGame
     class Moving : Obstacles
     {
      
-
-        public Moving(int x, int y, int speed, Boolean collision, Texture2D image)
+        public Moving(int x, int y, int speed, bool collision, Texture2D image) : base(x, y, speed, collision, image)
         {
-            super(x, y, speed, collision, image);
-   
+           
         }
 
         //array of possible traffic
