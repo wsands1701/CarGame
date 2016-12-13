@@ -122,6 +122,8 @@ namespace CarGame
             redCar = Content.Load<Texture2D>("RedCar");
             whiteCar = Content.Load<Texture2D>("WhiteCar");
 
+            //lines.get(lines.go(dank));
+
             //button textures
             play = Content.Load<Texture2D>("play");
             end = Content.Load<Texture2D>("end");
