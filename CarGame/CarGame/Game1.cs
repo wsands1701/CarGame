@@ -197,10 +197,10 @@ namespace CarGame
                     playerRectangle = new Rectangle(playerRectangle.X, playerRectangle.Y, 150, 75);
                     if (playerRectangle.Contains(mousePointer))
                     {
-                        if (Mouse.GetState().LeftButton == ButtonState.Pressed)
+                        if (Mouse.GetState().LeftButton == ButtonState.Pressed)//new feature - hard mode day one dlc
                         {
-                            playerRectangle.X = Mouse.GetState().X;
-                            playerRectangle.Y = Mouse.GetState().Y;
+                            playerRectangle.X = Mouse.GetState().X-60;
+                            playerRectangle.Y = Mouse.GetState().Y-40;
                         }
                     }
 
