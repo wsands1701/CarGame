@@ -31,6 +31,7 @@ namespace CarGame
         Vector2 stationaryObjSpeed;
         Vector2 enemyCarObjSpeed;
         Vector2 playerCarObjSpeed;
+        Vector2 playerRectcord;
         
         //textures
         Texture2D road;
@@ -192,14 +193,12 @@ namespace CarGame
                 
                 case GameState.PlayGame:
                     //if left mouse is pressed/collect mouse location data, then make and draw playerrectangle with said pointer data
-                    playerRectangle = new Rectangle(150,150,300, 150);
+                    mousePointer = new Point(Mouse.GetState().X, Mouse.GetState().Y);
+                    playerRectangle = new Rectangle(playerRectangle.X, playerRectangle.Y, 150, 75);
                     if (playerRectangle.Contains(mousePointer))
                     {
-
-                        
                         if (Mouse.GetState().LeftButton == ButtonState.Pressed)
                         {
-                            mousePointer = new Point(Mouse.GetState().X, Mouse.GetState().Y);
                             playerRectangle.X = Mouse.GetState().X;
                             playerRectangle.Y = Mouse.GetState().Y;
                         }
