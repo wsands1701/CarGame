@@ -13,7 +13,7 @@ namespace CarGame
 
         public Traffic(int x, int y, int speed, Boolean collision)
         {
-            super(x, y, speed, collision);
+            base(x, y, speed, collision);
    
         }
 
