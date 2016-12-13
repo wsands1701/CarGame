@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CarGame.Content
 {
-    class NotMoving //: Obstacles
+    class NotMoving : Obstacles
     {
         /*
             Things that we need to do:
@@ -15,6 +15,11 @@ namespace CarGame.Content
 
             Start programming
         */
+
+        public NotMoving(int x, int y, int speed, bool collision) : base(x, y, speed, collision)
+        {
+           
+        }
 
         public void trees()
         {
