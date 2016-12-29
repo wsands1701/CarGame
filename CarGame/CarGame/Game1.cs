@@ -26,6 +26,7 @@ namespace CarGame
         Rectangle redRectangle;
         Rectangle blueRectangle;
         Rectangle greenRectangle;
+        Rectangle orangeRectangle;
         int r=0;
         int g=0;
         int b=0;
@@ -104,6 +105,7 @@ namespace CarGame
             redRectangle = new Rectangle(300, 200, 200, 100);
             blueRectangle = new Rectangle(500, 200, 200, 100);
             greenRectangle = new Rectangle(100, 200, 200, 100);
+            orangeRectangle = new Rectangle(700, 200, 200, 100);
             choose_colorRectangle = new Rectangle(950, 200, 300, 150);
            
             base.Initialize();
@@ -201,13 +203,23 @@ namespace CarGame
                     if (Mouse.GetState().LeftButton == ButtonState.Pressed)
                         mousePointer = new Point(Mouse.GetState().X, Mouse.GetState().Y);
                     if (redRectangle.Contains(mousePointer))
-                        r = 250;
+                    {
+                        r = 255; g = 0; b = 0;
+                    }
+                    if (orangeRectangle.Contains(mousePointer))
+                    {
+                        r = 255; g = 102; b = 0;
+                    }
                     if (greenRectangle.Contains(mousePointer))
-                        g = 250;
+                    { 
+                        g = 255; r = 0; b = 0;
+                    }
                     if (blueRectangle.Contains(mousePointer))
-                        b = 250;
+                    {
+                        b = 255; r = 0; g = 0;
+                    }
                     if (backRectangle.Contains(mousePointer))
-                        state = GameState.MainMenu;
+                        state = GameState.MainMenu; 
                     break;
                 
                 case GameState.PlayGame:
@@ -218,8 +230,8 @@ namespace CarGame
                     {
                         if (Mouse.GetState().LeftButton == ButtonState.Pressed)//new feature - hard mode day one dlc
                         {
-                            playerRectangle.X = Mouse.GetState().X-60;
-                            playerRectangle.Y = Mouse.GetState().Y-40;
+                            playerRectangle.X = Mouse.GetState().X-90;
+                            playerRectangle.Y = Mouse.GetState().Y-35;
                         }
                     }
 
@@ -312,6 +324,7 @@ namespace CarGame
             spriteBatch.Draw(redCar, redRectangle, Color.White);
             spriteBatch.Draw(greenCar, greenRectangle, Color.White);
             spriteBatch.Draw(blueCar, blueRectangle, Color.White);
+            spriteBatch.Draw(orangeCar, orangeRectangle, Color.White);
             spriteBatch.Draw(back, backRectangle, Color.White);
         }
 
