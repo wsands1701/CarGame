@@ -7,7 +7,7 @@ namespace CarGame
 {
     //I'm watching you all ~ McCloskey
     //nice
-    
+      
         //create image to follow mouse when pressed. Can use this, our branch
    
     /// <summary>
@@ -17,13 +17,18 @@ namespace CarGame
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-
         Rectangle playRectangle;
         Rectangle endRectangle;
         Rectangle helpRectangle;
         Rectangle backRectangle;
         Rectangle choose_colorRectangle;
         Rectangle playerRectangle;
+        int r=250;
+        int g=0;
+        int b=0;
+        Color plCl;
+      
+        
 
         Point mousePointer;
 
@@ -70,7 +75,7 @@ namespace CarGame
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
-
+      
             graphics.PreferredBackBufferHeight = 800;
             graphics.PreferredBackBufferWidth = 1280;
 
@@ -94,6 +99,7 @@ namespace CarGame
             helpRectangle = new Rectangle(650, 200, 300, 150);
             backRectangle = new Rectangle(950, 500, 300, 300);
             choose_colorRectangle = new Rectangle(950, 200, 300, 150);
+           
             base.Initialize();
         }
 
@@ -130,7 +136,7 @@ namespace CarGame
             back = Content.Load<Texture2D>("back");
             help = Content.Load<Texture2D>("help");
             ChooseColor = Content.Load<Texture2D>("ChooseColor");
-
+          
 
             //font
             font = Content.Load<SpriteFont>("fastFont");
@@ -188,7 +194,7 @@ namespace CarGame
                 case GameState.ChooseColor:
                     if (Mouse.GetState().LeftButton == ButtonState.Pressed)
                         mousePointer = new Point(Mouse.GetState().X, Mouse.GetState().Y);
-
+                    
                     if (backRectangle.Contains(mousePointer))
                         state = GameState.MainMenu;
                     break;
@@ -209,6 +215,7 @@ namespace CarGame
                     break;
 
                 case GameState.EndGame:
+
                     if (Mouse.GetState().LeftButton == ButtonState.Pressed)
                         mousePointer = new Point(Mouse.GetState().X, Mouse.GetState().Y);
 
@@ -241,7 +248,8 @@ namespace CarGame
             break;
                     
                 case GameState.PlayGame:
-                    PlayTheGame();
+                     plCl = new Color(r, g, b);
+                     PlayTheGame();
             break;
 
                 case GameState.EndGame:
@@ -250,6 +258,7 @@ namespace CarGame
             break;
                     
                 case GameState.ChooseColor:
+                   
                     DisplayChooseColor();
 
             break;
@@ -278,7 +287,7 @@ namespace CarGame
         public void PlayTheGame() {
             GraphicsDevice.Clear(Color.Black);
             spriteBatch.Draw(road, GraphicsDevice.Viewport.Bounds, Color.White);
-            spriteBatch.Draw(whiteCar, playerRectangle, Color.White);
+            spriteBatch.Draw(whiteCar, playerRectangle, plCl);
         }
         public void DisplayHelpScreen()
         {
@@ -288,6 +297,7 @@ namespace CarGame
         public void DisplayChooseColor()
         {
             spriteBatch.DrawString(font, "Please choose a car color listed below.", new Vector2(50, 50), Color.White);
+     
             spriteBatch.Draw(back, backRectangle, Color.White);
         }
 
