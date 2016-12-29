@@ -23,7 +23,10 @@ namespace CarGame
         Rectangle backRectangle;
         Rectangle choose_colorRectangle;
         Rectangle playerRectangle;
-        int r=250;
+        Rectangle redRectangle;
+        Rectangle blueRectangle;
+        Rectangle greenRectangle;
+        int r=0;
         int g=0;
         int b=0;
         Color plCl;
@@ -98,6 +101,9 @@ namespace CarGame
             endRectangle = new Rectangle(350, 200, 300, 150);
             helpRectangle = new Rectangle(650, 200, 300, 150);
             backRectangle = new Rectangle(950, 500, 300, 300);
+            redRectangle = new Rectangle(300, 200, 200, 100);
+            blueRectangle = new Rectangle(500, 200, 200, 100);
+            greenRectangle = new Rectangle(100, 200, 200, 100);
             choose_colorRectangle = new Rectangle(950, 200, 300, 150);
            
             base.Initialize();
@@ -194,7 +200,12 @@ namespace CarGame
                 case GameState.ChooseColor:
                     if (Mouse.GetState().LeftButton == ButtonState.Pressed)
                         mousePointer = new Point(Mouse.GetState().X, Mouse.GetState().Y);
-                    
+                    if (redRectangle.Contains(mousePointer))
+                        r = 250;
+                    if (greenRectangle.Contains(mousePointer))
+                        g = 250;
+                    if (blueRectangle.Contains(mousePointer))
+                        b = 250;
                     if (backRectangle.Contains(mousePointer))
                         state = GameState.MainMenu;
                     break;
@@ -297,7 +308,10 @@ namespace CarGame
         public void DisplayChooseColor()
         {
             spriteBatch.DrawString(font, "Please choose a car color listed below.", new Vector2(50, 50), Color.White);
-     
+
+            spriteBatch.Draw(redCar, redRectangle, Color.White);
+            spriteBatch.Draw(greenCar, greenRectangle, Color.White);
+            spriteBatch.Draw(blueCar, blueRectangle, Color.White);
             spriteBatch.Draw(back, backRectangle, Color.White);
         }
 
