@@ -27,6 +27,7 @@ namespace CarGame
         Rectangle blueRectangle;
         Rectangle greenRectangle;
         Rectangle orangeRectangle;
+        Rectangle whiteRectangle;
         int r=0;
         int g=0;
         int b=0;
@@ -105,6 +106,7 @@ namespace CarGame
             redRectangle = new Rectangle(300, 200, 200, 100);
             blueRectangle = new Rectangle(500, 200, 200, 100);
             greenRectangle = new Rectangle(100, 200, 200, 100);
+            whiteRectangle = new Rectangle(900, 200, 200, 100);
             orangeRectangle = new Rectangle(700, 200, 200, 100);
             choose_colorRectangle = new Rectangle(950, 200, 300, 150);
            
@@ -218,6 +220,10 @@ namespace CarGame
                     {
                         b = 255; r = 0; g = 0;
                     }
+                    if (whiteRectangle.Contains(mousePointer))
+                    {
+                        b = 255; r = 255; g = 255;
+                    }
                     if (backRectangle.Contains(mousePointer))
                         state = GameState.MainMenu; 
                     break;
@@ -325,6 +331,7 @@ namespace CarGame
             spriteBatch.Draw(greenCar, greenRectangle, Color.White);
             spriteBatch.Draw(blueCar, blueRectangle, Color.White);
             spriteBatch.Draw(orangeCar, orangeRectangle, Color.White);
+            spriteBatch.Draw(whiteCar, whiteRectangle, Color.White);
             spriteBatch.Draw(back, backRectangle, Color.White);
         }
 
