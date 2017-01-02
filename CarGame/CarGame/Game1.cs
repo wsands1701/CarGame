@@ -28,9 +28,10 @@ namespace CarGame
         Rectangle greenRectangle;
         Rectangle orangeRectangle;
         Rectangle whiteRectangle;
-        int r=0;
-        int g=0;
-        int b=0;
+      
+        int r=250;
+        int g=250;
+        int b=250;
         Color plCl;
       
         
@@ -182,6 +183,7 @@ namespace CarGame
                     if (playRectangle.Contains(mousePointer))
                         state = GameState.PlayGame;
 
+
                     if (endRectangle.Contains(mousePointer))
                         state = GameState.EndGame;
 
@@ -307,6 +309,7 @@ namespace CarGame
         public void DisplayMainMenu()
         {
             spriteBatch.DrawString(font, "Welcome to the Car Game!", new Vector2(50, 50), Color.White);
+            spriteBatch.DrawString(font, "You should choose a car color before pressing Play", new Vector2(250, 500), Color.White);
             spriteBatch.Draw(play, playRectangle, Color.White);
             spriteBatch.Draw(help, helpRectangle, Color.White);
             spriteBatch.Draw(end, endRectangle, Color.White);
