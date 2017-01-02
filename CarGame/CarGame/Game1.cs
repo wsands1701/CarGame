@@ -28,6 +28,7 @@ namespace CarGame
         Rectangle greenRectangle;
         Rectangle orangeRectangle;
         Rectangle whiteRectangle;
+        bool mousePressed = false;
       
         int r=250;
         int g=250;
@@ -238,8 +239,17 @@ namespace CarGame
                     {
                         if (Mouse.GetState().LeftButton == ButtonState.Pressed)//new feature - hard mode day one dlc
                         {
-                            playerRectangle.X = Mouse.GetState().X-90;
-                            playerRectangle.Y = Mouse.GetState().Y-35;
+                            mousePressed = true;
+                        }
+
+                    }
+                    if(mousePressed)
+                    {
+                        playerRectangle.X = Mouse.GetState().X-90;
+                        playerRectangle.Y = Mouse.GetState().Y-35;
+                        if(Mouse.GetState().LeftButton == ButtonState.Released)
+                        {
+                            mousePressed = false;
                         }
                     }
 
