@@ -28,6 +28,8 @@ namespace CarGame
         Rectangle greenRectangle;
         Rectangle orangeRectangle;
         Rectangle whiteRectangle;
+        Rectangle pinkRectangle;
+        Rectangle aquaRectangle;
         bool mousePressed = false;
       
         int r=250;
@@ -58,6 +60,8 @@ namespace CarGame
         Texture2D orangeCar;
         Texture2D whiteCar;
         Texture2D greyCar;
+        Texture2D pinkCar;
+        Texture2D aquaCar;
 
         //button textures
         Texture2D play;
@@ -110,6 +114,8 @@ namespace CarGame
             greenRectangle = new Rectangle(100, 200, 200, 100);
             whiteRectangle = new Rectangle(900, 200, 200, 100);
             orangeRectangle = new Rectangle(700, 200, 200, 100);
+            pinkRectangle = new Rectangle(700, 300, 200, 100);
+            aquaRectangle = new Rectangle(500, 300, 200, 100);
             choose_colorRectangle = new Rectangle(950, 200, 300, 150);
            
             base.Initialize();
@@ -139,7 +145,8 @@ namespace CarGame
             orangeCar = Content.Load<Texture2D>("OrangeCar");
             redCar = Content.Load<Texture2D>("RedCar");
             whiteCar = Content.Load<Texture2D>("WhiteCar");
-
+            pinkCar = this.Content.Load<Texture2D>("PinkCar");
+            aquaCar = Content.Load<Texture2D>("AquaCar");
             //lines.get(lines.go(dank));
 
             //button textures
@@ -207,6 +214,14 @@ namespace CarGame
                 case GameState.ChooseColor:
                     if (Mouse.GetState().LeftButton == ButtonState.Pressed)
                         mousePointer = new Point(Mouse.GetState().X, Mouse.GetState().Y);
+                    if (aquaRectangle.Contains(mousePointer))
+                    {
+                        r = 0; g = 235; b = 255;
+                    }
+                    if (pinkRectangle.Contains(mousePointer))
+                    {
+                        r = 255; g = 192;b = 210;
+                    }
                     if (redRectangle.Contains(mousePointer))
                     {
                         r = 255; g = 0; b = 0;
@@ -346,6 +361,8 @@ namespace CarGame
             spriteBatch.Draw(blueCar, blueRectangle, Color.White);
             spriteBatch.Draw(orangeCar, orangeRectangle, Color.White);
             spriteBatch.Draw(whiteCar, whiteRectangle, Color.White);
+            spriteBatch.Draw(pinkCar, pinkRectangle, Color.White);
+            spriteBatch.Draw(aquaCar, aquaRectangle, Color.White);
             spriteBatch.Draw(back, backRectangle, Color.White);
         }
 
