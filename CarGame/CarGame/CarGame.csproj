@@ -106,6 +106,9 @@
     <Content Include="Content\WhiteCar.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\YellowCar.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Gas - Station.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

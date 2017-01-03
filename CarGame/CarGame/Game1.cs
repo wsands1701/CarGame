@@ -30,6 +30,7 @@ namespace CarGame
         Rectangle whiteRectangle;
         Rectangle pinkRectangle;
         Rectangle aquaRectangle;
+        Rectangle yellowRectangle;
         bool mousePressed = false;
       
         int r=250;
@@ -62,6 +63,7 @@ namespace CarGame
         Texture2D greyCar;
         Texture2D pinkCar;
         Texture2D aquaCar;
+        Texture2D yellowCar;
 
         //button textures
         Texture2D play;
@@ -116,6 +118,7 @@ namespace CarGame
             orangeRectangle = new Rectangle(700, 200, 200, 100);
             pinkRectangle = new Rectangle(700, 300, 200, 100);
             aquaRectangle = new Rectangle(500, 300, 200, 100);
+            yellowRectangle = new Rectangle(300, 300, 200, 100); 
             choose_colorRectangle = new Rectangle(950, 200, 300, 150);
            
             base.Initialize();
@@ -147,6 +150,7 @@ namespace CarGame
             whiteCar = Content.Load<Texture2D>("WhiteCar");
             pinkCar = this.Content.Load<Texture2D>("PinkCar");
             aquaCar = Content.Load<Texture2D>("AquaCar");
+            yellowCar = Content.Load<Texture2D>("YellowCar");
             //lines.get(lines.go(dank));
 
             //button textures
@@ -214,9 +218,10 @@ namespace CarGame
                 case GameState.ChooseColor:
                     if (Mouse.GetState().LeftButton == ButtonState.Pressed)
                         mousePointer = new Point(Mouse.GetState().X, Mouse.GetState().Y);
-                    if (aquaRectangle.Contains(mousePointer))
+
+                    if (yellowRectangle.Contains(mousePointer))
                     {
-                        r = 0; g = 235; b = 255;
+                        r = 255; g = 255; b = 0;
                     }
                     if (pinkRectangle.Contains(mousePointer))
                     {
@@ -339,6 +344,7 @@ namespace CarGame
             spriteBatch.Draw(play, playRectangle, Color.White);
             spriteBatch.Draw(help, helpRectangle, Color.White);
             spriteBatch.Draw(end, endRectangle, Color.White);
+          
             spriteBatch.Draw(ChooseColor, choose_colorRectangle, Color.White);
         }
 
@@ -363,7 +369,9 @@ namespace CarGame
             spriteBatch.Draw(whiteCar, whiteRectangle, Color.White);
             spriteBatch.Draw(pinkCar, pinkRectangle, Color.White);
             spriteBatch.Draw(aquaCar, aquaRectangle, Color.White);
+            spriteBatch.Draw(yellowCar, yellowRectangle, Color.White);
             spriteBatch.Draw(back, backRectangle, Color.White);
+            
         }
 
         public void EndTheGame()
