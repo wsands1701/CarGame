@@ -59,7 +59,7 @@
     <Content Include="Content\BlueCar.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\ChooseColor.png">
+    <Content Include="Content\ChooseColor.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\end.jpg">

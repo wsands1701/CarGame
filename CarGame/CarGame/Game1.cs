@@ -147,7 +147,7 @@ namespace CarGame
             end = Content.Load<Texture2D>("end");
             back = Content.Load<Texture2D>("back");
             help = Content.Load<Texture2D>("help");
-            ChooseColor = Content.Load<Texture2D>("ChooseColor");
+            ChooseColor = Content.Load<Texture2D>("ChooseColor.jpg");
           
 
             //font
