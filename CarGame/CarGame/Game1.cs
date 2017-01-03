@@ -7,7 +7,7 @@ namespace CarGame
 {
     //I'm watching you all ~ McCloskey
     //nice
-    
+      
         //create image to follow mouse when pressed. Can use this, our branch
    
     /// <summary>
@@ -17,13 +17,25 @@ namespace CarGame
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-
         Rectangle playRectangle;
         Rectangle endRectangle;
         Rectangle helpRectangle;
         Rectangle backRectangle;
         Rectangle choose_colorRectangle;
         Rectangle playerRectangle;
+        Rectangle redRectangle;
+        Rectangle blueRectangle;
+        Rectangle greenRectangle;
+        Rectangle orangeRectangle;
+        Rectangle whiteRectangle;
+        bool mousePressed = false;
+      
+        int r=250;
+        int g=250;
+        int b=250;
+        Color plCl;
+      
+        
 
         Point mousePointer;
 
@@ -70,7 +82,7 @@ namespace CarGame
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
-
+      
             graphics.PreferredBackBufferHeight = 800;
             graphics.PreferredBackBufferWidth = 1280;
 
@@ -93,7 +105,13 @@ namespace CarGame
             endRectangle = new Rectangle(350, 200, 300, 150);
             helpRectangle = new Rectangle(650, 200, 300, 150);
             backRectangle = new Rectangle(950, 500, 300, 300);
+            redRectangle = new Rectangle(300, 200, 200, 100);
+            blueRectangle = new Rectangle(500, 200, 200, 100);
+            greenRectangle = new Rectangle(100, 200, 200, 100);
+            whiteRectangle = new Rectangle(900, 200, 200, 100);
+            orangeRectangle = new Rectangle(700, 200, 200, 100);
             choose_colorRectangle = new Rectangle(950, 200, 300, 150);
+           
             base.Initialize();
         }
 
@@ -130,7 +148,7 @@ namespace CarGame
             back = Content.Load<Texture2D>("back");
             help = Content.Load<Texture2D>("help");
             ChooseColor = Content.Load<Texture2D>("ChooseColor");
-
+          
 
             //font
             font = Content.Load<SpriteFont>("fastFont");
@@ -166,6 +184,7 @@ namespace CarGame
                     if (playRectangle.Contains(mousePointer))
                         state = GameState.PlayGame;
 
+
                     if (endRectangle.Contains(mousePointer))
                         state = GameState.EndGame;
 
@@ -188,9 +207,28 @@ namespace CarGame
                 case GameState.ChooseColor:
                     if (Mouse.GetState().LeftButton == ButtonState.Pressed)
                         mousePointer = new Point(Mouse.GetState().X, Mouse.GetState().Y);
-
+                    if (redRectangle.Contains(mousePointer))
+                    {
+                        r = 255; g = 0; b = 0;
+                    }
+                    if (orangeRectangle.Contains(mousePointer))
+                    {
+                        r = 255; g = 102; b = 0;
+                    }
+                    if (greenRectangle.Contains(mousePointer))
+                    { 
+                        g = 255; r = 0; b = 0;
+                    }
+                    if (blueRectangle.Contains(mousePointer))
+                    {
+                        b = 255; r = 0; g = 0;
+                    }
+                    if (whiteRectangle.Contains(mousePointer))
+                    {
+                        b = 255; r = 255; g = 255;
+                    }
                     if (backRectangle.Contains(mousePointer))
-                        state = GameState.MainMenu;
+                        state = GameState.MainMenu; 
                     break;
                 
                 case GameState.PlayGame:
@@ -202,14 +240,24 @@ namespace CarGame
                     {
                         if (Mouse.GetState().LeftButton == ButtonState.Pressed)//new feature - hard mode day one dlc
                         {
-                            playerRectangle.X = Mouse.GetState().X-60;
-                            playerRectangle.Y = Mouse.GetState().Y-40;
+                            mousePressed = true;
+                        }
+
+                    }
+                    if(mousePressed)
+                    {
+                        playerRectangle.X = Mouse.GetState().X-90;
+                        playerRectangle.Y = Mouse.GetState().Y-35;
+                        if(Mouse.GetState().LeftButton == ButtonState.Released)
+                        {
+                            mousePressed = false;
                         }
                     }
 
                     break;
 
                 case GameState.EndGame:
+
                     if (Mouse.GetState().LeftButton == ButtonState.Pressed)
                         mousePointer = new Point(Mouse.GetState().X, Mouse.GetState().Y);
 
@@ -242,7 +290,8 @@ namespace CarGame
             break;
                     
                 case GameState.PlayGame:
-                    PlayTheGame();
+                     plCl = new Color(r, g, b);
+                     PlayTheGame();
             break;
 
                 case GameState.EndGame:
@@ -251,6 +300,7 @@ namespace CarGame
             break;
                     
                 case GameState.ChooseColor:
+                   
                     DisplayChooseColor();
 
             break;
@@ -270,6 +320,7 @@ namespace CarGame
         public void DisplayMainMenu()
         {
             spriteBatch.DrawString(font, "Welcome to the Car Game!", new Vector2(50, 50), Color.White);
+            spriteBatch.DrawString(font, "You should choose a car color before pressing Play", new Vector2(250, 500), Color.White);
             spriteBatch.Draw(play, playRectangle, Color.White);
             spriteBatch.Draw(help, helpRectangle, Color.White);
             spriteBatch.Draw(end, endRectangle, Color.White);
@@ -279,7 +330,7 @@ namespace CarGame
         public void PlayTheGame() {
             GraphicsDevice.Clear(Color.Black);
             spriteBatch.Draw(road, GraphicsDevice.Viewport.Bounds, Color.White);
-            spriteBatch.Draw(whiteCar, playerRectangle, Color.White);
+            spriteBatch.Draw(whiteCar, playerRectangle, plCl);
         }
         public void DisplayHelpScreen()
         {
@@ -289,6 +340,12 @@ namespace CarGame
         public void DisplayChooseColor()
         {
             spriteBatch.DrawString(font, "Please choose a car color listed below.", new Vector2(50, 50), Color.White);
+
+            spriteBatch.Draw(redCar, redRectangle, Color.White);
+            spriteBatch.Draw(greenCar, greenRectangle, Color.White);
+            spriteBatch.Draw(blueCar, blueRectangle, Color.White);
+            spriteBatch.Draw(orangeCar, orangeRectangle, Color.White);
+            spriteBatch.Draw(whiteCar, whiteRectangle, Color.White);
             spriteBatch.Draw(back, backRectangle, Color.White);
         }
 
