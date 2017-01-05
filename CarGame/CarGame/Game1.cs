@@ -387,7 +387,7 @@ namespace CarGame
         }
         public void DisplayHelpScreen()
         {
-            spriteBatch.DrawString(font, "Help", new Vector2(50, 50), Color.White);
+            spriteBatch.DrawString(font, "Welcome to The Car Game!\n-To move your car, click and hold the left mouse button and drag the \n wherever you want it to go.\n-Avoid obsticles traveling towards your car for the longest time to win!", new Vector2(50, 50), Color.White);
             spriteBatch.Draw(back, backRectangle, Color.White);
         }
         public void DisplayChooseColor()
