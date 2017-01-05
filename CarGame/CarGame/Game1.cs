@@ -40,7 +40,13 @@ namespace CarGame
         Rectangle line2Rectangle3;
         Rectangle line2Rectangle4;
         bool mousePressed = false;
-      
+
+        //time variables
+        int h = 0;
+        int m = 0;
+        int s = 0;
+        TimeSpan t1 = new TimeSpan(0, 0, 0);
+
         int r=250;
         int g=250;
         int b=250;
@@ -267,6 +273,8 @@ namespace CarGame
                     break;
 
                 case GameState.PlayGame:
+                    t1 += gameTime.ElapsedGameTime;
+
                     //if left mouse is pressed/collect mouse location data, then make and draw playerrectangle with said pointer data
                     mousePointer = new Point(Mouse.GetState().X, Mouse.GetState().Y);
                     //     Console.WriteLine(mousePointer);
@@ -356,7 +364,6 @@ namespace CarGame
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.Gray);
-
             // TODO: Add your drawing code here
 
             spriteBatch.Begin();
@@ -421,6 +428,7 @@ namespace CarGame
             spriteBatch.Draw(line, line2Rectangle3, Color.White);
             spriteBatch.Draw(line, line2Rectangle4, Color.White);
             spriteBatch.Draw(whiteCar, playerRectangle, plCl);
+            spriteBatch.DrawString(font, "Points: " + t1.Seconds, new Vector2(100, 100),Color.White);
         }
         public void DisplayHelpScreen()
         {
