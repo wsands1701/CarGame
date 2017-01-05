@@ -42,6 +42,8 @@ namespace CarGame
         Rectangle treeRectangle1;
         Rectangle treeRectangle2;
         Rectangle treeRectangle3;
+        Rectangle treeRectangle4;
+        Rectangle treeRectangle5;
 
         bool mousePressed = false;
       
@@ -133,9 +135,11 @@ namespace CarGame
             line2Rectangle2 = new Rectangle(GraphicsDevice.Viewport.Width / 2, 520, 100, 15);
             line2Rectangle3 = new Rectangle((GraphicsDevice.Viewport.Width / 4) * 3, 520, 100, 15);
             line2Rectangle4 = new Rectangle(GraphicsDevice.Viewport.Width, 520, 100, 15);
-            treeRectangle1 = new Rectangle(GraphicsDevice.Viewport.Width/3, 700, 100, 100);
-            treeRectangle2 = new Rectangle(GraphicsDevice.Viewport.Width/2, 700, 100, 100);
-            treeRectangle3 = new Rectangle(GraphicsDevice.Viewport.Width, 700, 100, 100);
+            treeRectangle1 = new Rectangle(GraphicsDevice.Viewport.Width/5, 700, 110, 90);
+            treeRectangle2 = new Rectangle(GraphicsDevice.Viewport.Width/4, 700, 110, 90);
+            treeRectangle3 = new Rectangle(GraphicsDevice.Viewport.Width/2, 700, 110, 90);
+            treeRectangle4 = new Rectangle((GraphicsDevice.Viewport.Width/3)*4, 700, 110, 90);
+            treeRectangle5 = new Rectangle(GraphicsDevice.Viewport.Width, 700, 110, 90);
             playRectangle = new Rectangle(50, 200, 300, 150);
             endRectangle = new Rectangle(350, 200, 300, 150);
             helpRectangle = new Rectangle(650, 200, 300, 150);
@@ -344,7 +348,7 @@ namespace CarGame
             line2Rectangle4.X -= speedoflines;
 
             
-            if (line2Rectangle2.X < 0)
+            if (line2Rectangle2.X < -50)
             {
                 line2Rectangle2.X = GraphicsDevice.Viewport.Width-50;
             }
@@ -365,6 +369,8 @@ namespace CarGame
             treeRectangle1.X -= speedoflines;
             treeRectangle2.X -= speedoflines;
             treeRectangle3.X -= speedoflines;
+            treeRectangle4.X -= speedoflines;
+            treeRectangle5.X -= speedoflines;
 
             //reset the trees
             if(treeRectangle1.X < 0)
@@ -379,7 +385,14 @@ namespace CarGame
             {
                 treeRectangle3.X = GraphicsDevice.Viewport.Width;
             }
-
+            if (treeRectangle4.X < 0)
+            {
+                treeRectangle4.X = GraphicsDevice.Viewport.Width;
+            }
+            if (treeRectangle5.X < 0)
+            {
+                treeRectangle5.X = GraphicsDevice.Viewport.Width;
+            }
             base.Update(gameTime);
         }
 
@@ -422,11 +435,6 @@ namespace CarGame
 
             spriteBatch.End();
 
-
-            
-
-
-          
             base.Draw(gameTime);
         }
 
@@ -459,6 +467,8 @@ namespace CarGame
             spriteBatch.Draw(tree, treeRectangle1, Color.White);
             spriteBatch.Draw(tree, treeRectangle2, Color.White);
             spriteBatch.Draw(tree, treeRectangle3, Color.White);
+            spriteBatch.Draw(tree, treeRectangle4, Color.White);
+            spriteBatch.Draw(tree, treeRectangle5, Color.White);
             spriteBatch.Draw(whiteCar, playerRectangle, plCl);
             spriteBatch.DrawString(font, "Points: " + t1.Seconds, new Vector2(100, 100),Color.White);
         }
