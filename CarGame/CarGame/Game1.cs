@@ -32,6 +32,9 @@ namespace CarGame
         Rectangle aquaRectangle;
         Rectangle yellowRectangle;
         Rectangle line1Rectangle;
+        Rectangle line1Rectangle2;
+        Rectangle line1Rectangle3;
+        Rectangle line1Rectangle4;
         bool mousePressed = false;
       
         int r=250;
@@ -108,7 +111,10 @@ namespace CarGame
         {
             // TODO: Add your initialization logic here
             IsMouseVisible = true;
-            line1Rectangle = new Rectangle(100, 270, 100, 15);
+            line1Rectangle = new Rectangle(GraphicsDevice.Viewport.Width/4, 270, 100, 15);
+            line1Rectangle2 = new Rectangle(GraphicsDevice.Viewport.Width/2, 270, 100, 15);
+            line1Rectangle3 = new Rectangle((GraphicsDevice.Viewport.Width / 4)*3, 270, 100, 15);
+            line1Rectangle4 = new Rectangle(GraphicsDevice.Viewport.Width, 270, 100, 15);
             playRectangle = new Rectangle(50, 200, 300, 150);
             endRectangle = new Rectangle(350, 200, 300, 150);
             helpRectangle = new Rectangle(650, 200, 300, 150);
@@ -288,6 +294,25 @@ namespace CarGame
                     break;
             }
             line1Rectangle.X-= 10;
+            line1Rectangle2.X -= 10;
+            line1Rectangle3.X -= 10;
+            line1Rectangle4.X -= 10;
+            if (line1Rectangle2.X < 0)
+            {
+                line1Rectangle2.X = GraphicsDevice.Viewport.Width;
+            }
+            if (line1Rectangle.X < 0)
+            {
+                line1Rectangle.X = GraphicsDevice.Viewport.Width;
+            }
+            if (line1Rectangle3.X < 0)
+            {
+                line1Rectangle3.X = GraphicsDevice.Viewport.Width;
+            }
+            if (line1Rectangle4.X < 0)
+            {
+                line1Rectangle4.X = GraphicsDevice.Viewport.Width;
+            }
             base.Update(gameTime);
         }
 
@@ -355,6 +380,9 @@ namespace CarGame
             GraphicsDevice.Clear(Color.Black);
             spriteBatch.Draw(road, GraphicsDevice.Viewport.Bounds, Color.White);
             spriteBatch.Draw(line,line1Rectangle, Color.White);
+            spriteBatch.Draw(line, line1Rectangle2, Color.White);
+            spriteBatch.Draw(line, line1Rectangle3, Color.White);
+            spriteBatch.Draw(line, line1Rectangle4, Color.White);
             spriteBatch.Draw(whiteCar, playerRectangle, plCl);
         }
         public void DisplayHelpScreen()
