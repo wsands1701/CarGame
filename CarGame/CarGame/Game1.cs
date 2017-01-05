@@ -38,9 +38,12 @@ namespace CarGame
         Rectangle line1Rectangle3;
         Rectangle line1Rectangle4;
         bool mousePressed = false;
-        Rectangle testRectangle;
+        Rectangle trafficRect1;
+        Rectangle trafficRect2;
+        Rectangle trafficRect3;
+        Rectangle trafficRect4;
 
-
+        int i = 0;
         int r=250;
         int g=250;
         int b=250;
@@ -86,6 +89,7 @@ namespace CarGame
         //Arraylist *TEST*
         //arraylist of cars
         ArrayList TrafficOptions = new ArrayList();
+        
 
         enum GameState
         {
@@ -137,7 +141,12 @@ namespace CarGame
             yellowRectangle = new Rectangle(300, 300, 200, 100); 
             choose_colorRectangle = new Rectangle(950, 200, 300, 150);
             backRectangle = new Rectangle(900, 0, 300, 300);
-            testRectangle = new Rectangle(50, 50, 150, 75);
+            trafficRect1 = new Rectangle(1300, 140, 150, 75);
+            trafficRect2 = new Rectangle(1300, 300, 150, 75);
+            trafficRect3 = new Rectangle(-80, 450, 150, 75);
+            trafficRect4 = new Rectangle(-80, 550, 150, 75);
+            
+
 
             base.Initialize();
         }
@@ -179,6 +188,7 @@ namespace CarGame
             ChooseColor = Content.Load<Texture2D>("ChooseColor.jpg");
 
             //add cars (x, y, speed, collisions, image)
+            //create oncoming/ ongoing traffic and images of the cars facing the proper direction
             Obstacles redTraffic = new Moving(50, 50, 150, false, redCar);
             Obstacles blueTraffic = new Moving(50, 50, 150, false, blueCar);
             Obstacles greenTraffic = new Moving(50, 50, 150, false, greenCar);
@@ -411,12 +421,12 @@ namespace CarGame
             spriteBatch.Draw(line, line1Rectangle3, Color.White);
             spriteBatch.Draw(line, line1Rectangle4, Color.White);
             spriteBatch.Draw(whiteCar, playerRectangle, plCl);
-            spriteBatch.Draw(road, new Vector2(0, 0), Color.White);
+            //spriteBatch.Draw(road, new Vector2(0, 0), Color.White);
             
             spriteBatch.DrawString(font, "Please choose a car color listed below.", new Vector2(50, 50), Color.White);
             // traffic
 
-            spriteBatch.Draw(((Obstacles)TrafficOptions[0]).getImage(), testRectangle, Color.White);  //fix rectangle, change index to actual value
+            drawTraffic();
         }
         public void DisplayHelpScreen()
         {
@@ -444,6 +454,65 @@ namespace CarGame
             GraphicsDevice.Clear(Color.Gray);
             Exit();
         }
+        public void drawTraffic()
+        {
+            Random rnd = new Random();
+            int randCar = 0;
+            int randRect = rnd.Next(1, 4);
+            //determine which rectangle to place the car on, then randomly select a car out of the ones facing the proper direction 
+            switch(randRect)
+            {
+                case 1:
+                   randCar = rnd.Next(6, 12);//out of bounds now, but add the flipped cars and it'll work
+                    //put in code so that trafficRect1 is chosen
+                    break;
+                case 2:
+                    randCar = rnd.Next(6, 12);//out of bounds now, but add the flipped cars and it'll work
+                    //trafficRect2
+                    break;
+
+                case 3:
+                    randCar = rnd.Next(0, 5);
+                    //trafficRect3
+                    break;
+
+                case 4:
+                    randCar = rnd.Next(0, 5);
+                    //trafficRect4
+                    break;
+
+
+            }
+
+
+           
+            spriteBatch.Draw(((Obstacles)TrafficOptions[randCar]).getImage(),trafficRect1/*or 2, 3, or 4*/, Color.White);  //fix rectangle so that it can be randomly generated
+
+            switch (randRect)
+            {
+                case 1:
+                    trafficRect1.X - ((Obstacles)TrafficOptions[randCar].getSpeed());
+                    break;
+                case 2:
+                    //trafficRect2
+                    break;
+
+                case 3:
+                    //trafficRect3
+                    break;
+
+                case 4:
+                    //trafficRect4
+                    break;
+
+
+            }
+
+        }
+
+
+
+
 
         }
     }
