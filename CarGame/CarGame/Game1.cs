@@ -306,19 +306,19 @@ namespace CarGame
             line1Rectangle3.X -= speedoflines;
             line1Rectangle4.X -= speedoflines;
 
-            if (line1Rectangle.X < 0)
+            if (line1Rectangle.X < -100)
             {
                 line1Rectangle.X = GraphicsDevice.Viewport.Width;
             }
-            if (line1Rectangle2.X < 0)
+            if (line1Rectangle2.X < -100)
             {
                 line1Rectangle2.X = GraphicsDevice.Viewport.Width;
             }
-            if (line1Rectangle3.X < 0)
+            if (line1Rectangle3.X < -100)
             {
                 line1Rectangle3.X = GraphicsDevice.Viewport.Width;
             }
-            if (line1Rectangle4.X < 0)
+            if (line1Rectangle4.X < -100)
             {
                 line1Rectangle4.X = GraphicsDevice.Viewport.Width;
             }
@@ -329,19 +329,19 @@ namespace CarGame
             line2Rectangle4.X -= speedoflines;
 
             
-            if (line2Rectangle2.X < 0)
+            if (line2Rectangle2.X <-100)
             {
                 line2Rectangle2.X = GraphicsDevice.Viewport.Width;
             }
-            if (line2Rectangle.X < 0)
+            if (line2Rectangle.X < -100)
             {
                 line2Rectangle.X = GraphicsDevice.Viewport.Width;
             }
-            if (line2Rectangle3.X < 0)
+            if (line2Rectangle3.X < -100)
             {
                 line2Rectangle3.X = GraphicsDevice.Viewport.Width;
             }
-            if (line2Rectangle4.X < 0)
+            if (line2Rectangle4.X < -100)
             {
                 line2Rectangle4.X = GraphicsDevice.Viewport.Width;
             }
