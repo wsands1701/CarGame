@@ -355,8 +355,11 @@ namespace CarGame
         }
         public void DisplayHelpScreen()
         {
-            spriteBatch.DrawString(font, "Help", new Vector2(50, 50), Color.White);
             spriteBatch.Draw(back, backRectangle, Color.White);
+            spriteBatch.DrawString(font, "Click the 'Play' button in to start game", new Vector2(50, 50), Color.White);
+            spriteBatch.DrawString(font, "To quit, click the 'End' button", new Vector2(100, 50), Color.White);
+            spriteBatch.DrawString(font, "To change the color of the car, click the 'Choose Color' button to select one of the colors", new Vector2(150, 50), Color.White);
+            
         }
         public void DisplayChooseColor()
         {
