@@ -45,9 +45,9 @@ namespace CarGame
         int g=250;
         int b=250;
         Color plCl;
-
+      
         int speedoflines = 7;
-
+        
         Point mousePointer;
 
         //vectors
@@ -283,6 +283,26 @@ namespace CarGame
                     {
                         playerRectangle.X = Mouse.GetState().X - 90;
                         playerRectangle.Y = Mouse.GetState().Y - 35;
+                        if (playerRectangle.X >= GraphicsDevice.Viewport.Width-150)
+                        {
+                            playerRectangle.X = GraphicsDevice.Viewport.Width - 150;
+                            Console.WriteLine("USe CODE KEEM");
+                        }
+                        if (playerRectangle.X < 0)
+                        {
+                            playerRectangle.X = 0;
+                        }
+                        if (playerRectangle.Y >= GraphicsDevice.Viewport.Height - 75)
+                        {
+                            playerRectangle.Y = GraphicsDevice.Viewport.Height - 75;
+                            Console.WriteLine("Use CODE KEEMSTAR");
+                        }
+                        if (playerRectangle.Y < 0)
+                        {
+                            playerRectangle.Y = 0;
+                        }
+
+
                         if (Mouse.GetState().LeftButton == ButtonState.Released)
                         {
                             mousePressed = false;
@@ -416,16 +436,16 @@ namespace CarGame
             spriteBatch.Draw(line, line1Rectangle2, Color.White);
             spriteBatch.Draw(line, line1Rectangle3, Color.White);
             spriteBatch.Draw(line, line1Rectangle4, Color.White);
-            spriteBatch.Draw(line, line2Rectangle, Color.White);
-            spriteBatch.Draw(line, line2Rectangle2, Color.White);
-            spriteBatch.Draw(line, line2Rectangle3, Color.White);
-            spriteBatch.Draw(line, line2Rectangle4, Color.White);
             spriteBatch.Draw(whiteCar, playerRectangle, plCl);
         }
         public void DisplayHelpScreen()
         {
             spriteBatch.DrawString(font, "Welcome to The Car Game!\n-To move your car, click and hold the left mouse button and drag the \n wherever you want it to go.\n-Avoid obsticles traveling towards your car for the longest time to win!", new Vector2(50, 50), Color.White);
             spriteBatch.Draw(back, backRectangle, Color.White);
+            spriteBatch.DrawString(font, "Click the 'Play' button in to start game", new Vector2(50, 50), Color.White);
+            spriteBatch.DrawString(font, "To quit, click the 'End' button", new Vector2(100, 50), Color.White);
+            spriteBatch.DrawString(font, "To change the color of the car, click the 'Choose Color' button to select one of the colors", new Vector2(150, 50), Color.White);
+            
         }
         public void DisplayChooseColor()
         {
