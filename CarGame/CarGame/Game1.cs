@@ -31,6 +31,7 @@ namespace CarGame
         Rectangle pinkRectangle;
         Rectangle aquaRectangle;
         Rectangle yellowRectangle;
+        Rectangle line1Rectangle;
         bool mousePressed = false;
       
         int r=250;
@@ -107,6 +108,7 @@ namespace CarGame
         {
             // TODO: Add your initialization logic here
             IsMouseVisible = true;
+            line1Rectangle = new Rectangle(100, 270, 100, 15);
             playRectangle = new Rectangle(50, 200, 300, 150);
             endRectangle = new Rectangle(350, 200, 300, 150);
             helpRectangle = new Rectangle(650, 200, 300, 150);
@@ -285,6 +287,7 @@ namespace CarGame
                         state = GameState.MainMenu;
                     break;
             }
+            line1Rectangle.X-= 10;
             base.Update(gameTime);
         }
 
@@ -351,15 +354,13 @@ namespace CarGame
         public void PlayTheGame() {
             GraphicsDevice.Clear(Color.Black);
             spriteBatch.Draw(road, GraphicsDevice.Viewport.Bounds, Color.White);
+            spriteBatch.Draw(line,line1Rectangle, Color.White);
             spriteBatch.Draw(whiteCar, playerRectangle, plCl);
         }
         public void DisplayHelpScreen()
         {
+            spriteBatch.DrawString(font, "Welcome to The Car Game!\n-To move your car, click and hold the left mouse button and drag the \n wherever you want it to go.\n-Avoid obsticles traveling towards your car for the longest time to win!", new Vector2(50, 50), Color.White);
             spriteBatch.Draw(back, backRectangle, Color.White);
-            spriteBatch.DrawString(font, "Click the 'Play' button in to start game", new Vector2(50, 50), Color.White);
-            spriteBatch.DrawString(font, "To quit, click the 'End' button", new Vector2(100, 50), Color.White);
-            spriteBatch.DrawString(font, "To change the color of the car, click the 'Choose Color' button to select one of the colors", new Vector2(150, 50), Color.White);
-            
         }
         public void DisplayChooseColor()
         {
