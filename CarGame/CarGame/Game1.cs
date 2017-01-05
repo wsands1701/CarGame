@@ -32,6 +32,13 @@ namespace CarGame
         Rectangle aquaRectangle;
         Rectangle yellowRectangle;
         Rectangle line1Rectangle;
+        Rectangle line1Rectangle2;
+        Rectangle line1Rectangle3;
+        Rectangle line1Rectangle4;
+        Rectangle line2Rectangle;
+        Rectangle line2Rectangle2;
+        Rectangle line2Rectangle3;
+        Rectangle line2Rectangle4;
         bool mousePressed = false;
       
         int r=250;
@@ -108,7 +115,14 @@ namespace CarGame
         {
             // TODO: Add your initialization logic here
             IsMouseVisible = true;
-            line1Rectangle = new Rectangle(100, 270, 100, 15);
+            line1Rectangle = new Rectangle(GraphicsDevice.Viewport.Width/4, 270, 100, 15);
+            line1Rectangle2 = new Rectangle(GraphicsDevice.Viewport.Width/2, 270, 100, 15);
+            line1Rectangle3 = new Rectangle((GraphicsDevice.Viewport.Width / 4)*3, 270, 100, 15);
+            line1Rectangle4 = new Rectangle(GraphicsDevice.Viewport.Width, 270, 100, 15);
+            line2Rectangle = new Rectangle(GraphicsDevice.Viewport.Width / 4, 500, 100, 15);
+            line2Rectangle2 = new Rectangle(GraphicsDevice.Viewport.Width / 2, 500, 100, 15);
+            line2Rectangle3 = new Rectangle((GraphicsDevice.Viewport.Width / 4) * 3, 500, 100, 15);
+            line2Rectangle4 = new Rectangle(GraphicsDevice.Viewport.Width, 500, 100, 15);
             playRectangle = new Rectangle(50, 200, 300, 150);
             endRectangle = new Rectangle(350, 200, 300, 150);
             helpRectangle = new Rectangle(650, 200, 300, 150);
@@ -193,26 +207,25 @@ namespace CarGame
                 case GameState.MainMenu:
                     if (Mouse.GetState().LeftButton == ButtonState.Pressed)
                         mousePointer = new Point(Mouse.GetState().X, Mouse.GetState().Y);
-                    
+
                     if (playRectangle.Contains(mousePointer))
                         state = GameState.PlayGame;
-
 
                     if (endRectangle.Contains(mousePointer))
                         state = GameState.EndGame;
 
                     if (helpRectangle.Contains(mousePointer))
                         state = GameState.HelpScreen;
-                  
+
                     if (choose_colorRectangle.Contains(mousePointer))
                         state = GameState.ChooseColor;
-                  
+
                     break;
 
                 case GameState.HelpScreen:
                     if (Mouse.GetState().LeftButton == ButtonState.Pressed)
                         mousePointer = new Point(Mouse.GetState().X, Mouse.GetState().Y);
-                    
+
                     if (backRectangle.Contains(mousePointer))
                         state = GameState.MainMenu;
                     break;
@@ -227,7 +240,7 @@ namespace CarGame
                     }
                     if (pinkRectangle.Contains(mousePointer))
                     {
-                        r = 255; g = 192;b = 210;
+                        r = 255; g = 192; b = 210;
                     }
                     if (redRectangle.Contains(mousePointer))
                     {
@@ -238,7 +251,7 @@ namespace CarGame
                         r = 255; g = 102; b = 0;
                     }
                     if (greenRectangle.Contains(mousePointer))
-                    { 
+                    {
                         g = 255; r = 0; b = 0;
                     }
                     if (blueRectangle.Contains(mousePointer))
@@ -250,13 +263,13 @@ namespace CarGame
                         b = 255; r = 255; g = 255;
                     }
                     if (backRectangle.Contains(mousePointer))
-                        state = GameState.MainMenu; 
+                        state = GameState.MainMenu;
                     break;
-                
+
                 case GameState.PlayGame:
                     //if left mouse is pressed/collect mouse location data, then make and draw playerrectangle with said pointer data
                     mousePointer = new Point(Mouse.GetState().X, Mouse.GetState().Y);
-             //     Console.WriteLine(mousePointer);
+                    //     Console.WriteLine(mousePointer);
                     playerRectangle = new Rectangle(playerRectangle.X, playerRectangle.Y, 150, 75);
                     if (playerRectangle.Contains(mousePointer))
                     {
@@ -266,11 +279,11 @@ namespace CarGame
                         }
 
                     }
-                    if(mousePressed)
+                    if (mousePressed)
                     {
-                        playerRectangle.X = Mouse.GetState().X-90;
-                        playerRectangle.Y = Mouse.GetState().Y-35;
-                        if(Mouse.GetState().LeftButton == ButtonState.Released)
+                        playerRectangle.X = Mouse.GetState().X - 90;
+                        playerRectangle.Y = Mouse.GetState().Y - 35;
+                        if (Mouse.GetState().LeftButton == ButtonState.Released)
                         {
                             mousePressed = false;
                         }
@@ -287,7 +300,52 @@ namespace CarGame
                         state = GameState.MainMenu;
                     break;
             }
-            line1Rectangle.X-= 10;
+
+            line1Rectangle.X -= 10;
+            line1Rectangle2.X -= 10;
+            line1Rectangle3.X -= 10;
+            line1Rectangle4.X -= 10;
+
+            if (line1Rectangle2.X < 0)
+            {
+                line1Rectangle2.X = GraphicsDevice.Viewport.Width;
+            }
+            if (line1Rectangle.X == -(line1Rectangle.X))
+            {
+                line1Rectangle.X = GraphicsDevice.Viewport.Width;
+            }
+            if (line1Rectangle3.X < 0)
+            {
+                line1Rectangle3.X = GraphicsDevice.Viewport.Width;
+            }
+            if (line1Rectangle4.X < 0)
+            {
+                line1Rectangle4.X = GraphicsDevice.Viewport.Width;
+            }
+
+            line2Rectangle.X += 10;
+            line2Rectangle2.X += 10;
+            line2Rectangle3.X += 10;
+            line2Rectangle4.X += 10;
+
+            
+            if (line2Rectangle2.X > GraphicsDevice.Viewport.Width)
+            {
+                line2Rectangle2.X = 0;
+            }
+            if (line2Rectangle.X > GraphicsDevice.Viewport.Width)
+            {
+                line2Rectangle.X = 0;
+            }
+            if (line2Rectangle3.X > GraphicsDevice.Viewport.Width)
+            {
+                line2Rectangle3.X = 0;
+            }
+            if (line2Rectangle4.X > GraphicsDevice.Viewport.Width)
+            {
+                line2Rectangle4.X = 0;
+            }
+            
             base.Update(gameTime);
         }
 
@@ -355,16 +413,19 @@ namespace CarGame
             GraphicsDevice.Clear(Color.Black);
             spriteBatch.Draw(road, GraphicsDevice.Viewport.Bounds, Color.White);
             spriteBatch.Draw(line,line1Rectangle, Color.White);
+            spriteBatch.Draw(line, line1Rectangle2, Color.White);
+            spriteBatch.Draw(line, line1Rectangle3, Color.White);
+            spriteBatch.Draw(line, line1Rectangle4, Color.White);
+            spriteBatch.Draw(line, line2Rectangle, Color.White);
+            spriteBatch.Draw(line, line2Rectangle2, Color.White);
+            spriteBatch.Draw(line, line2Rectangle3, Color.White);
+            spriteBatch.Draw(line, line2Rectangle4, Color.White);
             spriteBatch.Draw(whiteCar, playerRectangle, plCl);
         }
         public void DisplayHelpScreen()
         {
             spriteBatch.DrawString(font, "Welcome to The Car Game!\n-To move your car, click and hold the left mouse button and drag the \n wherever you want it to go.\n-Avoid obsticles traveling towards your car for the longest time to win!", new Vector2(50, 50), Color.White);
             spriteBatch.Draw(back, backRectangle, Color.White);
-            spriteBatch.DrawString(font, "Click the 'Play' button in to start game", new Vector2(50, 50), Color.White);
-            spriteBatch.DrawString(font, "To quit, click the 'End' button", new Vector2(100, 50), Color.White);
-            spriteBatch.DrawString(font, "To change the color of the car, click the 'Choose Color' button to select one of the colors", new Vector2(150, 50), Color.White);
-            
         }
         public void DisplayChooseColor()
         {
