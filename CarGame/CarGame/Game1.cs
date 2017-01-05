@@ -306,21 +306,21 @@ namespace CarGame
             line1Rectangle3.X -= speedoflines;
             line1Rectangle4.X -= speedoflines;
 
-            if (line1Rectangle.X < -100)
+            if (line1Rectangle.X < -50)
             {
-                line1Rectangle.X = GraphicsDevice.Viewport.Width;
+                line1Rectangle.X = GraphicsDevice.Viewport.Width-50;
             }
-            if (line1Rectangle2.X < -100)
+            if (line1Rectangle2.X < -50)
             {
-                line1Rectangle2.X = GraphicsDevice.Viewport.Width;
+                line1Rectangle2.X = GraphicsDevice.Viewport.Width-50;
             }
-            if (line1Rectangle3.X < -100)
+            if (line1Rectangle3.X < -50)
             {
-                line1Rectangle3.X = GraphicsDevice.Viewport.Width;
+                line1Rectangle3.X = GraphicsDevice.Viewport.Width-50;
             }
-            if (line1Rectangle4.X < -100)
+            if (line1Rectangle4.X < -50)
             {
-                line1Rectangle4.X = GraphicsDevice.Viewport.Width;
+                line1Rectangle4.X = GraphicsDevice.Viewport.Width-50;
             }
 
             line2Rectangle.X -= speedoflines;
@@ -329,21 +329,21 @@ namespace CarGame
             line2Rectangle4.X -= speedoflines;
 
             
-            if (line2Rectangle2.X <-100)
+            if (line2Rectangle2.X <-50)
             {
-                line2Rectangle2.X = GraphicsDevice.Viewport.Width;
+                line2Rectangle2.X = GraphicsDevice.Viewport.Width-50;
             }
-            if (line2Rectangle.X < -100)
+            if (line2Rectangle.X < -50)
             {
-                line2Rectangle.X = GraphicsDevice.Viewport.Width;
+                line2Rectangle.X = GraphicsDevice.Viewport.Width-50;
             }
-            if (line2Rectangle3.X < -100)
+            if (line2Rectangle3.X < -50)
             {
-                line2Rectangle3.X = GraphicsDevice.Viewport.Width;
+                line2Rectangle3.X = GraphicsDevice.Viewport.Width-50;
             }
-            if (line2Rectangle4.X < -100)
+            if (line2Rectangle4.X < -50)
             {
-                line2Rectangle4.X = GraphicsDevice.Viewport.Width;
+                line2Rectangle4.X = GraphicsDevice.Viewport.Width-50;
             }
             
             base.Update(gameTime);
