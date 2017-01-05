@@ -39,15 +39,27 @@ namespace CarGame
         Rectangle line2Rectangle2;
         Rectangle line2Rectangle3;
         Rectangle line2Rectangle4;
+        Rectangle treeRectangle1;
+        Rectangle treeRectangle2;
+        Rectangle treeRectangle3;
+        Rectangle treeRectangle4;
+        Rectangle treeRectangle5;
+
         bool mousePressed = false;
       
+        //time variables
+        int h = 0;
+        int m = 0;
+        int s = 0;
+        TimeSpan t1 = new TimeSpan(0, 0, 0);
+
         int r=250;
         int g=250;
         int b=250;
         Color plCl;
-      
+
         int speedoflines = 7;
-        
+
         Point mousePointer;
 
         //vectors
@@ -123,6 +135,11 @@ namespace CarGame
             line2Rectangle2 = new Rectangle(GraphicsDevice.Viewport.Width / 2, 520, 100, 15);
             line2Rectangle3 = new Rectangle((GraphicsDevice.Viewport.Width / 4) * 3, 520, 100, 15);
             line2Rectangle4 = new Rectangle(GraphicsDevice.Viewport.Width, 520, 100, 15);
+            treeRectangle1 = new Rectangle(GraphicsDevice.Viewport.Width/5, 700, 110, 90);
+            treeRectangle2 = new Rectangle(GraphicsDevice.Viewport.Width/4, 700, 110, 90);
+            treeRectangle3 = new Rectangle(GraphicsDevice.Viewport.Width/2, 700, 110, 90);
+            treeRectangle4 = new Rectangle((GraphicsDevice.Viewport.Width/3)*4, 700, 110, 90);
+            treeRectangle5 = new Rectangle(GraphicsDevice.Viewport.Width, 700, 110, 90);
             playRectangle = new Rectangle(50, 200, 300, 150);
             endRectangle = new Rectangle(350, 200, 300, 150);
             helpRectangle = new Rectangle(650, 200, 300, 150);
@@ -267,6 +284,8 @@ namespace CarGame
                     break;
 
                 case GameState.PlayGame:
+                    t1 += gameTime.ElapsedGameTime;
+
                     //if left mouse is pressed/collect mouse location data, then make and draw playerrectangle with said pointer data
                     mousePointer = new Point(Mouse.GetState().X, Mouse.GetState().Y);
                     //     Console.WriteLine(mousePointer);
@@ -320,52 +339,80 @@ namespace CarGame
                         state = GameState.MainMenu;
                     break;
             }
-
+            //set location of top lines
             line1Rectangle.X -= speedoflines;
             line1Rectangle2.X -= speedoflines;
             line1Rectangle3.X -= speedoflines;
             line1Rectangle4.X -= speedoflines;
 
-            if (line1Rectangle.X < 0)
+            if (line1Rectangle.X < -50)
             {
-                line1Rectangle.X = GraphicsDevice.Viewport.Width;
+                line1Rectangle.X = GraphicsDevice.Viewport.Width-50;
             }
-            if (line1Rectangle2.X < 0)
+            if (line1Rectangle2.X < -50)
             {
-                line1Rectangle2.X = GraphicsDevice.Viewport.Width;
+                line1Rectangle2.X = GraphicsDevice.Viewport.Width-50;
             }
-            if (line1Rectangle3.X < 0)
+            if (line1Rectangle3.X < -50)
             {
-                line1Rectangle3.X = GraphicsDevice.Viewport.Width;
+                line1Rectangle3.X = GraphicsDevice.Viewport.Width-50;
             }
-            if (line1Rectangle4.X < 0)
+            if (line1Rectangle4.X < -50)
             {
-                line1Rectangle4.X = GraphicsDevice.Viewport.Width;
+                line1Rectangle4.X = GraphicsDevice.Viewport.Width-50;
             }
-
+            //set location of bottom lines
             line2Rectangle.X -= speedoflines;
             line2Rectangle2.X -= speedoflines;
             line2Rectangle3.X -= speedoflines;
             line2Rectangle4.X -= speedoflines;
 
             
-            if (line2Rectangle2.X < 0)
+            if (line2Rectangle2.X < -50)
             {
-                line2Rectangle2.X = GraphicsDevice.Viewport.Width;
+                line2Rectangle2.X = GraphicsDevice.Viewport.Width-50;
             }
-            if (line2Rectangle.X < 0)
+            if (line2Rectangle.X < -50)
             {
-                line2Rectangle.X = GraphicsDevice.Viewport.Width;
+                line2Rectangle.X = GraphicsDevice.Viewport.Width-50;
             }
-            if (line2Rectangle3.X < 0)
+            if (line2Rectangle3.X < -50)
             {
-                line2Rectangle3.X = GraphicsDevice.Viewport.Width;
+                line2Rectangle3.X = GraphicsDevice.Viewport.Width-50;
             }
-            if (line2Rectangle4.X < 0)
+            if (line2Rectangle4.X < -50)
             {
-                line2Rectangle4.X = GraphicsDevice.Viewport.Width;
+                line2Rectangle4.X = GraphicsDevice.Viewport.Width-50;
             }
             
+            //move the trees
+            treeRectangle1.X -= speedoflines;
+            treeRectangle2.X -= speedoflines;
+            treeRectangle3.X -= speedoflines;
+            treeRectangle4.X -= speedoflines;
+            treeRectangle5.X -= speedoflines;
+
+            //reset the trees
+            if(treeRectangle1.X < 0)
+            {
+                treeRectangle1.X = GraphicsDevice.Viewport.Width;
+            }
+            if(treeRectangle2.X < 0)
+            {
+                treeRectangle2.X = GraphicsDevice.Viewport.Width;
+            }
+            if(treeRectangle3.X < 0)
+            {
+                treeRectangle3.X = GraphicsDevice.Viewport.Width;
+            }
+            if (treeRectangle4.X < 0)
+            {
+                treeRectangle4.X = GraphicsDevice.Viewport.Width;
+            }
+            if (treeRectangle5.X < 0)
+            {
+                treeRectangle5.X = GraphicsDevice.Viewport.Width;
+            }
             base.Update(gameTime);
         }
 
@@ -376,7 +423,6 @@ namespace CarGame
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.Gray);
-
             // TODO: Add your drawing code here
 
             spriteBatch.Begin();
@@ -409,11 +455,6 @@ namespace CarGame
 
             spriteBatch.End();
 
-
-            
-
-
-          
             base.Draw(gameTime);
         }
 
@@ -431,12 +472,25 @@ namespace CarGame
 
         public void PlayTheGame() {
             GraphicsDevice.Clear(Color.Black);
+            //draws the road
             spriteBatch.Draw(road, GraphicsDevice.Viewport.Bounds, Color.White);
+            //lines
             spriteBatch.Draw(line, line1Rectangle, Color.White);
             spriteBatch.Draw(line, line1Rectangle2, Color.White);
             spriteBatch.Draw(line, line1Rectangle3, Color.White);
             spriteBatch.Draw(line, line1Rectangle4, Color.White);
+            spriteBatch.Draw(line, line2Rectangle, Color.White);
+            spriteBatch.Draw(line, line2Rectangle2, Color.White);
+            spriteBatch.Draw(line, line2Rectangle3, Color.White);
+            spriteBatch.Draw(line, line2Rectangle4, Color.White);
+            //trees
+            spriteBatch.Draw(tree, treeRectangle1, Color.White);
+            spriteBatch.Draw(tree, treeRectangle2, Color.White);
+            spriteBatch.Draw(tree, treeRectangle3, Color.White);
+            spriteBatch.Draw(tree, treeRectangle4, Color.White);
+            spriteBatch.Draw(tree, treeRectangle5, Color.White);
             spriteBatch.Draw(whiteCar, playerRectangle, plCl);
+            spriteBatch.DrawString(font, "Points: " + t1.Seconds, new Vector2(100, 100),Color.White);
         }
         public void DisplayHelpScreen()
         {
