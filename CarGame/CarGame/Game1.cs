@@ -328,7 +328,7 @@ namespace CarGame
             line2Rectangle3.X += 10;
             line2Rectangle4.X += 10;
 
-            /*
+            
             if (line2Rectangle2.X > GraphicsDevice.Viewport.Width)
             {
                 line2Rectangle2.X = 0;
@@ -345,7 +345,7 @@ namespace CarGame
             {
                 line2Rectangle4.X = 0;
             }
-            */
+            
             base.Update(gameTime);
         }
 
@@ -416,6 +416,10 @@ namespace CarGame
             spriteBatch.Draw(line, line1Rectangle2, Color.White);
             spriteBatch.Draw(line, line1Rectangle3, Color.White);
             spriteBatch.Draw(line, line1Rectangle4, Color.White);
+            spriteBatch.Draw(line, line2Rectangle, Color.White);
+            spriteBatch.Draw(line, line2Rectangle2, Color.White);
+            spriteBatch.Draw(line, line2Rectangle3, Color.White);
+            spriteBatch.Draw(line, line2Rectangle4, Color.White);
             spriteBatch.Draw(whiteCar, playerRectangle, plCl);
         }
         public void DisplayHelpScreen()
