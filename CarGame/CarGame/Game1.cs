@@ -31,6 +31,7 @@ namespace CarGame
         Rectangle pinkRectangle;
         Rectangle aquaRectangle;
         Rectangle yellowRectangle;
+        Rectangle line1Rectangle;
         bool mousePressed = false;
       
         int r=250;
@@ -107,6 +108,7 @@ namespace CarGame
         {
             // TODO: Add your initialization logic here
             IsMouseVisible = true;
+            line1Rectangle = new Rectangle(100, 270, 100, 15);
             playRectangle = new Rectangle(50, 200, 300, 150);
             endRectangle = new Rectangle(350, 200, 300, 150);
             helpRectangle = new Rectangle(650, 200, 300, 150);
@@ -285,6 +287,7 @@ namespace CarGame
                         state = GameState.MainMenu;
                     break;
             }
+            line1Rectangle.X-= 10;
             base.Update(gameTime);
         }
 
@@ -351,6 +354,7 @@ namespace CarGame
         public void PlayTheGame() {
             GraphicsDevice.Clear(Color.Black);
             spriteBatch.Draw(road, GraphicsDevice.Viewport.Bounds, Color.White);
+            spriteBatch.Draw(line,line1Rectangle, Color.White);
             spriteBatch.Draw(whiteCar, playerRectangle, plCl);
         }
         public void DisplayHelpScreen()
