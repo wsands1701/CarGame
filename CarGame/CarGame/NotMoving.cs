@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,12 +12,12 @@ namespace CarGame.Content
         /*
             Things that we need to do:
             
-            Figure out Arnas' and Brian's "grades" can benefit our class
+            Figure out Arnas' and Brian's "code" can benefit our class
 
             Start programming
         */
 
-        public NotMoving(int x, int y, int speed, bool collision) : base(x, y, speed, collision)
+        public NotMoving(int x, int y, int speed, bool collision, Texture2D image) : base(x, y, speed, collision, image)
         {
            
         }

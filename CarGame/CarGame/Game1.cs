@@ -16,6 +16,7 @@ namespace CarGame
     /// </summary>
     public class Game1 : Game
     {
+
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Rectangle playRectangle;
@@ -37,6 +38,8 @@ namespace CarGame
         Rectangle line1Rectangle3;
         Rectangle line1Rectangle4;
         bool mousePressed = false;
+        Rectangle testRectangle;
+
 
         int r=250;
         int g=250;
@@ -79,6 +82,10 @@ namespace CarGame
 
         //font
         SpriteFont font;
+
+        //Arraylist *TEST*
+        //arraylist of cars
+        ArrayList TrafficOptions = new ArrayList();
 
         enum GameState
         {
@@ -129,24 +136,8 @@ namespace CarGame
             aquaRectangle = new Rectangle(500, 300, 200, 100);
             yellowRectangle = new Rectangle(300, 300, 200, 100); 
             choose_colorRectangle = new Rectangle(950, 200, 300, 150);
-
-            //arraylist of cars
-            ArrayList TrafficOptions = new ArrayList();
-            //add cars
-            //Obstacles redTraffic = new Moving(x, y, speed, false, redCar);
-            Obstacles blueTraffic = new Moving(50, 50, 150, false, blueCar);
-            Obstacles greenTraffic = new Moving(50, 50, 150, false, greenCar);
-            Obstacles greyTraffic = new Moving(50, 50, 150, false, greyCar);
-            Obstacles orangeTraffic = new Moving(50, 50, 150, false, orangeCar);
-            Obstacles whiteTraffic = new Moving(50, 50, 150, false, whiteCar);
-            //add car to arraylist
-            TrafficOptions.Add(redTraffic);
-            TrafficOptions.Add(blueTraffic);
-            TrafficOptions.Add(greenTraffic);
-            TrafficOptions.Add(greyTraffic);
-            TrafficOptions.Add(orangeTraffic);
-            TrafficOptions.Add(whiteTraffic);
-
+            backRectangle = new Rectangle(900, 0, 300, 300);
+            testRectangle = new Rectangle(50, 50, 150, 75);
 
             base.Initialize();
         }
@@ -187,6 +178,23 @@ namespace CarGame
             help = Content.Load<Texture2D>("help");
             ChooseColor = Content.Load<Texture2D>("ChooseColor.jpg");
 
+            //add cars (x, y, speed, collisions, image)
+            Obstacles redTraffic = new Moving(50, 50, 150, false, redCar);
+            Obstacles blueTraffic = new Moving(50, 50, 150, false, blueCar);
+            Obstacles greenTraffic = new Moving(50, 50, 150, false, greenCar);
+            Obstacles greyTraffic = new Moving(50, 50, 150, false, greyCar);
+            Obstacles orangeTraffic = new Moving(50, 50, 150, false, orangeCar);
+            Obstacles whiteTraffic = new Moving(50, 50, 150, false, whiteCar);
+
+            //add car to arraylist
+            TrafficOptions.Add(redTraffic);
+            TrafficOptions.Add(blueTraffic);
+            TrafficOptions.Add(greenTraffic);
+            TrafficOptions.Add(greyTraffic);
+            TrafficOptions.Add(orangeTraffic);
+            TrafficOptions.Add(whiteTraffic);
+
+            Console.WriteLine(TrafficOptions);
 
             //font
             font = Content.Load<SpriteFont>("fastFont");
@@ -403,6 +411,12 @@ namespace CarGame
             spriteBatch.Draw(line, line1Rectangle3, Color.White);
             spriteBatch.Draw(line, line1Rectangle4, Color.White);
             spriteBatch.Draw(whiteCar, playerRectangle, plCl);
+            spriteBatch.Draw(road, new Vector2(0, 0), Color.White);
+            
+            spriteBatch.DrawString(font, "Please choose a car color listed below.", new Vector2(50, 50), Color.White);
+            // traffic
+
+            spriteBatch.Draw(((Obstacles)TrafficOptions[0]).getImage(), testRectangle, Color.White);  //fix rectangle, change index to actual value
         }
         public void DisplayHelpScreen()
         {

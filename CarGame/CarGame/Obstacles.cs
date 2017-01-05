@@ -45,18 +45,17 @@ namespace CarGame
            this.speed = Speed;
            this.image = Image;
            this.collide = collision;
-           }
-        //Sets
+           } 
+         //Sets
         public void setX(int X)
-        {               //How do i make it so that it doesnt generate two random numbers, but instead compares to value of the same, randomly- generated, number?
+            {               //How do i make it so that it doesnt generate two random numbers, but instead compares to value of the same, randomly- generated, number?
             int rand = rnd.Next(0, 3);
-            if (yCoords[rand] == 150) || yCoords[rand] == 310)
+           // if (yCoords[rand] == 150) || yCoords[rand] == 310)
                 {
-                x = 1300;
-            }
-        }
+                    x = 1300;
+                }
                     
-            
+            }
          public void setY(int Y)
             {
               y = Y;
@@ -71,6 +70,11 @@ namespace CarGame
             {
                 collide = collision;
             }
+        public void setImage(Texture2D Image)
+        {
+            image = Image;
+
+        }
         //Gets
         public int getX()
             {
@@ -89,6 +93,10 @@ namespace CarGame
             {
                 return collide;
             }
+        public Texture2D getImage()
+        {
+            return image;
+        }
 
        
 
