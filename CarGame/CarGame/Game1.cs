@@ -46,10 +46,10 @@ namespace CarGame
         Rectangle treeRectangle4;
         Rectangle treeRectangle5;
         
-        bool startMenuMusic = true;
         Scrollingbackground road1;
         Scrollingbackground road2;
 
+        bool startMenuMusic = true;
         bool mousePressed = false;
       
         //time variables
@@ -215,10 +215,10 @@ namespace CarGame
             ChooseColor = Content.Load<Texture2D>("ChooseColor.jpg");
           
             //music - sounds
-            menu = Content.Load<SoundEffect>("menuMusic");
-            carStart = Content.Load<SoundEffect>("car_start");
-            losingSound = Content.Load<SoundEffect>("losing_sound");
-            crash = Content.Load<SoundEffect>("crash");
+            menu = Content.Load<SoundEffect>("menuMusic1");
+            carStart = Content.Load<SoundEffect>("car_start1");
+            losingSound = Content.Load<SoundEffect>("losing_sound1");
+            crash = Content.Load<SoundEffect>("crash1");
 
             //font
             font = Content.Load<SpriteFont>("fastFont");
@@ -529,6 +529,11 @@ namespace CarGame
 
         public void DisplayMainMenu()
         {
+            if(startMenuMusic)
+            {
+                menu.Play();
+                startMenuMusic = false;
+            }
 
             spriteBatch.DrawString(font, "Welcome to the Car Game!", new Vector2(50, 50), Color.White);
             spriteBatch.DrawString(font, "You should choose a car color before pressing Play", new Vector2(250, 500), Color.White);
