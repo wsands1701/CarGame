@@ -527,7 +527,6 @@ namespace CarGame
             base.Draw(gameTime);
         }
 
-
         public void DisplayMainMenu()
         {
             if(startMenuMusic)
