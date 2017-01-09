@@ -55,3 +55,27 @@
 /processorParam:TextureFormat=Color
 /build:play.jpg
 
+#begin menuMusic1.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:menuMusic1.wav
+
+#begin car_start1.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:car_start1.wav
+
+#begin crash1.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:crash1.wav
+
+#begin losing_sound1.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:losing_sound1.wav
+

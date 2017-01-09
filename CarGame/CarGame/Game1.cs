@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -43,15 +44,17 @@ namespace CarGame
         Rectangle treeRectangle3;
         Rectangle treeRectangle4;
         Rectangle treeRectangle5;
+        
+        Scrollingbackground road1;
+        Scrollingbackground road2;
 
+        bool startMenuMusic = true;
         bool mousePressed = false;
         bool colorSelected = false;
-
+      
         //time variables
-        int h = 0;
-        int m = 0;
-        int s = 0;
         TimeSpan t1 = new TimeSpan(0, 0, 0);
+        int points = 0;
 
         int r=250;
         int g=250;
@@ -69,6 +72,7 @@ namespace CarGame
         Vector2 playerCarObjSpeed;
         Vector2 playerRectcord;
         Random rnd1 = new Random();
+
         //textures
         Texture2D road;
         Texture2D line;
@@ -95,6 +99,12 @@ namespace CarGame
 
         //font
         SpriteFont font;
+
+        //sounds
+        SoundEffect menu;
+        SoundEffect carStart;
+        SoundEffect losingSound;
+        SoundEffect crash;
 
         enum GameState
         {
@@ -192,6 +202,12 @@ namespace CarGame
             yellowCar = Content.Load<Texture2D>("YellowCar");
             //lines.get(lines.go(dank));
 
+            //background
+            road1 = new Scrollingbackground(Content.Load<Texture2D>("Road"), new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height));
+            road2 = new Scrollingbackground(Content.Load<Texture2D>("Road"), new Rectangle(GraphicsDevice.Viewport.Width ,0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height));
+
+           
+
             //button textures
             play = Content.Load<Texture2D>("play");
             end = Content.Load<Texture2D>("end");
@@ -199,8 +215,11 @@ namespace CarGame
             help = Content.Load<Texture2D>("help");
             ChooseColor = Content.Load<Texture2D>("ChooseColor.jpg");
           
-            //music
-
+            //music - sounds
+            menu = Content.Load<SoundEffect>("menuMusic1");
+            carStart = Content.Load<SoundEffect>("car_start1");
+            losingSound = Content.Load<SoundEffect>("losing_sound1");
+            crash = Content.Load<SoundEffect>("crash1");
 
             //font
             font = Content.Load<SpriteFont>("fastFont");
@@ -223,6 +242,8 @@ namespace CarGame
         
         protected override void Update(GameTime gameTime)
         {
+            road1.Update();
+            road2.Update();
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
@@ -234,6 +255,12 @@ namespace CarGame
                 newMousePoint = new Point(Mouse.GetState().X, Mouse.GetState().Y);
             }
 
+            if (road1.rectangle.X + road1.texture.Width <= 0)
+                road1.rectangle.X = road2.rectangle.X + road2.texture.Width;
+
+            if (road2.rectangle.X + road2.texture.Width <= 0)
+                road2.rectangle.X = road1.rectangle.X + road1.texture.Width;
+            
             Console.WriteLine(newMousePoint);
 
             switch (state)
@@ -264,7 +291,7 @@ namespace CarGame
                     break;
 
                 case GameState.ChooseColor:
-
+                   
                     if (yellowRectangle.Contains(newMousePoint))
                     {
                         r = 255; g = 255; b = 0;
@@ -279,25 +306,25 @@ namespace CarGame
                     {
                         r = 255; g = 0; b = 0;
                         colorSelected = true;
-
+                        
                     }
                     if (orangeRectangle.Contains(newMousePoint))
                     {
                         r = 255; g = 102; b = 0;
                         colorSelected = true;
-
+                        
                     }
                     if (greenRectangle.Contains(newMousePoint))
                     {
                         g = 255; r = 0; b = 0;
                         colorSelected = true;
-
+   
                     }
                     if (blueRectangle.Contains(newMousePoint))
                     {
                         b = 255; r = 0; g = 0;
                         colorSelected = true;
-
+                       
                     }
                     if (whiteRectangle.Contains(newMousePoint))
                     {
@@ -315,7 +342,7 @@ namespace CarGame
                 case GameState.PlayGame:
 
                     t1 += gameTime.ElapsedGameTime;
-                   
+
                     playerRectangle = new Rectangle(playerRectangle.X, playerRectangle.Y, 150, 75);
 
                     if (playerRectangle.Contains(newMousePoint))
@@ -443,6 +470,7 @@ namespace CarGame
                 int test = rnd1.Next() % GraphicsDevice.Viewport.Width;
                 treeRectangle5.X = GraphicsDevice.Viewport.Width + test;
             }
+            
             base.Update(gameTime);
         }
 
@@ -456,6 +484,10 @@ namespace CarGame
             // TODO: Add your drawing code here
 
             spriteBatch.Begin();
+
+            road1.Draw(spriteBatch);
+            road2.Draw(spriteBatch);
+
             switch (state) { 
             
                 case GameState.MainMenu:
@@ -488,9 +520,13 @@ namespace CarGame
             base.Draw(gameTime);
         }
 
-
         public void DisplayMainMenu()
         {
+            if(startMenuMusic)
+            {
+                menu.Play();
+                startMenuMusic = false;
+            }
 
             spriteBatch.DrawString(font, "Welcome to the Car Game!", new Vector2(50, 50), Color.White);
             spriteBatch.DrawString(font, "You should choose a car color before pressing Play", new Vector2(250, 500), Color.White);
@@ -506,7 +542,6 @@ namespace CarGame
 
             //draws the road
             spriteBatch.Draw(road, GraphicsDevice.Viewport.Bounds, Color.White);
-
             //lines
             spriteBatch.Draw(line, line1Rectangle, Color.White);
             spriteBatch.Draw(line, line1Rectangle2, Color.White);
@@ -523,7 +558,8 @@ namespace CarGame
             spriteBatch.Draw(tree, treeRectangle4, Color.White);
             spriteBatch.Draw(tree, treeRectangle5, Color.White);
             spriteBatch.Draw(whiteCar, playerRectangle, plCl);
-            spriteBatch.DrawString(font, "Points: " + t1.Seconds, new Vector2(100, 100),Color.White);
+            
+            spriteBatch.DrawString(font, "Points: " +  t1.TotalSeconds.ToString("####.##"), new Vector2(1050, 25),Color.White);
         }
         public void DisplayHelpScreen()
         {
@@ -547,7 +583,7 @@ namespace CarGame
             spriteBatch.Draw(aquaCar, aquaRectangle, Color.White);
             spriteBatch.Draw(yellowCar, yellowRectangle, Color.White);
             spriteBatch.Draw(back, backRectangle, Color.White);
-
+            
 
 
         }
