@@ -45,15 +45,16 @@ namespace CarGame
         Rectangle treeRectangle3;
         Rectangle treeRectangle4;
         Rectangle treeRectangle5;
-
+        
         bool startMenuMusic = true;
+        Scrollingbackground road1;
+        Scrollingbackground road2;
+
         bool mousePressed = false;
       
         //time variables
-        int h = 0;
-        int m = 0;
-        int s = 0;
         TimeSpan t1 = new TimeSpan(0, 0, 0);
+        int points = 0;
 
         int r=250;
         int g=250;
@@ -200,13 +201,19 @@ namespace CarGame
             yellowCar = Content.Load<Texture2D>("YellowCar");
             //lines.get(lines.go(dank));
 
+            //background
+            road1 = new Scrollingbackground(Content.Load<Texture2D>("Road"), new Rectangle(0, 0, 1280, 800));
+            road2 = new Scrollingbackground(Content.Load<Texture2D>("Road"), new Rectangle(1280,0, 1280, 800));
+
+           
+
             //button textures
             play = Content.Load<Texture2D>("play");
             end = Content.Load<Texture2D>("end");
             back = Content.Load<Texture2D>("back");
             help = Content.Load<Texture2D>("help");
             ChooseColor = Content.Load<Texture2D>("ChooseColor.jpg");
-
+          
             //music - sounds
             menu = Content.Load<SoundEffect>("menuMusic");
             carStart = Content.Load<SoundEffect>("car_start");
@@ -238,6 +245,14 @@ namespace CarGame
 
             // TODO: Add your update logic here
 
+            if (road1.rectangle.X + road1.texture.Width <= 10)
+                road1.rectangle.X = road2.rectangle.X + road2.texture.Width;
+
+            if (road2.rectangle.X + road2.texture.Width <= 10)
+                road2.rectangle.X = road1.rectangle.X + road1.texture.Width;
+            road1.Update();
+            road2.Update();
+
             switch (state)
             {
                 case GameState.MainMenu:
@@ -256,6 +271,7 @@ namespace CarGame
                     if (choose_colorRectangle.Contains(mousePointer))
                         state = GameState.ChooseColor;
 
+
                     break;
 
                 case GameState.HelpScreen:
@@ -264,42 +280,59 @@ namespace CarGame
 
                     if (backRectangle.Contains(mousePointer))
                         state = GameState.MainMenu;
+
                     break;
 
                 case GameState.ChooseColor:
+                   
+
                     if (Mouse.GetState().LeftButton == ButtonState.Pressed)
                         mousePointer = new Point(Mouse.GetState().X, Mouse.GetState().Y);
 
                     if (yellowRectangle.Contains(mousePointer))
                     {
                         r = 255; g = 255; b = 0;
+                        state = GameState.MainMenu;
                     }
                     if (pinkRectangle.Contains(mousePointer))
                     {
                         r = 255; g = 192; b = 210;
+                        state = GameState.MainMenu;
                     }
                     if (redRectangle.Contains(mousePointer))
                     {
                         r = 255; g = 0; b = 0;
+                        state = GameState.MainMenu;
+                        
                     }
                     if (orangeRectangle.Contains(mousePointer))
                     {
                         r = 255; g = 102; b = 0;
+                        state = GameState.MainMenu;
+                        
                     }
                     if (greenRectangle.Contains(mousePointer))
                     {
                         g = 255; r = 0; b = 0;
+                        state = GameState.MainMenu;
+   
                     }
                     if (blueRectangle.Contains(mousePointer))
                     {
                         b = 255; r = 0; g = 0;
+                        state = GameState.MainMenu;
+                       
                     }
                     if (whiteRectangle.Contains(mousePointer))
                     {
                         b = 255; r = 255; g = 255;
+                        state = GameState.MainMenu;
+                       
                     }
                     if (backRectangle.Contains(mousePointer))
                         state = GameState.MainMenu;
+
+
                     break;
 
                 case GameState.PlayGame:
@@ -309,14 +342,16 @@ namespace CarGame
                     mousePointer = new Point(Mouse.GetState().X, Mouse.GetState().Y);
                     //     Console.WriteLine(mousePointer);
                     playerRectangle = new Rectangle(playerRectangle.X, playerRectangle.Y, 150, 75);
+
                     if (playerRectangle.Contains(mousePointer))
                     {
                         if (Mouse.GetState().LeftButton == ButtonState.Pressed)//new feature - hard mode day one dlc
                         {
                             mousePressed = true;
                         }
-
                     }
+
+
                     if (mousePressed)
                     {
                         playerRectangle.X = Mouse.GetState().X - 90;
@@ -341,11 +376,14 @@ namespace CarGame
                         }
 
 
+
                         if (Mouse.GetState().LeftButton == ButtonState.Released)
                         {
                             mousePressed = false;
                         }
                     }
+
+
 
                     break;
 
@@ -356,6 +394,7 @@ namespace CarGame
 
                     if (backRectangle.Contains(mousePointer))
                         state = GameState.MainMenu;
+
                     break;
             }
             //set location of top lines
@@ -437,6 +476,7 @@ namespace CarGame
                 int test = rnd1.Next() % GraphicsDevice.Viewport.Width;
                 treeRectangle5.X = GraphicsDevice.Viewport.Width + test;
             }
+            
             base.Update(gameTime);
         }
 
@@ -450,6 +490,10 @@ namespace CarGame
             // TODO: Add your drawing code here
 
             spriteBatch.Begin();
+
+            road1.Draw(spriteBatch);
+            road2.Draw(spriteBatch);
+
             switch (state) { 
             
                 case GameState.MainMenu:
@@ -485,11 +529,6 @@ namespace CarGame
 
         public void DisplayMainMenu()
         {
-            if(startMenuMusic)
-            {
-                menu.Play();
-                startMenuMusic = false;
-            }
 
             spriteBatch.DrawString(font, "Welcome to the Car Game!", new Vector2(50, 50), Color.White);
             spriteBatch.DrawString(font, "You should choose a car color before pressing Play", new Vector2(250, 500), Color.White);
@@ -503,7 +542,7 @@ namespace CarGame
         public void PlayTheGame() {
             GraphicsDevice.Clear(Color.Black);
             //draws the road
-            spriteBatch.Draw(road, GraphicsDevice.Viewport.Bounds, Color.White);
+         
             //lines
             spriteBatch.Draw(line, line1Rectangle, Color.White);
             spriteBatch.Draw(line, line1Rectangle2, Color.White);
@@ -520,7 +559,8 @@ namespace CarGame
             spriteBatch.Draw(tree, treeRectangle4, Color.White);
             spriteBatch.Draw(tree, treeRectangle5, Color.White);
             spriteBatch.Draw(whiteCar, playerRectangle, plCl);
-            spriteBatch.DrawString(font, "Points: " + t1.Seconds, new Vector2(100, 100),Color.White);
+            
+            spriteBatch.DrawString(font, "Points: " +  t1.TotalSeconds.ToString("####.##"), new Vector2(1050, 25),Color.White);
         }
         public void DisplayHelpScreen()
         {
