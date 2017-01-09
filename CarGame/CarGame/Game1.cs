@@ -202,6 +202,7 @@ namespace CarGame
 
             // TODO: Add your update logic here
 
+
             switch (state)
             {
                 case GameState.MainMenu:
@@ -220,6 +221,7 @@ namespace CarGame
                     if (choose_colorRectangle.Contains(mousePointer))
                         state = GameState.ChooseColor;
 
+
                     break;
 
                 case GameState.HelpScreen:
@@ -228,42 +230,59 @@ namespace CarGame
 
                     if (backRectangle.Contains(mousePointer))
                         state = GameState.MainMenu;
+
                     break;
 
                 case GameState.ChooseColor:
+                   
+
                     if (Mouse.GetState().LeftButton == ButtonState.Pressed)
                         mousePointer = new Point(Mouse.GetState().X, Mouse.GetState().Y);
 
                     if (yellowRectangle.Contains(mousePointer))
                     {
                         r = 255; g = 255; b = 0;
+                        state = GameState.MainMenu;
                     }
                     if (pinkRectangle.Contains(mousePointer))
                     {
                         r = 255; g = 192; b = 210;
+                        state = GameState.MainMenu;
                     }
                     if (redRectangle.Contains(mousePointer))
                     {
                         r = 255; g = 0; b = 0;
+                        state = GameState.MainMenu;
+                        
                     }
                     if (orangeRectangle.Contains(mousePointer))
                     {
                         r = 255; g = 102; b = 0;
+                        state = GameState.MainMenu;
+                        
                     }
                     if (greenRectangle.Contains(mousePointer))
                     {
                         g = 255; r = 0; b = 0;
+                        state = GameState.MainMenu;
+   
                     }
                     if (blueRectangle.Contains(mousePointer))
                     {
                         b = 255; r = 0; g = 0;
+                        state = GameState.MainMenu;
+                       
                     }
                     if (whiteRectangle.Contains(mousePointer))
                     {
                         b = 255; r = 255; g = 255;
+                        state = GameState.MainMenu;
+                       
                     }
                     if (backRectangle.Contains(mousePointer))
                         state = GameState.MainMenu;
+
+
                     break;
 
                 case GameState.PlayGame:
@@ -271,23 +290,28 @@ namespace CarGame
                     mousePointer = new Point(Mouse.GetState().X, Mouse.GetState().Y);
                     //     Console.WriteLine(mousePointer);
                     playerRectangle = new Rectangle(playerRectangle.X, playerRectangle.Y, 150, 75);
+
                     if (playerRectangle.Contains(mousePointer))
                     {
                         if (Mouse.GetState().LeftButton == ButtonState.Pressed)//new feature - hard mode day one dlc
                         {
                             mousePressed = true;
                         }
-
                     }
+
+
                     if (mousePressed)
                     {
                         playerRectangle.X = Mouse.GetState().X - 90;
                         playerRectangle.Y = Mouse.GetState().Y - 35;
+
                         if (Mouse.GetState().LeftButton == ButtonState.Released)
                         {
                             mousePressed = false;
                         }
                     }
+
+
 
                     break;
 
@@ -298,6 +322,7 @@ namespace CarGame
 
                     if (backRectangle.Contains(mousePointer))
                         state = GameState.MainMenu;
+
                     break;
             }
 
@@ -345,7 +370,7 @@ namespace CarGame
             {
                 line2Rectangle4.X = GraphicsDevice.Viewport.Width;
             }
-            
+
             base.Update(gameTime);
         }
 
@@ -390,10 +415,10 @@ namespace CarGame
             spriteBatch.End();
 
 
-            
+         
 
 
-          
+
             base.Draw(gameTime);
         }
 
