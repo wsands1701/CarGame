@@ -202,8 +202,8 @@ namespace CarGame
             //lines.get(lines.go(dank));
 
             //background
-            road1 = new Scrollingbackground(Content.Load<Texture2D>("Road"), new Rectangle(0, 0, 1280, 800));
-            road2 = new Scrollingbackground(Content.Load<Texture2D>("Road"), new Rectangle(1280,0, 1280, 800));
+            road1 = new Scrollingbackground(Content.Load<Texture2D>("Road"), new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height));
+            road2 = new Scrollingbackground(Content.Load<Texture2D>("Road"), new Rectangle(GraphicsDevice.Viewport.Width ,0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height));
 
            
 
@@ -240,18 +240,19 @@ namespace CarGame
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            road1.Update();
+            road2.Update();
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
             // TODO: Add your update logic here
 
-            if (road1.rectangle.X + road1.texture.Width <= 10)
+            if (road1.rectangle.X + road1.texture.Width <= 0)
                 road1.rectangle.X = road2.rectangle.X + road2.texture.Width;
 
-            if (road2.rectangle.X + road2.texture.Width <= 10)
+            if (road2.rectangle.X + road2.texture.Width <= 0)
                 road2.rectangle.X = road1.rectangle.X + road1.texture.Width;
-            road1.Update();
-            road2.Update();
+            
 
             switch (state)
             {
