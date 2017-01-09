@@ -68,7 +68,7 @@ namespace CarGame
         Vector2 enemyCarObjSpeed;
         Vector2 playerCarObjSpeed;
         Vector2 playerRectcord;
-        
+        Random rnd1 = new Random();
         //textures
         Texture2D road;
         Texture2D line;
@@ -128,6 +128,8 @@ namespace CarGame
         {
             // TODO: Add your initialization logic here
             IsMouseVisible = true;
+
+            //Road Lines
             line1Rectangle = new Rectangle(GraphicsDevice.Viewport.Width/4, 260, 100, 15);
             line1Rectangle2 = new Rectangle(GraphicsDevice.Viewport.Width/2, 260, 100, 15);
             line1Rectangle3 = new Rectangle((GraphicsDevice.Viewport.Width / 4)*3, 260, 100, 15);
@@ -136,11 +138,14 @@ namespace CarGame
             line2Rectangle2 = new Rectangle(GraphicsDevice.Viewport.Width / 2, 520, 100, 15);
             line2Rectangle3 = new Rectangle((GraphicsDevice.Viewport.Width / 4) * 3, 520, 100, 15);
             line2Rectangle4 = new Rectangle(GraphicsDevice.Viewport.Width, 520, 100, 15);
+            //Trees
             treeRectangle1 = new Rectangle(GraphicsDevice.Viewport.Width/5, 700, 110, 90);
             treeRectangle2 = new Rectangle(GraphicsDevice.Viewport.Width/4, 700, 110, 90);
             treeRectangle3 = new Rectangle(GraphicsDevice.Viewport.Width/2, 700, 110, 90);
             treeRectangle4 = new Rectangle((GraphicsDevice.Viewport.Width/3)*4, 700, 110, 90);
             treeRectangle5 = new Rectangle(GraphicsDevice.Viewport.Width, 700, 110, 90);
+
+
             playRectangle = new Rectangle(50, 200, 300, 150);
             endRectangle = new Rectangle(350, 200, 300, 150);
             helpRectangle = new Rectangle(650, 200, 300, 150);
@@ -396,23 +401,28 @@ namespace CarGame
             //reset the trees
             if(treeRectangle1.X < 0)
             {
-                treeRectangle1.X = GraphicsDevice.Viewport.Width;
+                int test = rnd1.Next() % GraphicsDevice.Viewport.Width;
+                treeRectangle1.X = GraphicsDevice.Viewport.Width+test;
             }
             if(treeRectangle2.X < 0)
             {
-                treeRectangle2.X = GraphicsDevice.Viewport.Width;
+                int test = rnd1.Next() % GraphicsDevice.Viewport.Width;
+                treeRectangle2.X = GraphicsDevice.Viewport.Width + test;
             }
             if(treeRectangle3.X < 0)
             {
-                treeRectangle3.X = GraphicsDevice.Viewport.Width;
+                int test = rnd1.Next() % GraphicsDevice.Viewport.Width;
+                treeRectangle3.X = GraphicsDevice.Viewport.Width + test;
             }
             if (treeRectangle4.X < 0)
             {
-                treeRectangle4.X = GraphicsDevice.Viewport.Width;
+                int test = rnd1.Next() % GraphicsDevice.Viewport.Width;
+                treeRectangle4.X = GraphicsDevice.Viewport.Width + test;
             }
             if (treeRectangle5.X < 0)
             {
-                treeRectangle5.X = GraphicsDevice.Viewport.Width;
+                int test = rnd1.Next() % GraphicsDevice.Viewport.Width;
+                treeRectangle5.X = GraphicsDevice.Viewport.Width + test;
             }
             base.Update(gameTime);
         }
