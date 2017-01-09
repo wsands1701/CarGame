@@ -195,8 +195,8 @@ namespace CarGame
             //lines.get(lines.go(dank));
 
             //background
-            road1 = new Scrollingbackground(Content.Load<Texture2D>("Road"), new Rectangle(0, 0, 1280, 800));
-            road2 = new Scrollingbackground(Content.Load<Texture2D>("Road"), new Rectangle(1280,0, 1280, 800));
+            road1 = new Scrollingbackground(Content.Load<Texture2D>("Road"), new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height));
+            road2 = new Scrollingbackground(Content.Load<Texture2D>("Road"), new Rectangle(GraphicsDevice.Viewport.Width,0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height));
 
            
 
@@ -235,11 +235,7 @@ namespace CarGame
 
             // TODO: Add your update logic here
 
-            if (road1.rectangle.X + road1.texture.Width <= 10)
-                road1.rectangle.X = road2.rectangle.X + road2.texture.Width;
-
-            if (road2.rectangle.X + road2.texture.Width <= 10)
-                road2.rectangle.X = road1.rectangle.X + road1.texture.Width;
+          
             road1.Update();
             road2.Update();
 
@@ -327,7 +323,11 @@ namespace CarGame
 
                 case GameState.PlayGame:
                     t1 += gameTime.ElapsedGameTime;
+                    if (road1.rectangle.X<=(-1)*road1.rectangle.Width)
+                        road1.rectangle.X = GraphicsDevice.Viewport.Width;
 
+                    if (road2.rectangle.X<=(-1)*road2.rectangle.Width)
+                        road2.rectangle.X = GraphicsDevice.Viewport.Width;
                     //if left mouse is pressed/collect mouse location data, then make and draw playerrectangle with said pointer data
                     mousePointer = new Point(Mouse.GetState().X, Mouse.GetState().Y);
                     //     Console.WriteLine(mousePointer);
