@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -44,8 +45,8 @@ namespace CarGame
         Rectangle treeRectangle3;
         Rectangle treeRectangle4;
         Rectangle treeRectangle5;
-        
 
+        bool startMenuMusic = true;
         bool mousePressed = false;
       
         //time variables
@@ -69,6 +70,7 @@ namespace CarGame
         Vector2 playerCarObjSpeed;
         Vector2 playerRectcord;
         Random rnd1 = new Random();
+
         //textures
         Texture2D road;
         Texture2D line;
@@ -96,7 +98,11 @@ namespace CarGame
         //font
         SpriteFont font;
 
-        //
+        //sounds
+        SoundEffect menu;
+        SoundEffect carStart;
+        SoundEffect losingSound;
+        SoundEffect crash;
 
         enum GameState
         {
@@ -200,9 +206,12 @@ namespace CarGame
             back = Content.Load<Texture2D>("back");
             help = Content.Load<Texture2D>("help");
             ChooseColor = Content.Load<Texture2D>("ChooseColor.jpg");
-          
-            //music
 
+            //music - sounds
+            menu = Content.Load<SoundEffect>("menuMusic");
+            carStart = Content.Load<SoundEffect>("car_start");
+            losingSound = Content.Load<SoundEffect>("losing_sound");
+            crash = Content.Load<SoundEffect>("crash");
 
             //font
             font = Content.Load<SpriteFont>("fastFont");
@@ -476,6 +485,11 @@ namespace CarGame
 
         public void DisplayMainMenu()
         {
+            if(startMenuMusic)
+            {
+                menu.Play();
+                startMenuMusic = false;
+            }
 
             spriteBatch.DrawString(font, "Welcome to the Car Game!", new Vector2(50, 50), Color.White);
             spriteBatch.DrawString(font, "You should choose a car color before pressing Play", new Vector2(250, 500), Color.White);
