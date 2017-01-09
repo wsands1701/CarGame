@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -45,16 +46,15 @@ namespace CarGame
         Rectangle treeRectangle4;
         Rectangle treeRectangle5;
         
+        bool startMenuMusic = true;
         Scrollingbackground road1;
         Scrollingbackground road2;
 
         bool mousePressed = false;
       
         //time variables
-        int h = 0;
-        int m = 0;
-        int s = 0;
         TimeSpan t1 = new TimeSpan(0, 0, 0);
+        int points = 0;
 
         int r=250;
         int g=250;
@@ -71,6 +71,7 @@ namespace CarGame
         Vector2 playerCarObjSpeed;
         Vector2 playerRectcord;
         Random rnd1 = new Random();
+
         //textures
         Texture2D road;
         Texture2D line;
@@ -98,7 +99,11 @@ namespace CarGame
         //font
         SpriteFont font;
 
-        //
+        //sounds
+        SoundEffect menu;
+        SoundEffect carStart;
+        SoundEffect losingSound;
+        SoundEffect crash;
 
         enum GameState
         {
@@ -209,8 +214,11 @@ namespace CarGame
             help = Content.Load<Texture2D>("help");
             ChooseColor = Content.Load<Texture2D>("ChooseColor.jpg");
           
-            //music
-
+            //music - sounds
+            menu = Content.Load<SoundEffect>("menuMusic");
+            carStart = Content.Load<SoundEffect>("car_start");
+            losingSound = Content.Load<SoundEffect>("losing_sound");
+            crash = Content.Load<SoundEffect>("crash");
 
             //font
             font = Content.Load<SpriteFont>("fastFont");
@@ -469,6 +477,7 @@ namespace CarGame
                 int test = rnd1.Next() % GraphicsDevice.Viewport.Width;
                 treeRectangle5.X = GraphicsDevice.Viewport.Width + test;
             }
+            
             base.Update(gameTime);
         }
 
@@ -521,7 +530,7 @@ namespace CarGame
 
         public void DisplayMainMenu()
         {
-            spriteBatch.Draw(road, GraphicsDevice.Viewport.Bounds, Color.White);
+
             spriteBatch.DrawString(font, "Welcome to the Car Game!", new Vector2(50, 50), Color.White);
             spriteBatch.DrawString(font, "You should choose a car color before pressing Play", new Vector2(250, 500), Color.White);
             spriteBatch.Draw(play, playRectangle, Color.White);
@@ -551,7 +560,8 @@ namespace CarGame
             spriteBatch.Draw(tree, treeRectangle4, Color.White);
             spriteBatch.Draw(tree, treeRectangle5, Color.White);
             spriteBatch.Draw(whiteCar, playerRectangle, plCl);
-            spriteBatch.DrawString(font, "Points: " + t1.Seconds, new Vector2(100, 100),Color.White);
+            
+            spriteBatch.DrawString(font, "Points: " +  t1.TotalSeconds.ToString("####.##"), new Vector2(1050, 25),Color.White);
         }
         public void DisplayHelpScreen()
         {
