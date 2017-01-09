@@ -7,7 +7,7 @@ namespace CarGame
 {
     //I'm watching you all ~ McCloskey
     //nice
-      
+    
         //create image to follow mouse when pressed. Can use this, our branch
    
     /// <summary>
@@ -47,20 +47,22 @@ namespace CarGame
         
 
         bool mousePressed = false;
-      
+        Rectangle testRectangle;
+
         //time variables
         int h = 0;
         int m = 0;
         int s = 0;
         TimeSpan t1 = new TimeSpan(0, 0, 0);
 
+
         int r=250;
         int g=250;
         int b=250;
         Color plCl;
-
+      
         int speedoflines = 7;
-
+        
         Point mousePointer;
 
         //vectors
@@ -97,7 +99,7 @@ namespace CarGame
         SpriteFont font;
 
         //
-
+        
         enum GameState
         {
             MainMenu,
@@ -111,7 +113,7 @@ namespace CarGame
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
-      
+
             graphics.PreferredBackBufferHeight = 800;
             graphics.PreferredBackBufferWidth = 1280;
 
@@ -160,7 +162,9 @@ namespace CarGame
             aquaRectangle = new Rectangle(500, 300, 200, 100);
             yellowRectangle = new Rectangle(300, 300, 200, 100); 
             choose_colorRectangle = new Rectangle(950, 200, 300, 150);
-           
+            backRectangle = new Rectangle(900, 0, 300, 300);
+            testRectangle = new Rectangle(50, 50, 150, 75);
+
             base.Initialize();
         }
 
@@ -199,9 +203,24 @@ namespace CarGame
             back = Content.Load<Texture2D>("back");
             help = Content.Load<Texture2D>("help");
             ChooseColor = Content.Load<Texture2D>("ChooseColor.jpg");
-          
-            //music
 
+            //add cars (x, y, speed, collisions, image)
+            Obstacles redTraffic = new Moving(50, 50, 150, false, redCar);
+            Obstacles blueTraffic = new Moving(50, 50, 150, false, blueCar);
+            Obstacles greenTraffic = new Moving(50, 50, 150, false, greenCar);
+            Obstacles greyTraffic = new Moving(50, 50, 150, false, greyCar);
+            Obstacles orangeTraffic = new Moving(50, 50, 150, false, orangeCar);
+            Obstacles whiteTraffic = new Moving(50, 50, 150, false, whiteCar);
+
+            //add car to arraylist
+            TrafficOptions.Add(redTraffic);
+            TrafficOptions.Add(blueTraffic);
+            TrafficOptions.Add(greenTraffic);
+            TrafficOptions.Add(greyTraffic);
+            TrafficOptions.Add(orangeTraffic);
+            TrafficOptions.Add(whiteTraffic);
+
+            Console.WriteLine(TrafficOptions);
 
             //font
             font = Content.Load<SpriteFont>("fastFont");
@@ -233,25 +252,26 @@ namespace CarGame
                 case GameState.MainMenu:
                     if (Mouse.GetState().LeftButton == ButtonState.Pressed)
                         mousePointer = new Point(Mouse.GetState().X, Mouse.GetState().Y);
-
+                    
                     if (playRectangle.Contains(mousePointer))
                         state = GameState.PlayGame;
+
 
                     if (endRectangle.Contains(mousePointer))
                         state = GameState.EndGame;
 
                     if (helpRectangle.Contains(mousePointer))
                         state = GameState.HelpScreen;
-
+                  
                     if (choose_colorRectangle.Contains(mousePointer))
                         state = GameState.ChooseColor;
-
+                  
                     break;
 
                 case GameState.HelpScreen:
                     if (Mouse.GetState().LeftButton == ButtonState.Pressed)
                         mousePointer = new Point(Mouse.GetState().X, Mouse.GetState().Y);
-
+                    
                     if (backRectangle.Contains(mousePointer))
                         state = GameState.MainMenu;
                     break;
@@ -277,7 +297,7 @@ namespace CarGame
                         r = 255; g = 102; b = 0;
                     }
                     if (greenRectangle.Contains(mousePointer))
-                    {
+                    { 
                         g = 255; r = 0; b = 0;
                     }
                     if (blueRectangle.Contains(mousePointer))
@@ -289,15 +309,15 @@ namespace CarGame
                         b = 255; r = 255; g = 255;
                     }
                     if (backRectangle.Contains(mousePointer))
-                        state = GameState.MainMenu;
+                        state = GameState.MainMenu; 
                     break;
-
+                
                 case GameState.PlayGame:
                     t1 += gameTime.ElapsedGameTime;
 
                     //if left mouse is pressed/collect mouse location data, then make and draw playerrectangle with said pointer data
                     mousePointer = new Point(Mouse.GetState().X, Mouse.GetState().Y);
-                    //     Console.WriteLine(mousePointer);
+             //     Console.WriteLine(mousePointer);
                     playerRectangle = new Rectangle(playerRectangle.X, playerRectangle.Y, 150, 75);
                     if (playerRectangle.Contains(mousePointer))
                     {
@@ -452,7 +472,7 @@ namespace CarGame
                     
                 case GameState.PlayGame:
                      plCl = new Color(r, g, b);
-                     PlayTheGame();
+                    PlayTheGame();
             break;
 
                 case GameState.EndGame:
@@ -505,6 +525,12 @@ namespace CarGame
             spriteBatch.Draw(tree, treeRectangle4, Color.White);
             spriteBatch.Draw(tree, treeRectangle5, Color.White);
             spriteBatch.Draw(whiteCar, playerRectangle, plCl);
+            spriteBatch.Draw(road, new Vector2(0, 0), Color.White);
+            
+            spriteBatch.DrawString(font, "Please choose a car color listed below.", new Vector2(50, 50), Color.White);
+            // traffic
+
+            spriteBatch.Draw(((Obstacles)TrafficOptions[0]).getImage(), testRectangle, Color.White);  //fix rectangle, change index to actual value
             spriteBatch.DrawString(font, "Points: " + t1.Seconds, new Vector2(100, 100),Color.White);
         }
         public void DisplayHelpScreen()
@@ -537,6 +563,65 @@ namespace CarGame
             GraphicsDevice.Clear(Color.Gray);
             Exit();
         }
+        public void drawTraffic()
+        {
+            Random rnd = new Random();
+            int randCar = 0;
+            int randRect = rnd.Next(1, 4);
+            //determine which rectangle to place the car on, then randomly select a car out of the ones facing the proper direction 
+            switch(randRect)
+            {
+                case 1:
+                   randCar = rnd.Next(6, 12);//out of bounds now, but add the flipped cars and it'll work
+                    //put in code so that trafficRect1 is chosen
+                    break;
+                case 2:
+                    randCar = rnd.Next(6, 12);//out of bounds now, but add the flipped cars and it'll work
+                    //trafficRect2
+                    break;
+
+                case 3:
+                    randCar = rnd.Next(0, 5);
+                    //trafficRect3
+                    break;
+
+                case 4:
+                    randCar = rnd.Next(0, 5);
+                    //trafficRect4
+                    break;
+
+
+            }
+
+
+           
+            spriteBatch.Draw(((Obstacles)TrafficOptions[randCar]).getImage(),trafficRect1/*or 2, 3, or 4*/, Color.White);  //fix rectangle so that it can be randomly generated
+
+            switch (randRect)
+            {
+                case 1:
+                    trafficRect1.X - ((Obstacles)TrafficOptions[randCar].getSpeed());
+                    break;
+                case 2:
+                    //trafficRect2
+                    break;
+
+                case 3:
+                    //trafficRect3
+                    break;
+
+                case 4:
+                    //trafficRect4
+                    break;
+
+
+            }
+
+        }
+
+
+
+
 
         }
     }
