@@ -95,6 +95,8 @@ namespace CarGame
         //font
         SpriteFont font;
 
+        //
+
         enum GameState
         {
             MainMenu,
@@ -193,6 +195,8 @@ namespace CarGame
             help = Content.Load<Texture2D>("help");
             ChooseColor = Content.Load<Texture2D>("ChooseColor.jpg");
           
+            //music
+
 
             //font
             font = Content.Load<SpriteFont>("fastFont");
@@ -461,6 +465,7 @@ namespace CarGame
 
         public void DisplayMainMenu()
         {
+
             spriteBatch.DrawString(font, "Welcome to the Car Game!", new Vector2(50, 50), Color.White);
             spriteBatch.DrawString(font, "You should choose a car color before pressing Play", new Vector2(250, 500), Color.White);
             spriteBatch.Draw(play, playRectangle, Color.White);
