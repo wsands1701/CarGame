@@ -48,10 +48,8 @@ namespace CarGame
         bool mousePressed = false;
       
         //time variables
-        int h = 0;
-        int m = 0;
-        int s = 0;
         TimeSpan t1 = new TimeSpan(0, 0, 0);
+        int points = 0;
 
         int r=250;
         int g=250;
@@ -413,6 +411,7 @@ namespace CarGame
             {
                 treeRectangle5.X = GraphicsDevice.Viewport.Width;
             }
+            
             base.Update(gameTime);
         }
 
@@ -490,7 +489,8 @@ namespace CarGame
             spriteBatch.Draw(tree, treeRectangle4, Color.White);
             spriteBatch.Draw(tree, treeRectangle5, Color.White);
             spriteBatch.Draw(whiteCar, playerRectangle, plCl);
-            spriteBatch.DrawString(font, "Points: " + t1.Seconds, new Vector2(100, 100),Color.White);
+            
+            spriteBatch.DrawString(font, "Points: " +  t1.TotalSeconds.ToString("####.##"), new Vector2(1050, 25),Color.White);
         }
         public void DisplayHelpScreen()
         {
