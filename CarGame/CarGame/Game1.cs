@@ -44,7 +44,9 @@ namespace CarGame
         Rectangle treeRectangle3;
         Rectangle treeRectangle4;
         Rectangle treeRectangle5;
-        
+
+        Scrollingbackground road1;
+        Scrollingbackground road2;
 
         bool mousePressed = false;
       
@@ -192,6 +194,12 @@ namespace CarGame
             yellowCar = Content.Load<Texture2D>("YellowCar");
             //lines.get(lines.go(dank));
 
+            //background
+            road1 = new Scrollingbackground(Content.Load<Texture2D>("Road"), new Rectangle(0, 0, 1280, 800));
+            road2 = new Scrollingbackground(Content.Load<Texture2D>("Road"), new Rectangle(1280,0, 1280, 800));
+
+           
+
             //button textures
             play = Content.Load<Texture2D>("play");
             end = Content.Load<Texture2D>("end");
@@ -224,6 +232,14 @@ namespace CarGame
                 Exit();
 
             // TODO: Add your update logic here
+
+            if (road1.rectangle.X + road1.texture.Width <= 10)
+                road1.rectangle.X = road2.rectangle.X + road2.texture.Width;
+
+            if (road2.rectangle.X + road2.texture.Width <= 10)
+                road2.rectangle.X = road1.rectangle.X + road1.texture.Width;
+            road1.Update();
+            road2.Update();
 
             switch (state)
             {
@@ -437,6 +453,10 @@ namespace CarGame
             // TODO: Add your drawing code here
 
             spriteBatch.Begin();
+
+            road1.Draw(spriteBatch);
+            road2.Draw(spriteBatch);
+
             switch (state) { 
             
                 case GameState.MainMenu:
@@ -472,6 +492,7 @@ namespace CarGame
 
         public void DisplayMainMenu()
         {
+            spriteBatch.Draw(road, GraphicsDevice.Viewport.Bounds, Color.White);
             spriteBatch.DrawString(font, "Welcome to the Car Game!", new Vector2(50, 50), Color.White);
             spriteBatch.DrawString(font, "You should choose a car color before pressing Play", new Vector2(250, 500), Color.White);
             spriteBatch.Draw(play, playRectangle, Color.White);
@@ -484,7 +505,7 @@ namespace CarGame
         public void PlayTheGame() {
             GraphicsDevice.Clear(Color.Black);
             //draws the road
-            spriteBatch.Draw(road, GraphicsDevice.Viewport.Bounds, Color.White);
+         
             //lines
             spriteBatch.Draw(line, line1Rectangle, Color.White);
             spriteBatch.Draw(line, line1Rectangle2, Color.White);
