@@ -538,6 +538,5 @@ namespace CarGame
             GraphicsDevice.Clear(Color.Gray);
             Exit();
         }
-
         }
     }
