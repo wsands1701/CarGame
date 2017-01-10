@@ -216,10 +216,10 @@ namespace CarGame
             ChooseColor = Content.Load<Texture2D>("ChooseColor.jpg");
           
             //music - sounds
-            menu = Content.Load<SoundEffect>("menuMusic1");
-            carStart = Content.Load<SoundEffect>("car_start1");
-            losingSound = Content.Load<SoundEffect>("losing_sound1");
-            crash = Content.Load<SoundEffect>("crash1");
+            menu = Content.Load<SoundEffect>("menuMusic");
+            carStart = Content.Load<SoundEffect>("car_start");
+            losingSound = Content.Load<SoundEffect>("losing_sound");
+            crash = Content.Load<SoundEffect>("crash");
 
             //font
             font = Content.Load<SpriteFont>("fastFont");
