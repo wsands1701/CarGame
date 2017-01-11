@@ -234,7 +234,7 @@ namespace CarGame
             font = Content.Load<SpriteFont>("fastFont");
 
             //car spawning array and stuff that may or may not work
-            
+            /*
             //add cars (x, y, speed, collisions, image)
             Obstacles redTraffic = new Moving(50, 50, 150, false, redCar);
             Obstacles blueTraffic = new Moving(50, 50, 150, false, blueCar);
@@ -253,7 +253,7 @@ namespace CarGame
             TrafficOptions.Add(greyTraffic);
             TrafficOptions.Add(orangeTraffic);
             TrafficOptions.Add(whiteTraffic);
-
+            */
 
 
 
