@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Collections;
 
 namespace CarGame
 {
@@ -109,7 +110,7 @@ namespace CarGame
         SoundEffect crash;
 
         //arraylist for car types
-
+        ArrayList TrafficOptions = new ArrayList();
 
 
 
