@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -7,7 +8,6 @@ namespace CarGame
 {
     //I'm watching you all ~ McCloskey
     //nice
-      
         //create image to follow mouse when pressed. Can use this, our branch
    
     /// <summary>
@@ -48,7 +48,9 @@ namespace CarGame
         Scrollingbackground road1;
         Scrollingbackground road2;
 
+        bool startMenuMusic = true;
         bool mousePressed = false;
+        bool colorSelected = false;
       
         //time variables
         TimeSpan t1 = new TimeSpan(0, 0, 0);
@@ -61,7 +63,8 @@ namespace CarGame
 
         int speedoflines = 7;
 
-        Point mousePointer;
+        Point newMousePoint;
+        Point oldMousePoint = new Point();
 
         //vectors
         Vector2 stationaryObjSpeed;
@@ -69,6 +72,7 @@ namespace CarGame
         Vector2 playerCarObjSpeed;
         Vector2 playerRectcord;
         Random rnd1 = new Random();
+
         //textures
         Texture2D road;
         Texture2D line;
@@ -96,7 +100,11 @@ namespace CarGame
         //font
         SpriteFont font;
 
-        //
+        //sounds
+        SoundEffect menu;
+        SoundEffect carStart;
+        SoundEffect losingSound;
+        SoundEffect crash;
 
         enum GameState
         {
@@ -195,8 +203,8 @@ namespace CarGame
             //lines.get(lines.go(dank));
 
             //background
-            road1 = new Scrollingbackground(Content.Load<Texture2D>("Road"), new Rectangle(0, 0, 1280, 800));
-            road2 = new Scrollingbackground(Content.Load<Texture2D>("Road"), new Rectangle(1280,0, 1280, 800));
+            road1 = new Scrollingbackground(Content.Load<Texture2D>("Road"), new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height));
+            road2 = new Scrollingbackground(Content.Load<Texture2D>("Road"), new Rectangle(GraphicsDevice.Viewport.Width ,0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height));
 
            
 
@@ -207,8 +215,11 @@ namespace CarGame
             help = Content.Load<Texture2D>("help");
             ChooseColor = Content.Load<Texture2D>("ChooseColor.jpg");
           
-            //music
-
+            //music - sounds
+            menu = Content.Load<SoundEffect>("menuMusic");
+            carStart = Content.Load<SoundEffect>("car_start");
+            losingSound = Content.Load<SoundEffect>("losing_sound");
+            crash = Content.Load<SoundEffect>("crash");
 
             //font
             font = Content.Load<SpriteFont>("fastFont");
@@ -228,112 +239,113 @@ namespace CarGame
         /// checking for collisions, gathering input, and playing audio.
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
+        
         protected override void Update(GameTime gameTime)
         {
+            road1.Update();
+            road2.Update();
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            // TODO: Add your update logic here
+            newMousePoint = oldMousePoint;
 
-            if (road1.rectangle.X + road1.texture.Width <= 10)
+            // TODO: Add your update logic here
+            if (Mouse.GetState().LeftButton == ButtonState.Pressed)
+            {
+                newMousePoint = new Point(Mouse.GetState().X, Mouse.GetState().Y);
+            }
+
+            if (road1.rectangle.X + road1.texture.Width <= 0)
                 road1.rectangle.X = road2.rectangle.X + road2.texture.Width;
 
-            if (road2.rectangle.X + road2.texture.Width <= 10)
+            if (road2.rectangle.X + road2.texture.Width <= 0)
                 road2.rectangle.X = road1.rectangle.X + road1.texture.Width;
-            road1.Update();
-            road2.Update();
+            
+            Console.WriteLine(newMousePoint);
 
             switch (state)
             {
                 case GameState.MainMenu:
-                    if (Mouse.GetState().LeftButton == ButtonState.Pressed)
-                        mousePointer = new Point(Mouse.GetState().X, Mouse.GetState().Y);
 
-                    if (playRectangle.Contains(mousePointer))
+                    //set state of the game based on button selected
+                    if (playRectangle.Contains(newMousePoint))
                         state = GameState.PlayGame;
 
-                    if (endRectangle.Contains(mousePointer))
+                    if (endRectangle.Contains(newMousePoint))
                         state = GameState.EndGame;
 
-                    if (helpRectangle.Contains(mousePointer))
+                    if (helpRectangle.Contains(newMousePoint))
                         state = GameState.HelpScreen;
 
-                    if (choose_colorRectangle.Contains(mousePointer))
+                    if (choose_colorRectangle.Contains(newMousePoint))
                         state = GameState.ChooseColor;
-
 
                     break;
 
                 case GameState.HelpScreen:
-                    if (Mouse.GetState().LeftButton == ButtonState.Pressed)
-                        mousePointer = new Point(Mouse.GetState().X, Mouse.GetState().Y);
 
-                    if (backRectangle.Contains(mousePointer))
+                    //go back to main menu if back button is clicked on 
+                    if (backRectangle.Contains(newMousePoint))
                         state = GameState.MainMenu;
 
                     break;
 
                 case GameState.ChooseColor:
                    
-
-                    if (Mouse.GetState().LeftButton == ButtonState.Pressed)
-                        mousePointer = new Point(Mouse.GetState().X, Mouse.GetState().Y);
-
-                    if (yellowRectangle.Contains(mousePointer))
+                    if (yellowRectangle.Contains(newMousePoint))
                     {
                         r = 255; g = 255; b = 0;
-                        state = GameState.MainMenu;
+                        colorSelected = true;
                     }
-                    if (pinkRectangle.Contains(mousePointer))
+                    if (pinkRectangle.Contains(newMousePoint))
                     {
                         r = 255; g = 192; b = 210;
-                        state = GameState.MainMenu;
+                        colorSelected = true;
                     }
-                    if (redRectangle.Contains(mousePointer))
+                    if (redRectangle.Contains(newMousePoint))
                     {
                         r = 255; g = 0; b = 0;
-                        state = GameState.MainMenu;
+                        colorSelected = true;
                         
                     }
-                    if (orangeRectangle.Contains(mousePointer))
+                    if (orangeRectangle.Contains(newMousePoint))
                     {
                         r = 255; g = 102; b = 0;
-                        state = GameState.MainMenu;
+                        colorSelected = true;
                         
                     }
-                    if (greenRectangle.Contains(mousePointer))
+                    if (greenRectangle.Contains(newMousePoint))
                     {
                         g = 255; r = 0; b = 0;
-                        state = GameState.MainMenu;
+                        colorSelected = true;
    
                     }
-                    if (blueRectangle.Contains(mousePointer))
+                    if (blueRectangle.Contains(newMousePoint))
                     {
                         b = 255; r = 0; g = 0;
-                        state = GameState.MainMenu;
+                        colorSelected = true;
                        
                     }
-                    if (whiteRectangle.Contains(mousePointer))
+                    if (whiteRectangle.Contains(newMousePoint))
                     {
                         b = 255; r = 255; g = 255;
-                        state = GameState.MainMenu;
-                       
+                        colorSelected = true;
                     }
-                    if (backRectangle.Contains(mousePointer))
-                        state = GameState.MainMenu;
 
+                    if (colorSelected && (newMousePoint.X > 0 && newMousePoint.Y > 0))
+                    {
+                        state = GameState.MainMenu;
+                    }
 
                     break;
 
                 case GameState.PlayGame:
+
                     t1 += gameTime.ElapsedGameTime;
 
-                    //if left mouse is pressed/collect mouse location data, then make and draw playerrectangle with said pointer data
-                    mousePointer = new Point(Mouse.GetState().X, Mouse.GetState().Y);
-                    //     Console.WriteLine(mousePointer);
                     playerRectangle = new Rectangle(playerRectangle.X, playerRectangle.Y, 150, 75);
 
-                    if (playerRectangle.Contains(mousePointer))
+                    if (playerRectangle.Contains(newMousePoint))
                     {
                         if (Mouse.GetState().LeftButton == ButtonState.Pressed)//new feature - hard mode day one dlc
                         {
@@ -346,10 +358,10 @@ namespace CarGame
                     {
                         playerRectangle.X = Mouse.GetState().X - 90;
                         playerRectangle.Y = Mouse.GetState().Y - 35;
+
                         if (playerRectangle.X >= GraphicsDevice.Viewport.Width-150)
                         {
                             playerRectangle.X = GraphicsDevice.Viewport.Width - 150;
-                            Console.WriteLine("USe CODE KEEM");
                         }
                         if (playerRectangle.X < 0)
                         {
@@ -358,14 +370,11 @@ namespace CarGame
                         if (playerRectangle.Y >= GraphicsDevice.Viewport.Height - 75)
                         {
                             playerRectangle.Y = GraphicsDevice.Viewport.Height - 75;
-                            Console.WriteLine("Use CODE KEEMSTAR");
                         }
                         if (playerRectangle.Y < 0)
                         {
                             playerRectangle.Y = 0;
                         }
-
-
 
                         if (Mouse.GetState().LeftButton == ButtonState.Released)
                         {
@@ -373,16 +382,11 @@ namespace CarGame
                         }
                     }
 
-
-
                     break;
 
                 case GameState.EndGame:
 
-                    if (Mouse.GetState().LeftButton == ButtonState.Pressed)
-                        mousePointer = new Point(Mouse.GetState().X, Mouse.GetState().Y);
-
-                    if (backRectangle.Contains(mousePointer))
+                    if (backRectangle.Contains(newMousePoint))
                         state = GameState.MainMenu;
 
                     break;
@@ -516,10 +520,14 @@ namespace CarGame
             base.Draw(gameTime);
         }
 
-
         public void DisplayMainMenu()
         {
-            spriteBatch.Draw(road, GraphicsDevice.Viewport.Bounds, Color.White);
+            if(startMenuMusic)
+            {
+                menu.Play();
+                startMenuMusic = false;
+            }
+
             spriteBatch.DrawString(font, "Welcome to the Car Game!", new Vector2(50, 50), Color.White);
             spriteBatch.DrawString(font, "You should choose a car color before pressing Play", new Vector2(250, 500), Color.White);
             spriteBatch.Draw(play, playRectangle, Color.White);
@@ -531,8 +539,9 @@ namespace CarGame
 
         public void PlayTheGame() {
             GraphicsDevice.Clear(Color.Black);
+
             //draws the road
-         
+            spriteBatch.Draw(road, GraphicsDevice.Viewport.Bounds, Color.White);
             //lines
             spriteBatch.Draw(line, line1Rectangle, Color.White);
             spriteBatch.Draw(line, line1Rectangle2, Color.White);
@@ -575,6 +584,8 @@ namespace CarGame
             spriteBatch.Draw(yellowCar, yellowRectangle, Color.White);
             spriteBatch.Draw(back, backRectangle, Color.White);
             
+
+
         }
 
         public void EndTheGame()
