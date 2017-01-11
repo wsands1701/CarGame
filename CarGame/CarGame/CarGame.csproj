@@ -63,6 +63,9 @@
     <Content Include="Content\BlueCar.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\CarStartImage.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\car_start.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

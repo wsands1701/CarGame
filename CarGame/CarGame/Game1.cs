@@ -44,6 +44,7 @@ namespace CarGame
         Rectangle treeRectangle3;
         Rectangle treeRectangle4;
         Rectangle treeRectangle5;
+        Rectangle picRectangle;
         
         Scrollingbackground road1;
         Scrollingbackground road2;
@@ -78,6 +79,7 @@ namespace CarGame
         Texture2D line;
         Texture2D tree;
         Texture2D flower;
+        Texture2D carStartImage;
 
         //car textures
         Texture2D greenCar;
@@ -219,6 +221,7 @@ namespace CarGame
             back = Content.Load<Texture2D>("back");
             help = Content.Load<Texture2D>("help");
             ChooseColor = Content.Load<Texture2D>("ChooseColor.jpg");
+            carStartImage = Content.Load<Texture2D>("CarStartImage");
           
             //music - sounds
             menu = Content.Load<SoundEffect>("menuMusic");
@@ -538,6 +541,7 @@ namespace CarGame
             spriteBatch.Draw(play, playRectangle, Color.White);
             spriteBatch.Draw(help, helpRectangle, Color.White);
             spriteBatch.Draw(end, endRectangle, Color.White);
+            spriteBatch.Draw(carStartImage, picRectangle,Color.White);
           
             spriteBatch.Draw(ChooseColor, choose_colorRectangle, Color.White);
         }
