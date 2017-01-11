@@ -168,7 +168,7 @@ namespace CarGame
             endRectangle = new Rectangle(350, 630, 300, 150);
             picRectangle = new Rectangle(100, 100, 1100, 500);
             helpRectangle = new Rectangle(650, 630, 300, 150);
-            backRectangle = new Rectangle(950, 500, 300, 300);
+            backRectangle = new Rectangle(1050, 50, 80, 80);
             redRectangle = new Rectangle(300, 200, 200, 100);
             blueRectangle = new Rectangle(500, 200, 200, 100);
             greenRectangle = new Rectangle(100, 200, 200, 100);
@@ -618,7 +618,6 @@ namespace CarGame
             spriteBatch.Draw(pinkCar, pinkRectangle, Color.White);
             spriteBatch.Draw(aquaCar, aquaRectangle, Color.White);
             spriteBatch.Draw(yellowCar, yellowRectangle, Color.White);
-            spriteBatch.Draw(back, backRectangle, Color.White);
             
 
 
