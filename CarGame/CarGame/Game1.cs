@@ -545,7 +545,7 @@ namespace CarGame
             GraphicsDevice.Clear(Color.Black);
 
             //draws the road
-            spriteBatch.Draw(road, GraphicsDevice.Viewport.Bounds, Color.White);
+            //spriteBatch.Draw(road, GraphicsDevice.Viewport.Bounds, Color.White);
             //lines
             spriteBatch.Draw(line, line1Rectangle, Color.White);
             spriteBatch.Draw(line, line1Rectangle2, Color.White);
