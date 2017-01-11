@@ -91,3 +91,9 @@
 /processorParam:TextureFormat=Color
 /build:play.png
 
+#begin vikyung.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:TextureFormat=Compressed
+/build:vikyung.spritefont
+
