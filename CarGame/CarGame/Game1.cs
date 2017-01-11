@@ -519,9 +519,7 @@ namespace CarGame
             // TODO: Add your drawing code here
 
             spriteBatch.Begin();
-            spriteBatch.Draw(road, GraphicsDevice.Viewport.Bounds, Color.White);
-            road1.Draw(spriteBatch);
-            road2.Draw(spriteBatch);
+            
 
             switch (state) { 
             
@@ -557,7 +555,8 @@ namespace CarGame
 
         public void DisplayMainMenu()
         {
-            if(startMenuMusic)
+            GraphicsDevice.Clear(Color.Black);
+            if (startMenuMusic)
             {
                 menu.Play();
                 startMenuMusic = false;
@@ -574,10 +573,12 @@ namespace CarGame
         }
 
         public void PlayTheGame() {
-            GraphicsDevice.Clear(Color.Black);
+            spriteBatch.Draw(road, GraphicsDevice.Viewport.Bounds, Color.White);
+            road1.Draw(spriteBatch);
+            road2.Draw(spriteBatch);
 
             //draws the road
-           
+
             //lines
             spriteBatch.Draw(line, line1Rectangle, Color.White);
             spriteBatch.Draw(line, line1Rectangle2, Color.White);
@@ -599,12 +600,14 @@ namespace CarGame
         }
         public void DisplayHelpScreen()
         {
+            GraphicsDevice.Clear(Color.Black);
             spriteBatch.DrawString(font, "\n-To move your car, click and hold the left mouse button and drag the \n wherever you want it to go.\n-Avoid obsticles traveling towards your car for the longest time to win!\n-Click the 'Play' button in to start game.\n-To quit, click the 'End' button. \n-To change the color of the car, click the 'Choose Color' button \n to select one of the colors.", new Vector2(50, 100), Color.White);
             spriteBatch.Draw(back, backRectangle, Color.White);
             
         }
         public void DisplayChooseColor()
         {
+            GraphicsDevice.Clear(Color.Black);
             spriteBatch.DrawString(font, "Please choose a car color listed below.", new Vector2(50, 50), Color.White);
 
             spriteBatch.Draw(redCar, redRectangle, Color.White);
