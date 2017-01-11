@@ -352,6 +352,12 @@ namespace CarGame
                         colorSelected = true;
    
                     }
+                    if (aquaRectangle.Contains(newMousePoint))
+                    {
+                        g = 255; r = 0; b = 255;
+                        colorSelected = true;
+
+                    }
                     if (blueRectangle.Contains(newMousePoint))
                     {
                         b = 255; r = 0; g = 0;
