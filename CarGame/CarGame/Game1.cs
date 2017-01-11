@@ -251,8 +251,7 @@ namespace CarGame
         
         protected override void Update(GameTime gameTime)
         {
-            road1.Update();
-            road2.Update();
+            
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
@@ -345,7 +344,8 @@ namespace CarGame
                     break;
 
                 case GameState.PlayGame:
-
+                    road1.Update();
+                    road2.Update();
                     t1 += gameTime.ElapsedGameTime;
                  if (road1.rectangle.X<(-1)*GraphicsDevice.Viewport.Width)
                         road1.rectangle.X = GraphicsDevice.Viewport.Width;
