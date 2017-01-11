@@ -218,11 +218,11 @@ namespace CarGame
            
 
             //button textures
-            play = Content.Load<Texture2D>("play");
-            end = Content.Load<Texture2D>("end");
+            play = Content.Load<Texture2D>("play.png");
+            end = Content.Load<Texture2D>("end.png");
             back = Content.Load<Texture2D>("back");
-            help = Content.Load<Texture2D>("help");
-            ChooseColor = Content.Load<Texture2D>("ChooseColor.jpg");
+            help = Content.Load<Texture2D>("help.png");
+            ChooseColor = Content.Load<Texture2D>("ChooseColor.png");
             carStartImage = Content.Load<Texture2D>("CarStartImage");
           
             //music - sounds
