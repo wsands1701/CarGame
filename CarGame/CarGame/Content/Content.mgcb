@@ -91,9 +91,3 @@
 /processorParam:TextureFormat=Color
 /build:play.png
 
-#begin timeFont.spriteFont
-/importer:FontDescriptionImporter
-/processor:FontDescriptionProcessor
-/processorParam:TextureFormat=Compressed
-/build:timeFont.spriteFont
-
