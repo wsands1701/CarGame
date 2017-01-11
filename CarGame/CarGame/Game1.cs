@@ -108,6 +108,11 @@ namespace CarGame
         SoundEffect losingSound;
         SoundEffect crash;
 
+        //arraylist for car types
+
+
+
+
         enum GameState
         {
             MainMenu,
