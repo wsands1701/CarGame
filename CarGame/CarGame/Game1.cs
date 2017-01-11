@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Collections;
 
 namespace CarGame
 {
@@ -107,6 +108,11 @@ namespace CarGame
         SoundEffect carStart;
         SoundEffect losingSound;
         SoundEffect crash;
+
+        //arraylist for car types
+        ArrayList TrafficOptions = new ArrayList();
+        ArrayList TrafficTypes = new ArrayList();
+
 
         enum GameState
         {
@@ -227,6 +233,31 @@ namespace CarGame
 
             //font
             font = Content.Load<SpriteFont>("fastFont");
+
+            //car spawning array and stuff that may or may not work
+            /*
+            //add cars (x, y, speed, collisions, image)
+            Obstacles redTraffic = new Moving(50, 50, 150, false, redCar);
+            Obstacles blueTraffic = new Moving(50, 50, 150, false, blueCar);
+            Obstacles greenTraffic = new Moving(50, 50, 150, false, greenCar);
+            Obstacles greyTraffic = new Moving(50, 50, 150, false, greyCar);
+            Obstacles orangeTraffic = new Moving(50, 50, 150, false, orangeCar);
+            Obstacles whiteTraffic = new Moving(50, 50, 150, false, whiteCar);
+            
+
+
+
+            //add car to arraylist
+            TrafficOptions.Add(redTraffic);
+            TrafficOptions.Add(blueTraffic);
+            TrafficOptions.Add(greenTraffic);
+            TrafficOptions.Add(greyTraffic);
+            TrafficOptions.Add(orangeTraffic);
+            TrafficOptions.Add(whiteTraffic);
+            */
+
+
+
         }
 
         /// <summary>
@@ -246,8 +277,7 @@ namespace CarGame
         
         protected override void Update(GameTime gameTime)
         {
-            road1.Update();
-            road2.Update();
+            
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
@@ -259,11 +289,7 @@ namespace CarGame
                 newMousePoint = new Point(Mouse.GetState().X, Mouse.GetState().Y);
             }
 
-            if (road1.rectangle.X + road1.texture.Width <= 0)
-                road1.rectangle.X = road2.rectangle.X + road2.texture.Width;
-
-            if (road2.rectangle.X + road2.texture.Width <= 0)
-                road2.rectangle.X = road1.rectangle.X + road1.texture.Width;
+           
             
             Console.WriteLine(newMousePoint);
 
@@ -344,9 +370,14 @@ namespace CarGame
                     break;
 
                 case GameState.PlayGame:
-
+                    road1.Update();
+                    road2.Update();
                     t1 += gameTime.ElapsedGameTime;
+                 if (road1.rectangle.X<(-1)*GraphicsDevice.Viewport.Width)
+                        road1.rectangle.X = GraphicsDevice.Viewport.Width;
 
+                 if (road2.rectangle.X <(-1)* GraphicsDevice.Viewport.Width)
+                      road2.rectangle.X = GraphicsDevice.Viewport.Width;
                     playerRectangle = new Rectangle(playerRectangle.X, playerRectangle.Y, 150, 75);
 
                     if (playerRectangle.Contains(newMousePoint))
@@ -488,7 +519,7 @@ namespace CarGame
             // TODO: Add your drawing code here
 
             spriteBatch.Begin();
-
+            spriteBatch.Draw(road, GraphicsDevice.Viewport.Bounds, Color.White);
             road1.Draw(spriteBatch);
             road2.Draw(spriteBatch);
 
@@ -546,7 +577,7 @@ namespace CarGame
             GraphicsDevice.Clear(Color.Black);
 
             //draws the road
-            spriteBatch.Draw(road, GraphicsDevice.Viewport.Bounds, Color.White);
+           
             //lines
             spriteBatch.Draw(line, line1Rectangle, Color.White);
             spriteBatch.Draw(line, line1Rectangle2, Color.White);
