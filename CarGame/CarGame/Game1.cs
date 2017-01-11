@@ -166,7 +166,7 @@ namespace CarGame
 
             playRectangle = new Rectangle(50, 630, 300, 150);
             endRectangle = new Rectangle(350, 630, 300, 150);
-            picRectangle = new Rectangle(220, 100, 800, 500);
+            picRectangle = new Rectangle(100, 100, 1100, 500);
             helpRectangle = new Rectangle(650, 630, 300, 150);
             backRectangle = new Rectangle(950, 500, 300, 300);
             redRectangle = new Rectangle(300, 200, 200, 100);
