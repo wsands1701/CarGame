@@ -111,7 +111,7 @@ namespace CarGame
 
         //arraylist for car types
         ArrayList TrafficOptions = new ArrayList();
-
+        ArrayList TrafficTypes = new ArrayList();
 
 
         enum GameState
@@ -232,6 +232,31 @@ namespace CarGame
 
             //font
             font = Content.Load<SpriteFont>("fastFont");
+
+            //car spawning array and stuff that may or may not work
+            
+            //add cars (x, y, speed, collisions, image)
+            Obstacles redTraffic = new Moving(50, 50, 150, false, redCar);
+            Obstacles blueTraffic = new Moving(50, 50, 150, false, blueCar);
+            Obstacles greenTraffic = new Moving(50, 50, 150, false, greenCar);
+            Obstacles greyTraffic = new Moving(50, 50, 150, false, greyCar);
+            Obstacles orangeTraffic = new Moving(50, 50, 150, false, orangeCar);
+            Obstacles whiteTraffic = new Moving(50, 50, 150, false, whiteCar);
+            
+
+
+
+            //add car to arraylist
+            TrafficOptions.Add(redTraffic);
+            TrafficOptions.Add(blueTraffic);
+            TrafficOptions.Add(greenTraffic);
+            TrafficOptions.Add(greyTraffic);
+            TrafficOptions.Add(orangeTraffic);
+            TrafficOptions.Add(whiteTraffic);
+
+
+
+
         }
 
         /// <summary>

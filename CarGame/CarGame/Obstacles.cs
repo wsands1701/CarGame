@@ -22,17 +22,16 @@ namespace CarGame
             wastfilly = speed;
             collide = collision;
         }
-
         //if traffic(Moving)
-      //public Obstacles(int x,int y, int speed, /* ¿Color?*/, Boolean collision)
+        //public Obstacles(int x,int y, int speed, /* ¿Color?*/, Boolean collision)
         //    {
-          //  this.x = x;
-           // this.y = y;
-            //wastfilly = speed;
-            /*traffic Color code*/
-           // collide = collision;
-            //} 
-         //Sets
+        //  this.x = x;
+        // this.y = y;
+        //wastfilly = speed;
+        /*traffic Color code*/
+        // collide = collision;
+        //} 
+        //Sets
         public void setX(int X)
             {
                  x = X;
