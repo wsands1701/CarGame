@@ -263,11 +263,7 @@ namespace CarGame
                 newMousePoint = new Point(Mouse.GetState().X, Mouse.GetState().Y);
             }
 
-            if (road1.rectangle.X + road1.texture.Width <= 0)
-                road1.rectangle.X = road2.rectangle.X + road2.texture.Width;
-
-            if (road2.rectangle.X + road2.texture.Width <= 0)
-                road2.rectangle.X = road1.rectangle.X + road1.texture.Width;
+           
             
             Console.WriteLine(newMousePoint);
 
@@ -350,7 +346,11 @@ namespace CarGame
                 case GameState.PlayGame:
 
                     t1 += gameTime.ElapsedGameTime;
+                 if (road1.rectangle.X<(-1)*GraphicsDevice.Viewport.Width)
+                        road1.rectangle.X = GraphicsDevice.Viewport.Width;
 
+                 if (road2.rectangle.X <(-1)* GraphicsDevice.Viewport.Width)
+                      road2.rectangle.X = GraphicsDevice.Viewport.Width;
                     playerRectangle = new Rectangle(playerRectangle.X, playerRectangle.Y, 150, 75);
 
                     if (playerRectangle.Contains(newMousePoint))
