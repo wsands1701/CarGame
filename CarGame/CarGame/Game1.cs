@@ -158,9 +158,10 @@ namespace CarGame
             treeRectangle5 = new Rectangle(GraphicsDevice.Viewport.Width, 700, 110, 90);
 
 
-            playRectangle = new Rectangle(50, 200, 300, 150);
-            endRectangle = new Rectangle(350, 200, 300, 150);
-            helpRectangle = new Rectangle(650, 200, 300, 150);
+            playRectangle = new Rectangle(50, 630, 300, 150);
+            endRectangle = new Rectangle(350, 630, 300, 150);
+            picRectangle = new Rectangle(220, 100, 800, 500);
+            helpRectangle = new Rectangle(650, 630, 300, 150);
             backRectangle = new Rectangle(950, 500, 300, 300);
             redRectangle = new Rectangle(300, 200, 200, 100);
             blueRectangle = new Rectangle(500, 200, 200, 100);
@@ -170,7 +171,7 @@ namespace CarGame
             pinkRectangle = new Rectangle(700, 300, 200, 100);
             aquaRectangle = new Rectangle(500, 300, 200, 100);
             yellowRectangle = new Rectangle(300, 300, 200, 100); 
-            choose_colorRectangle = new Rectangle(950, 200, 300, 150);
+            choose_colorRectangle = new Rectangle(950, 630, 300, 150);
            
             base.Initialize();
         }
@@ -531,8 +532,8 @@ namespace CarGame
                 startMenuMusic = false;
             }
 
-            spriteBatch.DrawString(font, "Welcome to the Car Game!", new Vector2(50, 50), Color.White);
-            spriteBatch.DrawString(font, "You should choose a car color before pressing Play", new Vector2(250, 500), Color.White);
+            spriteBatch.DrawString(font, "Welcome to the Car Game!", new Vector2(400, 30), Color.White);
+            spriteBatch.DrawString(font, "You should choose a car color before pressing Play", new Vector2(200, 60), Color.White);
             spriteBatch.Draw(play, playRectangle, Color.White);
             spriteBatch.Draw(help, helpRectangle, Color.White);
             spriteBatch.Draw(end, endRectangle, Color.White);
@@ -567,11 +568,8 @@ namespace CarGame
         }
         public void DisplayHelpScreen()
         {
-            spriteBatch.DrawString(font, "Welcome to The Car Game!\n-To move your car, click and hold the left mouse button and drag the \n wherever you want it to go.\n-Avoid obsticles traveling towards your car for the longest time to win!", new Vector2(50, 50), Color.White);
+            spriteBatch.DrawString(font, "\n-To move your car, click and hold the left mouse button and drag the \n wherever you want it to go.\n-Avoid obsticles traveling towards your car for the longest time to win!\n-Click the 'Play' button in to start game.\n-To quit, click the 'End' button. \n-To change the color of the car, click the 'Choose Color' button \n to select one of the colors.", new Vector2(50, 100), Color.White);
             spriteBatch.Draw(back, backRectangle, Color.White);
-            spriteBatch.DrawString(font, "Click the 'Play' button in to start game", new Vector2(50, 50), Color.White);
-            spriteBatch.DrawString(font, "To quit, click the 'End' button", new Vector2(100, 50), Color.White);
-            spriteBatch.DrawString(font, "To change the color of the car, click the 'Choose Color' button to select one of the colors", new Vector2(150, 50), Color.White);
             
         }
         public void DisplayChooseColor()
