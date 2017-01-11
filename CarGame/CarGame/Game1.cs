@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -45,6 +46,7 @@ namespace CarGame
         Rectangle treeRectangle4;
         Rectangle treeRectangle5;
         
+        bool startMenuMusic = true;
         Scrollingbackground road1;
         Scrollingbackground road2;
 
@@ -69,6 +71,7 @@ namespace CarGame
         Vector2 playerCarObjSpeed;
         Vector2 playerRectcord;
         Random rnd1 = new Random();
+
         //textures
         Texture2D road;
         Texture2D line;
@@ -96,7 +99,11 @@ namespace CarGame
         //font
         SpriteFont font;
 
-        //
+        //sounds
+        SoundEffect menu;
+        SoundEffect carStart;
+        SoundEffect losingSound;
+        SoundEffect crash;
 
         enum GameState
         {
@@ -207,8 +214,11 @@ namespace CarGame
             help = Content.Load<Texture2D>("help");
             ChooseColor = Content.Load<Texture2D>("ChooseColor.jpg");
           
-            //music
-
+            //music - sounds
+            menu = Content.Load<SoundEffect>("menuMusic");
+            carStart = Content.Load<SoundEffect>("car_start");
+            losingSound = Content.Load<SoundEffect>("losing_sound");
+            crash = Content.Load<SoundEffect>("crash");
 
             //font
             font = Content.Load<SpriteFont>("fastFont");
@@ -230,12 +240,18 @@ namespace CarGame
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            road1.Update();
+            road2.Update();
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
             // TODO: Add your update logic here
 
-          
+            if (road1.rectangle.X + road1.texture.Width <= 10)
+                road1.rectangle.X = road2.rectangle.X + road2.texture.Width;
+
+            if (road2.rectangle.X + road2.texture.Width <= 10)
+                road2.rectangle.X = road1.rectangle.X + road1.texture.Width;
             road1.Update();
             road2.Update();
 
@@ -519,7 +535,7 @@ namespace CarGame
 
         public void DisplayMainMenu()
         {
-            spriteBatch.Draw(road, GraphicsDevice.Viewport.Bounds, Color.White);
+
             spriteBatch.DrawString(font, "Welcome to the Car Game!", new Vector2(50, 50), Color.White);
             spriteBatch.DrawString(font, "You should choose a car color before pressing Play", new Vector2(250, 500), Color.White);
             spriteBatch.Draw(play, playRectangle, Color.White);
