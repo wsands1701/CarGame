@@ -276,8 +276,7 @@ namespace CarGame
         
         protected override void Update(GameTime gameTime)
         {
-            road1.Update();
-            road2.Update();
+            
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
@@ -289,11 +288,7 @@ namespace CarGame
                 newMousePoint = new Point(Mouse.GetState().X, Mouse.GetState().Y);
             }
 
-            if (road1.rectangle.X + road1.texture.Width <= 0)
-                road1.rectangle.X = road2.rectangle.X + road2.texture.Width;
-
-            if (road2.rectangle.X + road2.texture.Width <= 0)
-                road2.rectangle.X = road1.rectangle.X + road1.texture.Width;
+           
             
             Console.WriteLine(newMousePoint);
 
@@ -374,9 +369,14 @@ namespace CarGame
                     break;
 
                 case GameState.PlayGame:
-
+                    road1.Update();
+                    road2.Update();
                     t1 += gameTime.ElapsedGameTime;
+                 if (road1.rectangle.X<(-1)*GraphicsDevice.Viewport.Width)
+                        road1.rectangle.X = GraphicsDevice.Viewport.Width;
 
+                 if (road2.rectangle.X <(-1)* GraphicsDevice.Viewport.Width)
+                      road2.rectangle.X = GraphicsDevice.Viewport.Width;
                     playerRectangle = new Rectangle(playerRectangle.X, playerRectangle.Y, 150, 75);
 
                     if (playerRectangle.Contains(newMousePoint))
@@ -518,7 +518,7 @@ namespace CarGame
             // TODO: Add your drawing code here
 
             spriteBatch.Begin();
-
+            spriteBatch.Draw(road, GraphicsDevice.Viewport.Bounds, Color.White);
             road1.Draw(spriteBatch);
             road2.Draw(spriteBatch);
 
@@ -576,7 +576,7 @@ namespace CarGame
             GraphicsDevice.Clear(Color.Black);
 
             //draws the road
-            //spriteBatch.Draw(road, GraphicsDevice.Viewport.Bounds, Color.White);
+           
             //lines
             spriteBatch.Draw(line, line1Rectangle, Color.White);
             spriteBatch.Draw(line, line1Rectangle2, Color.White);
