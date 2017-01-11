@@ -79,3 +79,9 @@
 /processorParam:Quality=Best
 /build:menuMusic.wav
 
+#begin timeFont.spriteFont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:TextureFormat=Compressed
+/build:timeFont.spriteFont
+
