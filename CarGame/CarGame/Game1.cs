@@ -329,7 +329,7 @@ namespace CarGame
                     }
                     if (pinkRectangle.Contains(newMousePoint))
                     {
-                        r = 255; g = 192; b = 210;
+                        r = 252; g = 142; b = 172;
                         colorSelected = true;
                     }
                     if (redRectangle.Contains(newMousePoint))
