@@ -63,19 +63,19 @@
     <Content Include="Content\BlueCar.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\CarStartImage.jpg">
+    <Content Include="Content\CarStartImage.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\car_start.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\ChooseColor.jpg">
+    <Content Include="Content\ChooseColor.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\crash.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\end.jpg">
+    <Content Include="Content\end.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\GreenCar.png">
@@ -84,7 +84,9 @@
     <Content Include="Content\GreyCar.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\help.jpg" />
+    <Content Include="Content\help.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\line.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -100,7 +102,9 @@
     <Content Include="Content\PinkCar.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\play.jpg" />
+    <Content Include="Content\play.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\RedCar.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
