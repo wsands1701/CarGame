@@ -46,6 +46,11 @@ namespace CarGame
         Rectangle treeRectangle4;
         Rectangle treeRectangle5;
         Rectangle picRectangle;
+        Rectangle Lane1;
+        Rectangle Lane2;
+        Rectangle Lane3;
+        Rectangle Lane4;
+
 
         Scrollingbackground road1;
         Scrollingbackground road2;
