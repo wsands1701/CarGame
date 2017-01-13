@@ -97,9 +97,3 @@
 /processorParam:TextureFormat=Compressed
 /build:titlefont.spritefont
 
-#begin timeFont.spriteFont
-/importer:FontDescriptionImporter
-/processor:FontDescriptionProcessor
-/processorParam:TextureFormat=Compressed
-/build:timeFont.spriteFont
-
