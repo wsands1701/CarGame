@@ -255,7 +255,7 @@ namespace CarGame
 
             //font
             font = Content.Load<SpriteFont>("fastFont");
-            yung = Content.Load<SpriteFont>("vikyung");
+
 
             //car spawning array and stuff that may or may not work
             /*
@@ -565,7 +565,7 @@ namespace CarGame
             // TODO: Add your drawing code here
 
             spriteBatch.Begin();
-
+            
 
             switch (state) { 
             
@@ -624,7 +624,7 @@ namespace CarGame
             road2.Draw(spriteBatch);
 
             //draws the road
-           
+
             //lines
             spriteBatch.Draw(line, line1Rectangle, Color.White);
             spriteBatch.Draw(line, line1Rectangle2, Color.White);
