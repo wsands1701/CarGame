@@ -52,7 +52,7 @@ namespace CarGame
         Rectangle Lane3;
         Rectangle Lane4;
         Rectangle Lane4b;
-
+        
 
         Scrollingbackground road1;
         Scrollingbackground road2;
@@ -312,7 +312,7 @@ namespace CarGame
 
            
             
-            Console.WriteLine(newMousePoint);
+
 
             switch (state)
             {
@@ -397,6 +397,7 @@ namespace CarGame
                     break;
 
                 case GameState.PlayGame:
+                    
                     road1.Update();
                     road2.Update();
                     t1 += gameTime.ElapsedGameTime;
@@ -444,15 +445,6 @@ namespace CarGame
                         }
                     }
 
-                    break;
-
-                case GameState.EndGame:
-
-                    if (backRectangle.Contains(newMousePoint))
-                        state = GameState.MainMenu;
-
-                    break;
-            }
             //set location of top lines
             line1Rectangle.X -= speedoflines;
             line1Rectangle2.X -= speedoflines;
@@ -540,6 +532,27 @@ namespace CarGame
             Lane1.X -= speedoflines + 3;
             Lane1b.X -= speedoflines + 3;
 
+
+                    Console.WriteLine("Lane "+Lane1);
+                    Console.WriteLine("player "+playerRectangle);
+
+            if (playerRectangle.Contains(Lane1))
+            {
+                Console.WriteLine("colision");
+            }
+            if (playerRectangle.Contains(Lane2))
+            {
+                Console.WriteLine("colision");
+            }
+            if (playerRectangle.Contains(Lane3))
+            {
+                Console.WriteLine("colision");
+            }
+            if (playerRectangle.Contains(Lane4))
+            {
+                Console.WriteLine("colision");
+            }
+
             // Reset Cars
             if (Lane4.X > 2000)
                 Lane4.X = -100;
@@ -555,7 +568,18 @@ namespace CarGame
                 Lane1.X = 2000;
             if (Lane1b.X < 0)
                 Lane1b.X = 2500;
+            
 
+                    break;
+
+                case GameState.EndGame:
+
+                    if (backRectangle.Contains(newMousePoint))
+                        state = GameState.MainMenu;
+
+                    break;
+            }
+           
             base.Update(gameTime);
         }
 
@@ -610,9 +634,6 @@ namespace CarGame
             if (startMenuMusic)
             {
                 menuSound.Play();  
-               
-
-               
                 startMenuMusic = false;
             }
 
@@ -632,7 +653,7 @@ namespace CarGame
             road1.Draw(spriteBatch);
             road2.Draw(spriteBatch);
 
-            menuSound.Stop();
+            //menuSound.Stop();
             //draws the road
 
             //lines
