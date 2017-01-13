@@ -184,7 +184,7 @@ namespace CarGame
             pinkRectangle = new Rectangle(700, 300, 200, 100);
             aquaRectangle = new Rectangle(500, 300, 200, 100);
             yellowRectangle = new Rectangle(300, 300, 200, 100); 
-            choose_colorRectangle = new Rectangle(950, 200, 300, 150);
+            choose_colorRectangle = new Rectangle(350, 630, 300, 150);
            
 
             // cars
@@ -556,9 +556,7 @@ namespace CarGame
             // TODO: Add your drawing code here
 
             spriteBatch.Begin();
-            spriteBatch.Draw(road, GraphicsDevice.Viewport.Bounds, Color.White);
-            road1.Draw(spriteBatch);
-            road2.Draw(spriteBatch);
+           
 
             switch (state)
             {
