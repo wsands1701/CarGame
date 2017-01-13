@@ -608,8 +608,8 @@ namespace CarGame
                 startMenuMusic = false;
             }
 
-            spriteBatch.DrawString(font, "Welcome to the Car Game!", new Vector2(400, 30), Color.White);
-            spriteBatch.DrawString(font, "You should choose a car color before pressing Play", new Vector2(200, 60), Color.White);
+            spriteBatch.DrawString(font, "Welcome to the Car Game!", new Vector2(500, 30), Color.White);
+            spriteBatch.DrawString(font, "You should choose a car color before pressing Play", new Vector2(383, 60), Color.White);
             spriteBatch.Draw(play, playRectangle, Color.White);
             spriteBatch.Draw(help, helpRectangle, Color.White);
             spriteBatch.Draw(end, endRectangle, Color.White);
