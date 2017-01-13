@@ -117,7 +117,7 @@ namespace CarGame
 
         //font
         SpriteFont font;
-        SpriteFont yung;
+        SpriteFont titlefont;
 
         //sounds
         SoundEffect menu;
@@ -254,8 +254,9 @@ namespace CarGame
             crash = Content.Load<SoundEffect>("crash");
 
             //font
-            font = Content.Load<SpriteFont>("fastFont");
-
+           font = Content.Load<SpriteFont>("fastFont");
+            titlefont = Content.Load<SpriteFont>("titlefont");
+           
 
             //car spawning array and stuff that may or may not work
             /*
@@ -601,15 +602,15 @@ namespace CarGame
 
         public void DisplayMainMenu()
         {
-            GraphicsDevice.Clear(Color.Black);
+            GraphicsDevice.Clear(Color.GhostWhite);
             if (startMenuMusic)
             {
                 menu.Play();
                 startMenuMusic = false;
             }
 
-            spriteBatch.DrawString(font, "Welcome to the Car Game!", new Vector2(500, 30), Color.White);
-            spriteBatch.DrawString(font, "You should choose a car color before pressing Play", new Vector2(383, 60), Color.White);
+            spriteBatch.DrawString(titlefont, "Are you ready to race?", new Vector2(400, 50), Color.Black);
+           // spriteBatch.DrawString(font, "You should choose a car color before pressing Play", new Vector2(200, 60), Color.White);
             spriteBatch.Draw(play, playRectangle, Color.White);
             spriteBatch.Draw(help, helpRectangle, Color.White);
             spriteBatch.Draw(end, endRectangle, Color.White);
