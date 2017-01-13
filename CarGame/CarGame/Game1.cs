@@ -93,6 +93,7 @@ namespace CarGame
         Texture2D greenCar;
         Texture2D redCar;
         Texture2D blueCar;
+        Texture2D blueCarL;
         Texture2D orangeCar;
         Texture2D whiteCar;
         Texture2D greyCar;
@@ -218,6 +219,7 @@ namespace CarGame
 
             //car textures
             blueCar = Content.Load<Texture2D>("BlueCar");
+            blueCarL = Content.Load<Texture2D>("BlueCarL");
             greenCar = Content.Load<Texture2D>("GreenCar");
             greyCar = Content.Load<Texture2D>("GreyCar");
             orangeCar = Content.Load<Texture2D>("OrangeCar");
@@ -653,9 +655,9 @@ namespace CarGame
             //cars
             spriteBatch.Draw(blueCar, Lane1, Color.White);
             spriteBatch.Draw(blueCar, Lane2, Color.White);
-            spriteBatch.Draw(blueCar, Lane3, Color.White);
-            spriteBatch.Draw(blueCar, Lane4, Color.White);
-            spriteBatch.Draw(blueCar, Lane4b, Color.White);
+            spriteBatch.Draw(blueCarL, Lane3, Color.White);
+            spriteBatch.Draw(blueCarL, Lane4, Color.White);
+            spriteBatch.Draw(blueCarL, Lane4b, Color.White);
             spriteBatch.Draw(blueCar, Lane1b, Color.White);
 
             spriteBatch.DrawString(font, "Points: " + t1.TotalSeconds.ToString("####.##"), new Vector2(1000, 25), Color.White);

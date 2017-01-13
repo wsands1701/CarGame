@@ -60,8 +60,12 @@
     <Content Include="Content\back.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\BlueCar.png" />
-    <Content Include="Content\BlueCarL.png" />
+    <Content Include="Content\BlueCar.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\BlueCarL.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\CarStartImage.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
