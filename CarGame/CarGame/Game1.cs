@@ -306,7 +306,7 @@ namespace CarGame
 
            
             
-            Console.WriteLine(newMousePoint);
+          
 
             switch (state)
             {
@@ -391,6 +391,7 @@ namespace CarGame
                     break;
 
                 case GameState.PlayGame:
+                    
                     road1.Update();
                     road2.Update();
                     t1 += gameTime.ElapsedGameTime;
@@ -438,16 +439,7 @@ namespace CarGame
                         }
                     }
 
-                    break;
-
-                case GameState.EndGame:
-
-                    if (backRectangle.Contains(newMousePoint))
-                        state = GameState.MainMenu;
-
-                    break;
-            }
-            //set location of top lines
+                   //set location of top lines
             line1Rectangle.X -= speedoflines;
             line1Rectangle2.X -= speedoflines;
             line1Rectangle3.X -= speedoflines;
@@ -533,6 +525,26 @@ namespace CarGame
             Lane1.X -= speedoflines + 3;
 
 
+                    Console.WriteLine("Lane "+Lane1);
+                    Console.WriteLine("player "+playerRectangle);
+
+            if (playerRectangle.Contains(Lane1))
+            {
+                Console.WriteLine("colision");
+            }
+            if (playerRectangle.Contains(Lane2))
+            {
+                Console.WriteLine("colision");
+            }
+            if (playerRectangle.Contains(Lane3))
+            {
+                Console.WriteLine("colision");
+            }
+            if (playerRectangle.Contains(Lane4))
+            {
+                Console.WriteLine("colision");
+            }
+
             // Reset Cars
             if (Lane4.X > 2000)
                 Lane4.X = -200;
@@ -542,7 +554,18 @@ namespace CarGame
                 Lane2.X = 2000;
             if (Lane1.X < 0)
                 Lane1.X = 2000;
-            
+           
+
+                    break;
+
+                case GameState.EndGame:
+
+                    if (backRectangle.Contains(newMousePoint))
+                        state = GameState.MainMenu;
+
+                    break;
+            }
+           
             base.Update(gameTime);
         }
 
