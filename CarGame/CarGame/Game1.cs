@@ -257,7 +257,7 @@ namespace CarGame
 
             //font
            font = Content.Load<SpriteFont>("fastFont");
-            titlefont = Content.Load<SpriteFont>("titlefont");
+           //titlefont = Content.Load<SpriteFont>("titlefont");
            
 
             //car spawning array and stuff that may or may not work
@@ -513,27 +513,27 @@ namespace CarGame
             treeRectangle5.X -= speedoflines;
 
             //reset the trees
-            if(treeRectangle1.X < 0)
+            if(treeRectangle1.X < 100)
             {
                 int test = rnd1.Next() % GraphicsDevice.Viewport.Width;
                 treeRectangle1.X = GraphicsDevice.Viewport.Width+test;
             }
-            if(treeRectangle2.X < 0)
+            if(treeRectangle2.X < 100)
             {
                 int test = rnd1.Next() % GraphicsDevice.Viewport.Width;
                 treeRectangle2.X = GraphicsDevice.Viewport.Width + test;
             }
-            if(treeRectangle3.X < 0)
+            if(treeRectangle3.X < 100)
             {
                 int test = rnd1.Next() % GraphicsDevice.Viewport.Width;
                 treeRectangle3.X = GraphicsDevice.Viewport.Width + test;
             }
-            if (treeRectangle4.X < 0)
+            if (treeRectangle4.X < 100)
             {
                 int test = rnd1.Next() % GraphicsDevice.Viewport.Width;
                 treeRectangle4.X = GraphicsDevice.Viewport.Width + test;
             }
-            if (treeRectangle5.X < 0)
+            if (treeRectangle5.X < 100)
             {
                 int test = rnd1.Next() % GraphicsDevice.Viewport.Width;
                 treeRectangle5.X = GraphicsDevice.Viewport.Width + test;
@@ -614,7 +614,7 @@ namespace CarGame
                 startMenuMusic = false;
             }
 
-            spriteBatch.DrawString(titlefont, "Are you ready to race?", new Vector2(400, 50), Color.Black);
+           //spriteBatch.DrawString(titlefont, "Are you ready to race?", new Vector2(400, 50), Color.Black);
            // spriteBatch.DrawString(font, "You should choose a car color before pressing Play", new Vector2(200, 60), Color.White);
             spriteBatch.Draw(play, playRectangle, Color.White);
             spriteBatch.Draw(help, helpRectangle, Color.White);
