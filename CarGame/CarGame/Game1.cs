@@ -601,9 +601,6 @@ namespace CarGame
             if (startMenuMusic)
             {
                 menuSound.Play();  
-               
-
-               
                 startMenuMusic = false;
             }
 
@@ -623,7 +620,7 @@ namespace CarGame
             road1.Draw(spriteBatch);
             road2.Draw(spriteBatch);
 
-            menuSound.Stop();
+            //menuSound.Stop();
             //draws the road
 
             //lines
