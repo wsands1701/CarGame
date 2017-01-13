@@ -233,8 +233,8 @@ namespace CarGame
             crash = Content.Load<SoundEffect>("crash");
 
             //font
-            font = Content.Load<SpriteFont>("fastFont");
-            yung = Content.Load<SpriteFont>("vikyung");
+           font = Content.Load<SpriteFont>("fastFont");
+           
 
             //car spawning array and stuff that may or may not work
             /*
