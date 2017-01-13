@@ -181,7 +181,7 @@ namespace CarGame
 
 
             playRectangle = new Rectangle(50, 630, 300, 150);
-            endRectangle = new Rectangle(350, 630, 300, 150);
+            endRectangle = new Rectangle(950, 630, 300, 150);
             picRectangle = new Rectangle(100, 100, 1100, 500);
             helpRectangle = new Rectangle(650, 630, 300, 150);
             backRectangle = new Rectangle(1050, 50, 80, 80);
@@ -193,7 +193,7 @@ namespace CarGame
             pinkRectangle = new Rectangle(700, 300, 200, 100);
             aquaRectangle = new Rectangle(500, 300, 200, 100);
             yellowRectangle = new Rectangle(300, 300, 200, 100); 
-            choose_colorRectangle = new Rectangle(950, 630, 300, 150);
+            choose_colorRectangle = new Rectangle(350, 630, 300, 150);
            
 
             // cars
