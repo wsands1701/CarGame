@@ -257,7 +257,7 @@ namespace CarGame
 
             //font
            font = Content.Load<SpriteFont>("fastFont");
-           //titlefont = Content.Load<SpriteFont>("titlefont");
+           titlefont = Content.Load<SpriteFont>("titlefont");
            
 
             //car spawning array and stuff that may or may not work
@@ -274,7 +274,7 @@ namespace CarGame
 
 
             //add car to arraylist
-            TrafficOptions.Add(redTraffic);
+            TrafficOptions.Add(redTraffic); 
             TrafficOptions.Add(blueTraffic);
             TrafficOptions.Add(greenTraffic);
             TrafficOptions.Add(greyTraffic);
@@ -615,7 +615,7 @@ namespace CarGame
             }
 
            spriteBatch.DrawString(titlefont, "Are you ready to race?", new Vector2(400, 50), Color.Black);
-           spriteBatch.DrawString(font, "You should choose a car color before pressing Play", new Vector2(200, 60), Color.White);
+          // spriteBatch.DrawString(font, "You should choose a car color before pressing Play", new Vector2(200, 60), Color.White);
             spriteBatch.Draw(play, playRectangle, Color.White);
             spriteBatch.Draw(help, helpRectangle, Color.White);
             spriteBatch.Draw(end, endRectangle, Color.White);
