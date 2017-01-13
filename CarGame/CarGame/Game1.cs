@@ -89,7 +89,7 @@ namespace CarGame
         Vector2 playerCarObjSpeed;
         Vector2 playerRectcord;
         Random rnd1 = new Random();
-
+       
         //textures
         Texture2D road;
         Texture2D line;
@@ -124,6 +124,7 @@ namespace CarGame
         SoundEffect carStart;
         SoundEffect losingSound;
         SoundEffect crash;
+       SoundEffectInstance menuSound;
 
         //arraylist for car types
         ArrayList TrafficOptions = new ArrayList();
@@ -249,6 +250,7 @@ namespace CarGame
           
             //music - sounds
             menu = Content.Load<SoundEffect>("menuMusic");
+            menuSound = menu.CreateInstance();
             carStart = Content.Load<SoundEffect>("car_start");
             losingSound = Content.Load<SoundEffect>("losing_sound");
             crash = Content.Load<SoundEffect>("crash");
@@ -604,7 +606,10 @@ namespace CarGame
             GraphicsDevice.Clear(Color.Black);
             if (startMenuMusic)
             {
-                menu.Play();
+                menuSound.Play();  
+               
+
+               
                 startMenuMusic = false;
             }
 
@@ -623,6 +628,7 @@ namespace CarGame
             road1.Draw(spriteBatch);
             road2.Draw(spriteBatch);
 
+            menuSound.Stop();
             //draws the road
 
             //lines
