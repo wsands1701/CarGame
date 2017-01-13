@@ -47,6 +47,7 @@ namespace CarGame
         Rectangle treeRectangle5;
         Rectangle picRectangle;
         Rectangle Lane1;
+        Rectangle Lane1b;
         Rectangle Lane2;
         Rectangle Lane3;
         Rectangle Lane4;
@@ -192,6 +193,7 @@ namespace CarGame
             Lane3 = new Rectangle(-100, 420, 170, 95);
             Lane2 = new Rectangle(2000, 290, 170, 95);
             Lane1 = new Rectangle(2000, 150, 170, 95);
+            Lane1b = new Rectangle(2500, 150, 170, 95);
             base.Initialize();
         }
 
@@ -527,8 +529,8 @@ namespace CarGame
                 treeRectangle5.X = GraphicsDevice.Viewport.Width + test;
             }
             // make the cars move
-            Lane4.X += speedoflines + 10;
-            Lane3.X += speedoflines + 5;
+            Lane4.X += speedoflines + 5;
+            Lane3.X += speedoflines + 10;
             Lane2.X -= speedoflines + 7;
             Lane1.X -= speedoflines + 3;
 
@@ -542,7 +544,9 @@ namespace CarGame
                 Lane2.X = 2000;
             if (Lane1.X < 0)
                 Lane1.X = 2000;
-            
+            if (Lane1b.X < 0)
+                Lane1b.X = 2500;
+
             base.Update(gameTime);
         }
 
@@ -646,7 +650,7 @@ namespace CarGame
             spriteBatch.Draw(blueCar, Lane2, Color.White);
             spriteBatch.Draw(blueCar, Lane3, Color.White);
             spriteBatch.Draw(blueCar, Lane4, Color.White);
-
+            spriteBatch.Draw(blueCar, Lane1b, Color.White);
 
             spriteBatch.DrawString(font, "Points: " + t1.TotalSeconds.ToString("####.##"), new Vector2(1000, 25), Color.White);
         }
