@@ -117,7 +117,7 @@ namespace CarGame
 
         //font
         SpriteFont font;
-        SpriteFont yung;
+        SpriteFont titlefont;
 
         //sounds
         SoundEffect menu;
@@ -182,7 +182,7 @@ namespace CarGame
 
 
             playRectangle = new Rectangle(50, 630, 300, 150);
-            endRectangle = new Rectangle(350, 630, 300, 150);
+            endRectangle = new Rectangle(950, 630, 300, 150);
             picRectangle = new Rectangle(100, 100, 1100, 500);
             helpRectangle = new Rectangle(650, 630, 300, 150);
             backRectangle = new Rectangle(1050, 50, 80, 80);
@@ -194,7 +194,7 @@ namespace CarGame
             pinkRectangle = new Rectangle(700, 300, 200, 100);
             aquaRectangle = new Rectangle(500, 300, 200, 100);
             yellowRectangle = new Rectangle(300, 300, 200, 100); 
-            choose_colorRectangle = new Rectangle(950, 630, 300, 150);
+            choose_colorRectangle = new Rectangle(350, 630, 300, 150);
            
 
             // cars
@@ -256,8 +256,9 @@ namespace CarGame
             crash = Content.Load<SoundEffect>("crash");
 
             //font
-            font = Content.Load<SpriteFont>("fastFont");
-
+           font = Content.Load<SpriteFont>("fastFont");
+            titlefont = Content.Load<SpriteFont>("titlefont");
+           
 
             //car spawning array and stuff that may or may not work
             /*
@@ -603,7 +604,7 @@ namespace CarGame
 
         public void DisplayMainMenu()
         {
-            GraphicsDevice.Clear(Color.Black);
+            GraphicsDevice.Clear(Color.GhostWhite);
             if (startMenuMusic)
             {
                 menuSound.Play();  
@@ -613,8 +614,8 @@ namespace CarGame
                 startMenuMusic = false;
             }
 
-            spriteBatch.DrawString(font, "Welcome to the Car Game!", new Vector2(500, 30), Color.White);
-            spriteBatch.DrawString(font, "You should choose a car color before pressing Play", new Vector2(383, 60), Color.White);
+            spriteBatch.DrawString(titlefont, "Are you ready to race?", new Vector2(400, 50), Color.Black);
+           // spriteBatch.DrawString(font, "You should choose a car color before pressing Play", new Vector2(200, 60), Color.White);
             spriteBatch.Draw(play, playRectangle, Color.White);
             spriteBatch.Draw(help, helpRectangle, Color.White);
             spriteBatch.Draw(end, endRectangle, Color.White);
@@ -653,7 +654,7 @@ namespace CarGame
         public void DisplayHelpScreen()
         {
             GraphicsDevice.Clear(Color.Black);
-            spriteBatch.DrawString(font, "\n-To move your car, click and hold the left mouse button and drag the \n wherever you want it to go.\n-Avoid obsticles traveling towards your car for the longest time to win!\n-Click the 'Play' button in to start game.\n-To quit, click the 'End' button. \n-To change the color of the car, click the 'Choose Color' button \n to select one of the colors.", new Vector2(50, 100), Color.White);
+            spriteBatch.DrawString(font, "\n-To move your car, click and hold the left mouse button and drag the mouse wherever you want the car to go.\n-Avoid obsticles traveling towards your car for the longest time to win!\n-Click the 'Play' button in to start game.\n-To quit, click the 'End' button. \n-To change the color of the car, click the 'Choose Color' button.", new Vector2(50, 100), Color.White);
             spriteBatch.Draw(back, backRectangle, Color.White);
             
         }
