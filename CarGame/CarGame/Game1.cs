@@ -117,6 +117,7 @@ namespace CarGame
 
         //arraylist for car types
         ArrayList TrafficOptions = new ArrayList();
+        ArrayList TrafficTypes = new ArrayList();
         
 
         enum GameState
@@ -184,6 +185,12 @@ namespace CarGame
             yellowRectangle = new Rectangle(300, 300, 200, 100); 
             choose_colorRectangle = new Rectangle(950, 200, 300, 150);
 
+
+            // cars
+            Lane4 = new Rectangle(-100 , 550, 170, 95);
+            Lane3 = new Rectangle(-100, 420, 170, 95);
+            Lane2 = new Rectangle(2000, 290, 170, 95);
+            Lane1 = new Rectangle(2000, 150, 170, 95);
             base.Initialize();
         }
 
@@ -199,8 +206,8 @@ namespace CarGame
 
             //vegetation / background textures
             road = Content.Load<Texture2D>("Road");
-            tree = Content.Load<Texture2D>("tree");
             line = Content.Load<Texture2D>("line");
+            tree = Content.Load<Texture2D>("tree");
             //can we use a gif in MVS? we could line the road with this
             //flower = Content.Load<Texture2D>("");
 
@@ -238,7 +245,6 @@ namespace CarGame
 
             //font
             font = Content.Load<SpriteFont>("fastFont");
-
 
             //car spawning array and stuff that may or may not work
             /*
@@ -547,8 +553,10 @@ namespace CarGame
             // TODO: Add your drawing code here
 
             spriteBatch.Begin();
+            spriteBatch.Draw(road, GraphicsDevice.Viewport.Bounds, Color.White);
+            road1.Draw(spriteBatch);
+            road2.Draw(spriteBatch);
             
-
             switch (state) { 
             
                 case GameState.MainMenu:
@@ -623,7 +631,14 @@ namespace CarGame
             spriteBatch.Draw(tree, treeRectangle4, Color.White);
             spriteBatch.Draw(tree, treeRectangle5, Color.White);
             spriteBatch.Draw(whiteCar, playerRectangle, plCl);
-            
+
+            //cars
+            spriteBatch.Draw(blueCar, Lane1, Color.White);
+            spriteBatch.Draw(blueCar, Lane2, Color.White);
+            spriteBatch.Draw(blueCar, Lane3, Color.White);
+            spriteBatch.Draw(blueCar, Lane4, Color.White);
+
+
             spriteBatch.DrawString(font, "Points: " +  t1.TotalSeconds.ToString("####.##"), new Vector2(1000, 25),Color.White);
         }
         public void DisplayHelpScreen()
