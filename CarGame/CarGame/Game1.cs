@@ -89,7 +89,7 @@ namespace CarGame
         Vector2 playerCarObjSpeed;
         Vector2 playerRectcord;
         Random rnd1 = new Random();
-
+       
         //textures
         Texture2D road;
         Texture2D line;
@@ -124,6 +124,7 @@ namespace CarGame
         SoundEffect carStart;
         SoundEffect losingSound;
         SoundEffect crash;
+       SoundEffectInstance menuSound;
 
         //arraylist for car types
         ArrayList TrafficOptions = new ArrayList();
@@ -181,7 +182,7 @@ namespace CarGame
 
 
             playRectangle = new Rectangle(50, 630, 300, 150);
-            endRectangle = new Rectangle(350, 630, 300, 150);
+            endRectangle = new Rectangle(950, 630, 300, 150);
             picRectangle = new Rectangle(100, 100, 1100, 500);
             helpRectangle = new Rectangle(650, 630, 300, 150);
             backRectangle = new Rectangle(1050, 50, 80, 80);
@@ -193,7 +194,7 @@ namespace CarGame
             pinkRectangle = new Rectangle(700, 300, 200, 100);
             aquaRectangle = new Rectangle(500, 300, 200, 100);
             yellowRectangle = new Rectangle(300, 300, 200, 100); 
-            choose_colorRectangle = new Rectangle(950, 630, 300, 150);
+            choose_colorRectangle = new Rectangle(350, 630, 300, 150);
            
 
             // cars
@@ -249,13 +250,14 @@ namespace CarGame
           
             //music - sounds
             menu = Content.Load<SoundEffect>("menuMusic");
+            menuSound = menu.CreateInstance();
             carStart = Content.Load<SoundEffect>("car_start");
             losingSound = Content.Load<SoundEffect>("losing_sound");
             crash = Content.Load<SoundEffect>("crash");
 
             //font
            font = Content.Load<SpriteFont>("fastFont");
-            titlefont = Content.Load<SpriteFont>("titlefont");
+           //titlefont = Content.Load<SpriteFont>("titlefont");
            
 
             //car spawning array and stuff that may or may not work
@@ -511,27 +513,27 @@ namespace CarGame
             treeRectangle5.X -= speedoflines;
 
             //reset the trees
-            if(treeRectangle1.X < 0)
+            if(treeRectangle1.X < 100)
             {
                 int test = rnd1.Next() % GraphicsDevice.Viewport.Width;
                 treeRectangle1.X = GraphicsDevice.Viewport.Width+test;
             }
-            if(treeRectangle2.X < 0)
+            if(treeRectangle2.X < 100)
             {
                 int test = rnd1.Next() % GraphicsDevice.Viewport.Width;
                 treeRectangle2.X = GraphicsDevice.Viewport.Width + test;
             }
-            if(treeRectangle3.X < 0)
+            if(treeRectangle3.X < 100)
             {
                 int test = rnd1.Next() % GraphicsDevice.Viewport.Width;
                 treeRectangle3.X = GraphicsDevice.Viewport.Width + test;
             }
-            if (treeRectangle4.X < 0)
+            if (treeRectangle4.X < 100)
             {
                 int test = rnd1.Next() % GraphicsDevice.Viewport.Width;
                 treeRectangle4.X = GraphicsDevice.Viewport.Width + test;
             }
-            if (treeRectangle5.X < 0)
+            if (treeRectangle5.X < 100)
             {
                 int test = rnd1.Next() % GraphicsDevice.Viewport.Width;
                 treeRectangle5.X = GraphicsDevice.Viewport.Width + test;
@@ -605,11 +607,14 @@ namespace CarGame
             GraphicsDevice.Clear(Color.GhostWhite);
             if (startMenuMusic)
             {
-                menu.Play();
+                menuSound.Play();  
+               
+
+               
                 startMenuMusic = false;
             }
 
-            spriteBatch.DrawString(titlefont, "Are you ready to race?", new Vector2(400, 50), Color.Black);
+           //spriteBatch.DrawString(titlefont, "Are you ready to race?", new Vector2(400, 50), Color.Black);
            // spriteBatch.DrawString(font, "You should choose a car color before pressing Play", new Vector2(200, 60), Color.White);
             spriteBatch.Draw(play, playRectangle, Color.White);
             spriteBatch.Draw(help, helpRectangle, Color.White);
@@ -624,6 +629,7 @@ namespace CarGame
             road1.Draw(spriteBatch);
             road2.Draw(spriteBatch);
 
+            menuSound.Stop();
             //draws the road
 
             //lines
