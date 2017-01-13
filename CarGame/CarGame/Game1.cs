@@ -46,7 +46,22 @@ namespace CarGame
         Rectangle treeRectangle4;
         Rectangle treeRectangle5;
         Rectangle picRectangle;
+        Rectangle Lane4;
+        Rectangle Lane3;
+        Rectangle Lane2;
+        Rectangle Lane1;
         
+        /*
+    greenCar = Content.Load<Texture2D>("GreenCar");
+        greyCar = Content.Load<Texture2D>("GreyCar");
+        orangeCar = Content.Load<Texture2D>("OrangeCar");
+        redCar = Content.Load<Texture2D>("RedCar");
+        whiteCar = Content.Load<Texture2D>("WhiteCar");
+        pinkCar = this.Content.Load<Texture2D>("PinkCar");
+        aquaCar = Content.Load<Texture2D>("AquaCar");
+        yellowCar
+        */
+
         Scrollingbackground road1;
         Scrollingbackground road2;
 
@@ -112,7 +127,7 @@ namespace CarGame
 
         //arraylist for car types
         ArrayList TrafficOptions = new ArrayList();
-        ArrayList TrafficTypes = new ArrayList();
+
 
 
         enum GameState
@@ -180,6 +195,12 @@ namespace CarGame
             yellowRectangle = new Rectangle(300, 300, 200, 100); 
             choose_colorRectangle = new Rectangle(950, 630, 300, 150);
            
+
+            // cars
+            Lane4 = new Rectangle(-100 , 570, 150, 75);
+            Lane3 = new Rectangle(-100, 470, 150, 75);
+            Lane2 = new Rectangle(2000, 150, 150, 75);
+            Lane1 = new Rectangle(2000, 250, 150, 75);
             base.Initialize();
         }
 
@@ -195,8 +216,8 @@ namespace CarGame
 
             //vegetation / background textures
             road = Content.Load<Texture2D>("Road");
-            tree = Content.Load<Texture2D>("tree");
             line = Content.Load<Texture2D>("line");
+            tree = Content.Load<Texture2D>("tree");
             //can we use a gif in MVS? we could line the road with this
             //flower = Content.Load<Texture2D>("");
 
@@ -233,8 +254,8 @@ namespace CarGame
             crash = Content.Load<SoundEffect>("crash");
 
             //font
-           font = Content.Load<SpriteFont>("fastFont");
-           
+            font = Content.Load<SpriteFont>("fastFont");
+
 
             //car spawning array and stuff that may or may not work
             /*
@@ -394,6 +415,7 @@ namespace CarGame
                         {
                             mousePressed = true;
                         }
+
                     }
 
 
@@ -513,6 +535,22 @@ namespace CarGame
                 int test = rnd1.Next() % GraphicsDevice.Viewport.Width;
                 treeRectangle5.X = GraphicsDevice.Viewport.Width + test;
             }
+            // make the cars move
+            Lane4.X += speedoflines + 10;
+            Lane3.X += speedoflines + 5;
+            Lane2.X -= speedoflines + 7;
+            Lane1.X -= speedoflines + 3;
+
+
+            // Reset Cars
+            if (Lane4.X > 2000)
+                Lane4.X = -200;
+            if (Lane3.X > 2000)
+                Lane3.X = -200;
+            if (Lane2.X < 0)
+                Lane2.X = 2000;
+            if (Lane1.X < 0)
+                Lane1.X = 2000;
             
             base.Update(gameTime);
         }
@@ -604,7 +642,7 @@ namespace CarGame
             spriteBatch.Draw(tree, treeRectangle5, Color.White);
             spriteBatch.Draw(whiteCar, playerRectangle, plCl);
             
-            spriteBatch.DrawString(font, "Score: " +  t1.TotalSeconds.ToString("####.##"), new Vector2(1125, 25),Color.White);
+            spriteBatch.DrawString(font, "Points: " +  t1.TotalSeconds.ToString("####.##"), new Vector2(1000, 25),Color.White);
         }
         public void DisplayHelpScreen()
         {
