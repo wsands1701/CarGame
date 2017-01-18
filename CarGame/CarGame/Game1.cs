@@ -674,12 +674,12 @@ namespace CarGame
             spriteBatch.Draw(whiteCar, playerRectangle, plCl);
             
             //cars
-            spriteBatch.Draw(blueCar, Lane1, Color.White);
-            spriteBatch.Draw(blueCar, Lane2, Color.White);
-            spriteBatch.Draw(blueCarL, Lane3, Color.White);
-            spriteBatch.Draw(blueCarL, Lane4, Color.White);
-            spriteBatch.Draw(blueCarL, Lane4b, Color.White);
-            spriteBatch.Draw(blueCar, Lane1b, Color.White);
+            spriteBatch.Draw(blueCarL, Lane1, Color.White);
+            spriteBatch.Draw(blueCarL, Lane2, Color.White);
+            spriteBatch.Draw(blueCar, Lane3, Color.White);
+            spriteBatch.Draw(blueCar, Lane4, Color.White);
+            spriteBatch.Draw(blueCar, Lane4b, Color.White);
+            spriteBatch.Draw(blueCarL, Lane1b, Color.White);
 
             spriteBatch.DrawString(font, "Points: " + t1.TotalSeconds.ToString("####.##"), new Vector2(1000, 25), Color.White);
         }
