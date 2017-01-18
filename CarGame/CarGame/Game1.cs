@@ -526,28 +526,28 @@ namespace CarGame
 
             if (playerRectangle.Intersects(Lane1))
             {
-               
+                        state = GameState.EndEndGame;
             }
              if (playerRectangle.Intersects(Lane1b))
             {
-                
-            }
+                        state = GameState.EndEndGame;
+                    }
             if (playerRectangle.Intersects(Lane2))
             {
-                
+                        state = GameState.EndEndGame;
             }
              if (playerRectangle.Intersects(Lane4b))
             {
-                
+                        state = GameState.EndEndGame;
             }
             if (playerRectangle.Intersects(Lane3))
             {
-                
+                        state = GameState.EndEndGame;
             }
             if (playerRectangle.Intersects(Lane4))
             {
-                
-            }
+                        state = GameState.EndEndGame;
+           }
 
             // Reset Cars
             if (Lane4.X > 2000)
