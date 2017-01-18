@@ -249,7 +249,7 @@ namespace CarGame
 
             //font
             font = Content.Load<SpriteFont>("fastFont");
-           titlefont = Content.Load<SpriteFont>("titlefont");
+            titlefont = Content.Load<SpriteFont>("titlefont");
 
             //car spawning array and stuff that may or may not work
             /*
