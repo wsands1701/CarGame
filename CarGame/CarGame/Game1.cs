@@ -392,7 +392,10 @@ namespace CarGame
                     break;
 
                 case GameState.EndEndGame:
-
+                    if (endRectangle.Contains(newMousePoint))
+                        state = GameState.EndGame;
+                    if (playRectangle.Contains(newMousePoint))
+                        state = GameState.MainMenu;
                     break;
 
                 case GameState.PlayGame:
@@ -571,7 +574,7 @@ namespace CarGame
                 Lane4b.X -= 200;
             if (Lane3.X > 2000)
                 Lane3.X = -200;
-            if (Lane2.X < 0)
+            if (Lane2.X < -200)
                 Lane2.X = 2000;
             if (Lane1.X < -200)
                 Lane1.X = 2000;
@@ -640,7 +643,6 @@ namespace CarGame
             break;
 
                 case GameState.EndEndGame:
-
                     DisplayEndEndGame();
 
             break;
@@ -732,6 +734,7 @@ namespace CarGame
         public void DisplayEndEndGame()
         {
             spriteBatch.Draw(end, endRectangle, Color.White);
+            spriteBatch.Draw(play, playRectangle, Color.White);
         }
         public void EndTheGame()
         {
