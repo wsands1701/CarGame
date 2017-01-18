@@ -54,7 +54,7 @@ namespace CarGame
         Rectangle Lane3;
         Rectangle Lane4;
         Rectangle Lane4b;
-
+        
         Scrollingbackground road1;
         Scrollingbackground road2;
 
@@ -131,7 +131,8 @@ namespace CarGame
             HelpScreen,
             ChooseColor,
             PlayGame,
-            EndGame
+            EndGame,
+            EndEndGame
         }
         GameState state = GameState.MainMenu;
 
@@ -188,7 +189,7 @@ namespace CarGame
             aquaRectangle = new Rectangle(500, 300, 200, 100);
             yellowRectangle = new Rectangle(300, 300, 200, 100); 
             choose_colorRectangle = new Rectangle(350, 630, 300, 150);
-
+           
             // cars
             Lane4 = new Rectangle(-100, 550, 170, 95);
             Lane4b = new Rectangle(-300, 550, 170, 95);
@@ -260,7 +261,7 @@ namespace CarGame
             Obstacles greyTraffic = new Moving(50, 50, 150, false, greyCar);
             Obstacles orangeTraffic = new Moving(50, 50, 150, false, orangeCar);
             Obstacles whiteTraffic = new Moving(50, 50, 150, false, whiteCar
-
+            
             //add car to arraylist
             TrafficOptions.Add(redTraffic);
             TrafficOptions.Add(blueTraffic);
@@ -378,6 +379,10 @@ namespace CarGame
                     {
                         state = GameState.MainMenu;
                     }
+
+                    break;
+
+                case GameState.EndEndGame:
 
                     break;
 
@@ -517,22 +522,30 @@ namespace CarGame
             Lane1.X -= speedoflines + 3;
             Lane1b.X -= speedoflines + 3;
 
-            Console.WriteLine("Lane "+Lane1);
-            Console.WriteLine("player "+playerRectangle);
-            
-            if (playerRectangle.Contains(Lane1))
+                    Console.WriteLine("Lane "+Lane1);
+                    Console.WriteLine("player "+playerRectangle);
+
+            if (playerRectangle.Intersects(Lane1))
             {
                 Console.WriteLine("colision");
             }
-            if (playerRectangle.Contains(Lane2))
+             if (playerRectangle.Intersects(Lane1b))
             {
                 Console.WriteLine("colision");
             }
-            if (playerRectangle.Contains(Lane3))
+            if (playerRectangle.Intersects(Lane2))
             {
                 Console.WriteLine("colision");
             }
-            if (playerRectangle.Contains(Lane4))
+             if (playerRectangle.Intersects(Lane4b))
+            {
+                Console.WriteLine("colision");
+            }
+            if (playerRectangle.Intersects(Lane3))
+            {
+                Console.WriteLine("colision");
+            }
+            if (playerRectangle.Intersects(Lane4))
             {
                 Console.WriteLine("colision");
             }
@@ -602,6 +615,12 @@ namespace CarGame
                 case GameState.ChooseColor:
                    
                     DisplayChooseColor();
+
+            break;
+
+                case GameState.EndEndGame:
+
+                    DisplayEndEndGame();
 
             break;
         }
@@ -686,9 +705,13 @@ namespace CarGame
             spriteBatch.Draw(pinkCar, pinkRectangle, Color.White);
             spriteBatch.Draw(aquaCar, aquaRectangle, Color.White);
             spriteBatch.Draw(yellowCar, yellowRectangle, Color.White);
-
+            
         }
 
+        public void DisplayEndEndGame()
+        {
+            spriteBatch.Draw(end, endRectangle, Color.White);
+        }
         public void EndTheGame()
         {
             GraphicsDevice.Clear(Color.Gray);
