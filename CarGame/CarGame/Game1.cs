@@ -564,14 +564,22 @@ namespace CarGame
                 Lane3.X = -200;
             if (Lane2.X < 0)
                 Lane2.X = 2000;
-            if (Lane1.X < 0)
+            if (Lane1.X < -200)
                 Lane1.X = 2000;
-            if (Lane1b.X < 0)
+            if (Lane1b.X < -200)
                 Lane1b.X = 2500;
-            
+            if (Lane1.Intersects(Lane1b) || Lane1b.Intersects(Lane1))
+                    {
+                        Lane1.X += 100;
+                        Lane1b.X -= 100;
+                    }
 
-                    break;
-
+                    if (Lane4.Intersects(Lane4b) || Lane4b.Intersects(Lane4))
+                    {
+                        Lane4b.X -= 100;
+                        Lane4.X += 100;
+                    }
+                        break;
                 case GameState.EndGame:
 
                     if (backRectangle.Contains(newMousePoint))
