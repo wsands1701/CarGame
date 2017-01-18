@@ -46,6 +46,8 @@ namespace CarGame
         Rectangle treeRectangle4;
         Rectangle treeRectangle5;
         Rectangle picRectangle;
+
+        //lanes
         Rectangle Lane1;
         Rectangle Lane1b;
         Rectangle Lane2;
@@ -53,7 +55,6 @@ namespace CarGame
         Rectangle Lane4;
         Rectangle Lane4b;
         
-
         Scrollingbackground road1;
         Scrollingbackground road2;
 
@@ -63,6 +64,7 @@ namespace CarGame
       
         //time variables
         TimeSpan t1 = new TimeSpan(0, 0, 0);
+
         int points = 0;
 
         int r = 250;
@@ -123,7 +125,6 @@ namespace CarGame
         ArrayList TrafficOptions = new ArrayList();
         ArrayList TrafficTypes = new ArrayList();
 
-
         enum GameState
         {
             MainMenu,
@@ -145,7 +146,6 @@ namespace CarGame
             Content.RootDirectory = "Content";
         }
 
-
         /// <summary>
         /// Allows the game to perform any initialization it needs to before starting to run.
         /// This is where it can query for any required services and load any non-graphic
@@ -166,13 +166,13 @@ namespace CarGame
             line2Rectangle2 = new Rectangle(GraphicsDevice.Viewport.Width / 2, 520, 100, 15);
             line2Rectangle3 = new Rectangle((GraphicsDevice.Viewport.Width / 4) * 3, 520, 100, 15);
             line2Rectangle4 = new Rectangle(GraphicsDevice.Viewport.Width, 520, 100, 15);
+
             //Trees
             treeRectangle1 = new Rectangle(GraphicsDevice.Viewport.Width / 5, 700, 110, 90);
             treeRectangle2 = new Rectangle(GraphicsDevice.Viewport.Width / 4, 700, 110, 90);
             treeRectangle3 = new Rectangle(GraphicsDevice.Viewport.Width / 2, 700, 110, 90);
             treeRectangle4 = new Rectangle((GraphicsDevice.Viewport.Width / 3) * 4, 700, 110, 90);
             treeRectangle5 = new Rectangle(GraphicsDevice.Viewport.Width, 700, 110, 90);
-
 
             playRectangle = new Rectangle(50, 630, 300, 150);
             endRectangle = new Rectangle(950, 630, 300, 150);
@@ -189,7 +189,6 @@ namespace CarGame
             yellowRectangle = new Rectangle(300, 300, 200, 100); 
             choose_colorRectangle = new Rectangle(350, 630, 300, 150);
            
-
             // cars
             Lane4 = new Rectangle(-100, 550, 170, 95);
             Lane4b = new Rectangle(-300, 550, 170, 95);
@@ -201,7 +200,6 @@ namespace CarGame
         }
 
         /// <summary>
-
         /// </summary>
         protected override void LoadContent()
         {
@@ -234,8 +232,6 @@ namespace CarGame
             road1 = new Scrollingbackground(Content.Load<Texture2D>("Road"), new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height));
             road2 = new Scrollingbackground(Content.Load<Texture2D>("Road"), new Rectangle(GraphicsDevice.Viewport.Width, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height));
 
-           
-
             //button textures
             play = Content.Load<Texture2D>("play.png");
             end = Content.Load<Texture2D>("end.png");
@@ -263,11 +259,8 @@ namespace CarGame
             Obstacles greenTraffic = new Moving(50, 50, 150, false, greenCar);
             Obstacles greyTraffic = new Moving(50, 50, 150, false, greyCar);
             Obstacles orangeTraffic = new Moving(50, 50, 150, false, orangeCar);
-            Obstacles whiteTraffic = new Moving(50, 50, 150, false, whiteCar);
+            Obstacles whiteTraffic = new Moving(50, 50, 150, false, whiteCar
             
-
-
-
             //add car to arraylist
             TrafficOptions.Add(redTraffic);
             TrafficOptions.Add(blueTraffic);
@@ -276,9 +269,6 @@ namespace CarGame
             TrafficOptions.Add(orangeTraffic);
             TrafficOptions.Add(whiteTraffic);
             */
-
-
-
         }
 
         /// <summary>
@@ -298,7 +288,6 @@ namespace CarGame
         
         protected override void Update(GameTime gameTime)
         {
-            
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
@@ -309,10 +298,6 @@ namespace CarGame
             {
                 newMousePoint = new Point(Mouse.GetState().X, Mouse.GetState().Y);
             }
-
-           
-            
-
 
             switch (state)
             {
@@ -416,7 +401,6 @@ namespace CarGame
                         }
                     }
 
-
                     if (mousePressed)
                     {
                         playerRectangle.X = Mouse.GetState().X - 90;
@@ -451,42 +435,42 @@ namespace CarGame
             line1Rectangle3.X -= speedoflines;
             line1Rectangle4.X -= speedoflines;
 
-            if (line1Rectangle.X < -50)
+            if (line1Rectangle.X < -100)
             {
                 line1Rectangle.X = GraphicsDevice.Viewport.Width - 50;
             }
-            if (line1Rectangle2.X < -50)
+            if (line1Rectangle2.X < -100)
             {
                 line1Rectangle2.X = GraphicsDevice.Viewport.Width - 50;
             }
-            if (line1Rectangle3.X < -50)
+            if (line1Rectangle3.X < -100)
             {
                 line1Rectangle3.X = GraphicsDevice.Viewport.Width - 50;
             }
-            if (line1Rectangle4.X < -50)
+            if (line1Rectangle4.X < -100)
             {
                 line1Rectangle4.X = GraphicsDevice.Viewport.Width - 50;
             }
+
             //set location of bottom lines
             line2Rectangle.X -= speedoflines;
             line2Rectangle2.X -= speedoflines;
             line2Rectangle3.X -= speedoflines;
             line2Rectangle4.X -= speedoflines;
 
-            
-            if (line2Rectangle2.X < -50)
+            if (line2Rectangle2.X < -100)
             {
                 line2Rectangle2.X = GraphicsDevice.Viewport.Width - 50;
             }
-            if (line2Rectangle.X < -50)
+            if (line2Rectangle.X < -100)
             {
                 line2Rectangle.X = GraphicsDevice.Viewport.Width - 50;
             }
-            if (line2Rectangle3.X < -50)
+            if (line2Rectangle3.X < -100)
             {
                 line2Rectangle3.X = GraphicsDevice.Viewport.Width - 50;
             }
-            if (line2Rectangle4.X < -50)
+            if (line2Rectangle4.X < -100)
             {
                 line2Rectangle4.X = GraphicsDevice.Viewport.Width - 50;
             }
@@ -499,31 +483,32 @@ namespace CarGame
             treeRectangle5.X -= speedoflines;
 
             //reset the trees
-            if(treeRectangle1.X < -75)
+            if(treeRectangle1.X < -80)
             {
                 int test = rnd1.Next() % GraphicsDevice.Viewport.Width;
                 treeRectangle1.X = GraphicsDevice.Viewport.Width + test;
             }
-            if(treeRectangle2.X < -75)
+            if(treeRectangle2.X < -80)
             {
                 int test = rnd1.Next() % GraphicsDevice.Viewport.Width;
                 treeRectangle2.X = GraphicsDevice.Viewport.Width + test;
             }
-            if(treeRectangle3.X < -75)
+            if(treeRectangle3.X < -80)
             {
                 int test = rnd1.Next() % GraphicsDevice.Viewport.Width;
                 treeRectangle3.X = GraphicsDevice.Viewport.Width + test;
             }
-            if (treeRectangle4.X < -75)
+            if (treeRectangle4.X < -80)
             {
                 int test = rnd1.Next() % GraphicsDevice.Viewport.Width;
                 treeRectangle4.X = GraphicsDevice.Viewport.Width + test;
             }
-            if (treeRectangle5.X < -75)
+            if (treeRectangle5.X < -80)
             {
                 int test = rnd1.Next() % GraphicsDevice.Viewport.Width;
                 treeRectangle5.X = GraphicsDevice.Viewport.Width + test;
             }
+
             // make the cars move
             Lane4.X += speedoflines + 5;
             Lane4b.X += speedoflines + 5;
@@ -531,7 +516,6 @@ namespace CarGame
             Lane2.X -= speedoflines +7;
             Lane1.X -= speedoflines + 3;
             Lane1b.X -= speedoflines + 3;
-
 
                     Console.WriteLine("Lane "+Lane1);
                     Console.WriteLine("player "+playerRectangle);
@@ -554,7 +538,7 @@ namespace CarGame
             }
             if (playerRectangle.Intersects(Lane3))
             {
-              Console.WriteLine("colision");
+                Console.WriteLine("colision");
             }
             if (playerRectangle.Intersects(Lane4))
             {
@@ -577,7 +561,6 @@ namespace CarGame
             if (Lane1b.X < 0)
                 Lane1b.X = 2500;
             
-
                     break;
 
                 case GameState.EndGame:
@@ -712,8 +695,6 @@ namespace CarGame
             spriteBatch.Draw(aquaCar, aquaRectangle, Color.White);
             spriteBatch.Draw(yellowCar, yellowRectangle, Color.White);
             
-
-
         }
 
         public void EndTheGame()
