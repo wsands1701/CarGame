@@ -314,7 +314,7 @@ namespace CarGame
             switch (state)
             {
                 case GameState.MainMenu:
-
+                    t1 = new TimeSpan(0,0,0);
                     //set state of the game based on button selected
                     if (playRectangle.Contains(newMousePoint))
                         state = GameState.PlayGame;
@@ -398,11 +398,13 @@ namespace CarGame
                         state = GameState.EndGame;
                     if (playRectangle2.Contains(newMousePoint))
                         state = GameState.MainMenu;
-                    t1.Equals(0);
+                    gameTime.ElapsedGameTime.Negate();
+                    
                     break;
 
                 case GameState.PlayGame:
                     Console.WriteLine(Mouse.GetState().X+" "+ Mouse.GetState().Y);
+                   
                     road1.Update();
                     road2.Update();
                     t1 += gameTime.ElapsedGameTime;
@@ -543,27 +545,27 @@ namespace CarGame
 
 
 
-            if (playerRectangle.Intersects(Lane1))
+            if (playerRectangle.Intersects(Lane1)&&t1.TotalSeconds>2)
             {
                         state = GameState.EndEndGame;
             }
-             if (playerRectangle.Intersects(Lane1b))
+             if (playerRectangle.Intersects(Lane1b) && t1.TotalSeconds > 2)
             {
                         state = GameState.EndEndGame;
                     }
-            if (playerRectangle.Intersects(Lane2))
+            if (playerRectangle.Intersects(Lane2) && t1.TotalSeconds > 2)
             {
                         state = GameState.EndEndGame;
             }
-             if (playerRectangle.Intersects(Lane4b))
+             if (playerRectangle.Intersects(Lane4b) && t1.TotalSeconds > 2)
             {
                         state = GameState.EndEndGame;
             }
-            if (playerRectangle.Intersects(Lane3))
+            if (playerRectangle.Intersects(Lane3) && t1.TotalSeconds > 2)
             {
                         state = GameState.EndEndGame;
             }
-            if (playerRectangle.Intersects(Lane4))
+            if (playerRectangle.Intersects(Lane4) && t1.TotalSeconds > 2)
             {
                         state = GameState.EndEndGame;
             }
@@ -596,7 +598,7 @@ namespace CarGame
                     }
                     break;
                 case GameState.EndGame:
-
+                    
                     if (backRectangle.Contains(newMousePoint))
                         state = GameState.MainMenu;
 
