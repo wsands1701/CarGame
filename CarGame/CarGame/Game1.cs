@@ -533,12 +533,12 @@ namespace CarGame
                     double x = t1.TotalSeconds;
 
             // make the cars move
-            Lane4.X += speedoflines + (int)(.2*x);
-            Lane4b.X += speedoflines + (int)(.2*x);
-            Lane3.X += speedoflines + (int)(.5*x);
-            Lane2.X -= speedoflines + (int)(.3*x);
-            Lane1.X -= speedoflines + (int)(.2*x);
-            Lane1b.X -= speedoflines + (int)(.2*x);
+            Lane4.X += speedoflines + (int)(.12*x) + 1;
+            Lane4b.X += speedoflines + (int)(.12*x)+1;
+            Lane3.X += speedoflines + (int)(.15*x) +1;
+            Lane2.X -= speedoflines + (int)(.13*x)+1;
+            Lane1.X -= speedoflines + (int)(.12*x)+1;
+            Lane1b.X -= speedoflines + (int)(.12*x)+1;
 
 
 
