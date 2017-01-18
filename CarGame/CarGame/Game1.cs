@@ -529,13 +529,15 @@ namespace CarGame
                 treeRectangle5.X = GraphicsDevice.Viewport.Width + test;
             }
 
+                    double x = t1.TotalSeconds;
+
             // make the cars move
-            Lane4.X += speedoflines + 5;
-            Lane4b.X += speedoflines + 5;
-            Lane3.X += speedoflines + 10;
-            Lane2.X -= speedoflines +7;
-            Lane1.X -= speedoflines + 3;
-            Lane1b.X -= speedoflines + 3;
+            Lane4.X += speedoflines + (int)(.2*x);
+            Lane4b.X += speedoflines + (int)(.2*x);
+            Lane3.X += speedoflines + (int)(.5*x);
+            Lane2.X -= speedoflines + (int)(.3*x);
+            Lane1.X -= speedoflines + (int)(.2*x);
+            Lane1b.X -= speedoflines + (int)(.2*x);
 
 
 
