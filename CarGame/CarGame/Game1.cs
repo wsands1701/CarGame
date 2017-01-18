@@ -52,7 +52,7 @@ namespace CarGame
         Rectangle Lane3;
         Rectangle Lane4;
         Rectangle Lane4b;
-
+        
 
         Scrollingbackground road1;
         Scrollingbackground road2;
@@ -93,6 +93,7 @@ namespace CarGame
         Texture2D greenCar;
         Texture2D redCar;
         Texture2D blueCar;
+        Texture2D blueCarL;
         Texture2D orangeCar;
         Texture2D whiteCar;
         Texture2D greyCar;
@@ -218,6 +219,7 @@ namespace CarGame
 
             //car textures
             blueCar = Content.Load<Texture2D>("BlueCar");
+            blueCarL = Content.Load<Texture2D>("BlueCarL");
             greenCar = Content.Load<Texture2D>("GreenCar");
             greyCar = Content.Load<Texture2D>("GreyCar");
             orangeCar = Content.Load<Texture2D>("OrangeCar");
@@ -310,7 +312,7 @@ namespace CarGame
 
            
             
-            Console.WriteLine(newMousePoint);
+
 
             switch (state)
             {
@@ -395,6 +397,7 @@ namespace CarGame
                     break;
 
                 case GameState.PlayGame:
+                    
                     road1.Update();
                     road2.Update();
                     t1 += gameTime.ElapsedGameTime;
@@ -442,15 +445,6 @@ namespace CarGame
                         }
                     }
 
-                    break;
-
-                case GameState.EndGame:
-
-                    if (backRectangle.Contains(newMousePoint))
-                        state = GameState.MainMenu;
-
-                    break;
-            }
             //set location of top lines
             line1Rectangle.X -= speedoflines;
             line1Rectangle2.X -= speedoflines;
@@ -505,27 +499,27 @@ namespace CarGame
             treeRectangle5.X -= speedoflines;
 
             //reset the trees
-            if(treeRectangle1.X < 0)
+            if(treeRectangle1.X < -75)
             {
                 int test = rnd1.Next() % GraphicsDevice.Viewport.Width;
                 treeRectangle1.X = GraphicsDevice.Viewport.Width + test;
             }
-            if(treeRectangle2.X < 0)
+            if(treeRectangle2.X < -75)
             {
                 int test = rnd1.Next() % GraphicsDevice.Viewport.Width;
                 treeRectangle2.X = GraphicsDevice.Viewport.Width + test;
             }
-            if(treeRectangle3.X < 0)
+            if(treeRectangle3.X < -75)
             {
                 int test = rnd1.Next() % GraphicsDevice.Viewport.Width;
                 treeRectangle3.X = GraphicsDevice.Viewport.Width + test;
             }
-            if (treeRectangle4.X < 100)
+            if (treeRectangle4.X < -75)
             {
                 int test = rnd1.Next() % GraphicsDevice.Viewport.Width;
                 treeRectangle4.X = GraphicsDevice.Viewport.Width + test;
             }
-            if (treeRectangle5.X < 100)
+            if (treeRectangle5.X < -75)
             {
                 int test = rnd1.Next() % GraphicsDevice.Viewport.Width;
                 treeRectangle5.X = GraphicsDevice.Viewport.Width + test;
@@ -537,6 +531,27 @@ namespace CarGame
             Lane2.X -= speedoflines +7;
             Lane1.X -= speedoflines + 3;
             Lane1b.X -= speedoflines + 3;
+
+
+                    Console.WriteLine("Lane "+Lane1);
+                    Console.WriteLine("player "+playerRectangle);
+
+            if (playerRectangle.Contains(Lane1))
+            {
+                Console.WriteLine("colision");
+            }
+            if (playerRectangle.Contains(Lane2))
+            {
+                Console.WriteLine("colision");
+            }
+            if (playerRectangle.Contains(Lane3))
+            {
+                Console.WriteLine("colision");
+            }
+            if (playerRectangle.Contains(Lane4))
+            {
+                Console.WriteLine("colision");
+            }
 
             // Reset Cars
             if (Lane4.X > 2000)
@@ -553,7 +568,18 @@ namespace CarGame
                 Lane1.X = 2000;
             if (Lane1b.X < 0)
                 Lane1b.X = 2500;
+            
 
+                    break;
+
+                case GameState.EndGame:
+
+                    if (backRectangle.Contains(newMousePoint))
+                        state = GameState.MainMenu;
+
+                    break;
+            }
+           
             base.Update(gameTime);
         }
 
@@ -648,12 +674,12 @@ namespace CarGame
             spriteBatch.Draw(whiteCar, playerRectangle, plCl);
             
             //cars
-            spriteBatch.Draw(blueCar, Lane1, Color.White);
-            spriteBatch.Draw(blueCar, Lane2, Color.White);
+            spriteBatch.Draw(blueCarL, Lane1, Color.White);
+            spriteBatch.Draw(blueCarL, Lane2, Color.White);
             spriteBatch.Draw(blueCar, Lane3, Color.White);
             spriteBatch.Draw(blueCar, Lane4, Color.White);
             spriteBatch.Draw(blueCar, Lane4b, Color.White);
-            spriteBatch.Draw(blueCar, Lane1b, Color.White);
+            spriteBatch.Draw(blueCarL, Lane1b, Color.White);
 
             spriteBatch.DrawString(font, "Points: " + t1.TotalSeconds.ToString("####.##"), new Vector2(1000, 25), Color.White);
         }
