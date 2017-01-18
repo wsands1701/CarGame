@@ -46,13 +46,14 @@ namespace CarGame
         Rectangle treeRectangle4;
         Rectangle treeRectangle5;
         Rectangle picRectangle;
+
+        //lanes
         Rectangle Lane1;
         Rectangle Lane1b;
         Rectangle Lane2;
         Rectangle Lane3;
         Rectangle Lane4;
         Rectangle Lane4b;
-        
 
         Scrollingbackground road1;
         Scrollingbackground road2;
@@ -63,6 +64,7 @@ namespace CarGame
       
         //time variables
         TimeSpan t1 = new TimeSpan(0, 0, 0);
+
         int points = 0;
 
         int r = 250;
@@ -123,7 +125,6 @@ namespace CarGame
         ArrayList TrafficOptions = new ArrayList();
         ArrayList TrafficTypes = new ArrayList();
 
-
         enum GameState
         {
             MainMenu,
@@ -144,7 +145,6 @@ namespace CarGame
             //graphics.IsFullScreen = true;
             Content.RootDirectory = "Content";
         }
-
 
         /// <summary>
         /// Allows the game to perform any initialization it needs to before starting to run.
@@ -188,7 +188,6 @@ namespace CarGame
             aquaRectangle = new Rectangle(500, 300, 200, 100);
             yellowRectangle = new Rectangle(300, 300, 200, 100); 
             choose_colorRectangle = new Rectangle(350, 630, 300, 150);
-           
 
             // cars
             Lane4 = new Rectangle(-100, 550, 170, 95);
@@ -201,7 +200,6 @@ namespace CarGame
         }
 
         /// <summary>
-
         /// </summary>
         protected override void LoadContent()
         {
@@ -403,7 +401,6 @@ namespace CarGame
                         }
                     }
 
-
                     if (mousePressed)
                     {
                         playerRectangle.X = Mouse.GetState().X - 90;
@@ -461,7 +458,6 @@ namespace CarGame
             line2Rectangle3.X -= speedoflines;
             line2Rectangle4.X -= speedoflines;
 
-            
             if (line2Rectangle2.X < -100)
             {
                 line2Rectangle2.X = GraphicsDevice.Viewport.Width - 50;
@@ -557,7 +553,6 @@ namespace CarGame
             if (Lane1b.X < 0)
                 Lane1b.X = 2500;
             
-
                     break;
 
                 case GameState.EndGame:
@@ -690,9 +685,7 @@ namespace CarGame
             spriteBatch.Draw(whiteCar, whiteRectangle, Color.White);
             spriteBatch.Draw(pinkCar, pinkRectangle, Color.White);
             spriteBatch.Draw(aquaCar, aquaRectangle, Color.White);
-            spriteBatch.Draw(yellowCar, yellowRectangle, Color.White);
-            
-
+            spriteBatch.Draw(yellowCar, yellowRectangle, Color.White)
 
         }
 
