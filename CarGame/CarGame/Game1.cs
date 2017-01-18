@@ -312,7 +312,7 @@ namespace CarGame
             switch (state)
             {
                 case GameState.MainMenu:
-
+                    t1 = new TimeSpan(0,0,0);
                     //set state of the game based on button selected
                     if (playRectangle.Contains(newMousePoint))
                         state = GameState.PlayGame;
