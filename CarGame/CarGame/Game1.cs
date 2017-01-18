@@ -93,6 +93,7 @@ namespace CarGame
         Texture2D greenCar;
         Texture2D redCar;
         Texture2D blueCar;
+        Texture2D blueCarL;
         Texture2D orangeCar;
         Texture2D whiteCar;
         Texture2D greyCar;
@@ -218,6 +219,7 @@ namespace CarGame
 
             //car textures
             blueCar = Content.Load<Texture2D>("BlueCar");
+            blueCarL = Content.Load<Texture2D>("BlueCarL");
             greenCar = Content.Load<Texture2D>("GreenCar");
             greyCar = Content.Load<Texture2D>("GreyCar");
             orangeCar = Content.Load<Texture2D>("OrangeCar");
@@ -497,27 +499,27 @@ namespace CarGame
             treeRectangle5.X -= speedoflines;
 
             //reset the trees
-            if(treeRectangle1.X < 0)
+            if(treeRectangle1.X < -75)
             {
                 int test = rnd1.Next() % GraphicsDevice.Viewport.Width;
                 treeRectangle1.X = GraphicsDevice.Viewport.Width + test;
             }
-            if(treeRectangle2.X < 0)
+            if(treeRectangle2.X < -75)
             {
                 int test = rnd1.Next() % GraphicsDevice.Viewport.Width;
                 treeRectangle2.X = GraphicsDevice.Viewport.Width + test;
             }
-            if(treeRectangle3.X < 0)
+            if(treeRectangle3.X < -75)
             {
                 int test = rnd1.Next() % GraphicsDevice.Viewport.Width;
                 treeRectangle3.X = GraphicsDevice.Viewport.Width + test;
             }
-            if (treeRectangle4.X < 100)
+            if (treeRectangle4.X < -75)
             {
                 int test = rnd1.Next() % GraphicsDevice.Viewport.Width;
                 treeRectangle4.X = GraphicsDevice.Viewport.Width + test;
             }
-            if (treeRectangle5.X < 100)
+            if (treeRectangle5.X < -75)
             {
                 int test = rnd1.Next() % GraphicsDevice.Viewport.Width;
                 treeRectangle5.X = GraphicsDevice.Viewport.Width + test;
@@ -672,12 +674,12 @@ namespace CarGame
             spriteBatch.Draw(whiteCar, playerRectangle, plCl);
             
             //cars
-            spriteBatch.Draw(blueCar, Lane1, Color.White);
-            spriteBatch.Draw(blueCar, Lane2, Color.White);
+            spriteBatch.Draw(blueCarL, Lane1, Color.White);
+            spriteBatch.Draw(blueCarL, Lane2, Color.White);
             spriteBatch.Draw(blueCar, Lane3, Color.White);
             spriteBatch.Draw(blueCar, Lane4, Color.White);
             spriteBatch.Draw(blueCar, Lane4b, Color.White);
-            spriteBatch.Draw(blueCar, Lane1b, Color.White);
+            spriteBatch.Draw(blueCarL, Lane1b, Color.White);
 
             spriteBatch.DrawString(font, "Points: " + t1.TotalSeconds.ToString("####.##"), new Vector2(1000, 25), Color.White);
         }
