@@ -685,7 +685,7 @@ namespace CarGame
             spriteBatch.Draw(whiteCar, whiteRectangle, Color.White);
             spriteBatch.Draw(pinkCar, pinkRectangle, Color.White);
             spriteBatch.Draw(aquaCar, aquaRectangle, Color.White);
-            spriteBatch.Draw(yellowCar, yellowRectangle, Color.White)
+            spriteBatch.Draw(yellowCar, yellowRectangle, Color.White);
 
         }
 
