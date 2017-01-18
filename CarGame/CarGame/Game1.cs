@@ -396,7 +396,8 @@ namespace CarGame
                         state = GameState.EndGame;
                     if (playRectangle.Contains(newMousePoint))
                         state = GameState.MainMenu;
-                    t1.Equals(0);
+                    gameTime.ElapsedGameTime.Negate();
+                    
                     break;
 
                 case GameState.PlayGame:
@@ -594,7 +595,7 @@ namespace CarGame
                     }
                     break;
                 case GameState.EndGame:
-
+                    
                     if (backRectangle.Contains(newMousePoint))
                         state = GameState.MainMenu;
 
