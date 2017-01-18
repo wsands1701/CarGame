@@ -392,10 +392,12 @@ namespace CarGame
                     break;
 
                 case GameState.EndEndGame:
+
                     if (endRectangle.Contains(newMousePoint))
                         state = GameState.EndGame;
                     if (playRectangle.Contains(newMousePoint))
                         state = GameState.PlayGame;
+
                     break;
 
                 case GameState.PlayGame:
