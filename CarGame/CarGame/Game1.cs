@@ -243,7 +243,8 @@ namespace CarGame
             help = Content.Load<Texture2D>("help.png");
             ChooseColor = Content.Load<Texture2D>("ChooseColor.png");
             carStartImage = Content.Load<Texture2D>("CarStartImage");
-          
+            playerRectangle.X = 0;
+            playerRectangle.Y = 150;
             //music - sounds
             menu = Content.Load<SoundEffect>("menuMusic");
             menuSound = menu.CreateInstance();
@@ -397,7 +398,7 @@ namespace CarGame
                     break;
 
                 case GameState.PlayGame:
-                    
+                    Console.WriteLine(Mouse.GetState().X+" "+ Mouse.GetState().Y);
                     road1.Update();
                     road2.Update();
                     t1 += gameTime.ElapsedGameTime;
@@ -434,15 +435,17 @@ namespace CarGame
                         {
                             playerRectangle.Y = GraphicsDevice.Viewport.Height - 75;
                         }
-                        if (playerRectangle.Y < 0)
+                        if (playerRectangle.Y < 125)
                         {
-                            playerRectangle.Y = 0;
+                            playerRectangle.Y = 125;
                         }
 
                         if (Mouse.GetState().LeftButton == ButtonState.Released)
                         {
                             mousePressed = false;
                         }
+
+                      
                     }
 
             //set location of top lines
@@ -538,19 +541,19 @@ namespace CarGame
 
             if (playerRectangle.Contains(Lane1))
             {
-                Console.WriteLine("colision");
+                Console.WriteLine("collision");
             }
             if (playerRectangle.Contains(Lane2))
             {
-                Console.WriteLine("colision");
+                Console.WriteLine("collision");
             }
             if (playerRectangle.Contains(Lane3))
             {
-                Console.WriteLine("colision");
+                Console.WriteLine("collision");
             }
             if (playerRectangle.Contains(Lane4))
             {
-                Console.WriteLine("colision");
+                Console.WriteLine("collision");
             }
 
             // Reset Cars
