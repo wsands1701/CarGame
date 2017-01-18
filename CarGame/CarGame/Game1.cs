@@ -233,6 +233,8 @@ namespace CarGame
             road1 = new Scrollingbackground(Content.Load<Texture2D>("Road"), new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height));
             road2 = new Scrollingbackground(Content.Load<Texture2D>("Road"), new Rectangle(GraphicsDevice.Viewport.Width, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height));
 
+           
+
             //button textures
             play = Content.Load<Texture2D>("play.png");
             end = Content.Load<Texture2D>("end.png");
@@ -261,8 +263,11 @@ namespace CarGame
             Obstacles greenTraffic = new Moving(50, 50, 150, false, greenCar);
             Obstacles greyTraffic = new Moving(50, 50, 150, false, greyCar);
             Obstacles orangeTraffic = new Moving(50, 50, 150, false, orangeCar);
-            Obstacles whiteTraffic = new Moving(50, 50, 150, false, whiteCar
+            Obstacles whiteTraffic = new Moving(50, 50, 150, false, whiteCar);
             
+
+
+
             //add car to arraylist
             TrafficOptions.Add(redTraffic);
             TrafficOptions.Add(blueTraffic);
@@ -271,6 +276,9 @@ namespace CarGame
             TrafficOptions.Add(orangeTraffic);
             TrafficOptions.Add(whiteTraffic);
             */
+
+
+
         }
 
         /// <summary>
@@ -563,13 +571,22 @@ namespace CarGame
                 Lane3.X = -200;
             if (Lane2.X < 0)
                 Lane2.X = 2000;
-            if (Lane1.X < 0)
+            if (Lane1.X < -200)
                 Lane1.X = 2000;
-            if (Lane1b.X < 0)
+            if (Lane1b.X < -200)
                 Lane1b.X = 2500;
-            
-                    break;
+            if (Lane1.Intersects(Lane1b) || Lane1b.Intersects(Lane1))
+                    {
+                        Lane1.X += 100;
+                        Lane1b.X -= 100;
+                    }
 
+                    if (Lane4.Intersects(Lane4b) || Lane4b.Intersects(Lane4))
+                    {
+                        Lane4b.X -= 100;
+                        Lane4.X += 100;
+                    }
+                    break;
                 case GameState.EndGame:
 
                     if (backRectangle.Contains(newMousePoint))
