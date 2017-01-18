@@ -394,6 +394,8 @@ namespace CarGame
                 case GameState.EndEndGame:
                     if (endRectangle.Contains(newMousePoint))
                         state = GameState.EndGame;
+                    if (playRectangle.Contains(newMousePoint))
+                        state = GameState.PlayGame;
                     break;
 
                 case GameState.PlayGame:
@@ -731,6 +733,7 @@ namespace CarGame
         public void DisplayEndEndGame()
         {
             spriteBatch.Draw(end, endRectangle, Color.White);
+            spriteBatch.Draw(play, playRectangle, Color.White);
         }
         public void EndTheGame()
         {
