@@ -402,6 +402,7 @@ namespace CarGame
 
                 case GameState.PlayGame:
                     Console.WriteLine(Mouse.GetState().X+" "+ Mouse.GetState().Y);
+                   
                     road1.Update();
                     road2.Update();
                     t1 += gameTime.ElapsedGameTime;
