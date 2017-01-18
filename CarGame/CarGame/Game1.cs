@@ -130,7 +130,8 @@ namespace CarGame
             HelpScreen,
             ChooseColor,
             PlayGame,
-            EndGame
+            EndGame,
+            EndEndGame
         }
         GameState state = GameState.MainMenu;
 
@@ -396,6 +397,10 @@ namespace CarGame
 
                     break;
 
+                case GameState.EndEndGame:
+
+                    break;
+
                 case GameState.PlayGame:
                     
                     road1.Update();
@@ -621,6 +626,12 @@ namespace CarGame
                     DisplayChooseColor();
 
             break;
+
+                case GameState.EndEndGame:
+
+                    DisplayEndEndGame();
+
+            break;
         }
 
             spriteBatch.End();
@@ -708,6 +719,10 @@ namespace CarGame
 
         }
 
+        public void DisplayEndEndGame()
+        {
+            spriteBatch.Draw(end, endRectangle, Color.White);
+        }
         public void EndTheGame()
         {
             GraphicsDevice.Clear(Color.Gray);
