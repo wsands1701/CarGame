@@ -536,19 +536,27 @@ namespace CarGame
                     Console.WriteLine("Lane "+Lane1);
                     Console.WriteLine("player "+playerRectangle);
 
-            if (playerRectangle.Contains(Lane1))
+            if (playerRectangle.Intersects(Lane1))
             {
                 Console.WriteLine("colision");
             }
-            if (playerRectangle.Contains(Lane2))
+             if (playerRectangle.Intersects(Lane1b))
             {
                 Console.WriteLine("colision");
             }
-            if (playerRectangle.Contains(Lane3))
+            if (playerRectangle.Intersects(Lane2))
             {
                 Console.WriteLine("colision");
             }
-            if (playerRectangle.Contains(Lane4))
+             if (playerRectangle.Intersects(Lane4b))
+            {
+                Console.WriteLine("colision");
+            }
+            if (playerRectangle.Intersects(Lane3))
+            {
+              Console.WriteLine("colision");
+            }
+            if (playerRectangle.Intersects(Lane4))
             {
                 Console.WriteLine("colision");
             }
