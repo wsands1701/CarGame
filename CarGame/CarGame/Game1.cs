@@ -570,7 +570,7 @@ namespace CarGame
                 Lane4b.X -= 200;
             if (Lane3.X > 2000)
                 Lane3.X = -200;
-            if (Lane2.X < 0)
+            if (Lane2.X < -200)
                 Lane2.X = 2000;
             if (Lane1.X < -200)
                 Lane1.X = 2000;
