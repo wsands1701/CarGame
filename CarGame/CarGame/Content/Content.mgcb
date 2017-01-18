@@ -97,3 +97,15 @@
 /processorParam:TextureFormat=Compressed
 /build:titlefont.spritefont
 
+#begin 100secondsAudio.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:100secondsAudio.wav
+
+#begin NumberOne.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:NumberOne.wav
+
