@@ -24,6 +24,7 @@ namespace CarGame
         Rectangle backRectangle;
         Rectangle choose_colorRectangle;
         Rectangle playerRectangle;
+        Rectangle playRectangle2;
         Rectangle redRectangle;
         Rectangle blueRectangle;
         Rectangle greenRectangle;
@@ -178,6 +179,7 @@ namespace CarGame
             treeRectangle5 = new Rectangle(GraphicsDevice.Viewport.Width, 700, 110, 90);
 
             playRectangle = new Rectangle(50, 630, 300, 150);
+            playRectangle2 = new Rectangle(50, 330, 100, 150);
             endRectangle = new Rectangle(950, 630, 300, 150);
             picRectangle = new Rectangle(100, 100, 1100, 500);
             helpRectangle = new Rectangle(650, 630, 300, 150);
@@ -310,7 +312,7 @@ namespace CarGame
             switch (state)
             {
                 case GameState.MainMenu:
-
+                    t1 = new TimeSpan(0,0,0);
                     //set state of the game based on button selected
                     if (playRectangle.Contains(newMousePoint))
                         state = GameState.PlayGame;
@@ -392,13 +394,15 @@ namespace CarGame
                 case GameState.EndEndGame:
                     if (endRectangle.Contains(newMousePoint))
                         state = GameState.EndGame;
-                    if (playRectangle.Contains(newMousePoint))
+                    if (playRectangle2.Contains(newMousePoint))
                         state = GameState.MainMenu;
-                    t1.Equals(0);
+                    gameTime.ElapsedGameTime.Negate();
+                    
                     break;
 
                 case GameState.PlayGame:
                     Console.WriteLine(Mouse.GetState().X+" "+ Mouse.GetState().Y);
+                   
                     road1.Update();
                     road2.Update();
                     t1 += gameTime.ElapsedGameTime;
@@ -539,33 +543,55 @@ namespace CarGame
 
 
 
-            if (playerRectangle.Intersects(Lane1))
+            if (playerRectangle.Intersects(Lane1)&&t1.TotalSeconds>2)
             {
                         state = GameState.EndEndGame;
             }
-             if (playerRectangle.Intersects(Lane1b))
+             if (playerRectangle.Intersects(Lane1b) && t1.TotalSeconds > 2)
             {
                         state = GameState.EndEndGame;
                     }
-            if (playerRectangle.Intersects(Lane2))
+            if (playerRectangle.Intersects(Lane2) && t1.TotalSeconds > 2)
             {
                         state = GameState.EndEndGame;
             }
-             if (playerRectangle.Intersects(Lane4b))
+             if (playerRectangle.Intersects(Lane4b) && t1.TotalSeconds > 2)
             {
                         state = GameState.EndEndGame;
             }
-            if (playerRectangle.Intersects(Lane3))
+            if (playerRectangle.Intersects(Lane3) && t1.TotalSeconds > 2)
             {
                         state = GameState.EndEndGame;
             }
-            if (playerRectangle.Intersects(Lane4))
+            if (playerRectangle.Intersects(Lane4) && t1.TotalSeconds > 2)
             {
                         state = GameState.EndEndGame;
             }
+            if (playerRectangle.Intersects(treeRectangle1))
+            {
+                state = GameState.EndEndGame;
+            }
+            if (playerRectangle.Intersects(treeRectangle2))
+            {
+                state = GameState.EndEndGame;
+            }
+            if (playerRectangle.Intersects(treeRectangle3))
+            {
+                state = GameState.EndEndGame;
+            }
+            if (playerRectangle.Intersects(treeRectangle4))
+            {
+                state = GameState.EndEndGame;
+            }
+            if (playerRectangle.Intersects(treeRectangle5))
+            {
+                state = GameState.EndEndGame;
+            }
+       
 
-            // Reset Cars
-            if (Lane4.X > 2000)
+
+                    // Reset Cars
+                    if (Lane4.X > 2000)
                 Lane4.X = -100;
             if (Lane4b.X > 2000)
                 Lane4b.X = -400;
@@ -592,7 +618,7 @@ namespace CarGame
                     }
                     break;
                 case GameState.EndGame:
-
+                    
                     if (backRectangle.Contains(newMousePoint))
                         state = GameState.MainMenu;
 
@@ -723,7 +749,7 @@ namespace CarGame
         public void DisplayHelpScreen()
         {
             GraphicsDevice.Clear(Color.Black);
-            spriteBatch.DrawString(font, "\n-To move your car, click and hold the left mouse button and drag the mouse wherever you want the car to go.\n-Avoid obsticles traveling towards your car for the longest time to win!\n-Click the 'Play' button in to start game.\n-To quit, click the 'End' button. \n-To change the color of the car, click the 'Choose Color' button.", new Vector2(50, 100), Color.White);
+            spriteBatch.DrawString(font, "\n-To move your car, click and hold the left mouse button and drag the mouse wherever you want the car to go.\n-Avoid obsticles traveling towards your car for the longest time to win!\n-Click the 'Play' button in to start game.\n-To quit, click the 'End' button. \n-To change the color of the car, click the 'Choose Color' button. \n -Once you press play, you have two seconds to move your car before you can crash again", new Vector2(50, 100), Color.White);
             spriteBatch.Draw(back, backRectangle, Color.White);
             
         }
@@ -746,7 +772,7 @@ namespace CarGame
         public void DisplayEndEndGame()
         {
             spriteBatch.Draw(end, endRectangle, Color.White);
-            spriteBatch.Draw(play, playRectangle, Color.White);
+            spriteBatch.Draw(play, playRectangle2, Color.White);
         }
         public void EndTheGame()
         {
