@@ -131,7 +131,8 @@ namespace CarGame
             HelpScreen,
             ChooseColor,
             PlayGame,
-            EndGame
+            EndGame,
+            EndEndGame
         }
         GameState state = GameState.MainMenu;
 
@@ -249,7 +250,7 @@ namespace CarGame
 
             //font
             font = Content.Load<SpriteFont>("fastFont");
-           titlefont = Content.Load<SpriteFont>("titlefont");
+            titlefont = Content.Load<SpriteFont>("titlefont");
 
             //car spawning array and stuff that may or may not work
             /*
@@ -378,6 +379,10 @@ namespace CarGame
                     {
                         state = GameState.MainMenu;
                     }
+
+                    break;
+
+                case GameState.EndEndGame:
 
                     break;
 
@@ -611,6 +616,12 @@ namespace CarGame
                     DisplayChooseColor();
 
             break;
+
+                case GameState.EndEndGame:
+
+                    DisplayEndEndGame();
+
+            break;
         }
 
             spriteBatch.End();
@@ -696,6 +707,10 @@ namespace CarGame
             
         }
 
+        public void DisplayEndEndGame()
+        {
+            spriteBatch.Draw(end, endRectangle, Color.White);
+        }
         public void EndTheGame()
         {
             GraphicsDevice.Clear(Color.Gray);
