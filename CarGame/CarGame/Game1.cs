@@ -120,6 +120,8 @@ namespace CarGame
         SoundEffect carStart;
         SoundEffect losingSound;
         SoundEffect crash;
+        SoundEffect sec100;
+        SoundEffect sec130;
         SoundEffectInstance menuSound;
 
         //arraylist for car types
@@ -251,7 +253,9 @@ namespace CarGame
             carStart = Content.Load<SoundEffect>("car_start");
             losingSound = Content.Load<SoundEffect>("losing_sound");
             crash = Content.Load<SoundEffect>("crash");
-            
+            sec100 = Content.Load<SoundEffect>("100secondsAudio");
+            sec130 = Content.Load<SoundEffect>("NumberOne");
+
             //font
             font = Content.Load<SpriteFont>("fastFont");
            titlefont = Content.Load<SpriteFont>("titlefont");
@@ -587,7 +591,7 @@ namespace CarGame
 
 
                     // Reset Cars
-            if (Lane4.X > 2000)
+                    if (Lane4.X > 2000)
                 Lane4.X = -100;
             if (Lane4b.X > 2000)
                 Lane4b.X = -400;
@@ -619,6 +623,16 @@ namespace CarGame
                         state = GameState.MainMenu;
 
                     break;
+            }
+
+            if(t1.Equals(100))
+            {
+                sec100.Play();
+            }
+
+            if(t1.Equals(130))
+            {
+                sec130.Play();
             }
 
             base.Update(gameTime);
