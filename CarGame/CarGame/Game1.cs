@@ -253,8 +253,7 @@ namespace CarGame
             carStart = Content.Load<SoundEffect>("car_start");
             losingSound = Content.Load<SoundEffect>("losing_sound");
             crash = Content.Load<SoundEffect>("crash");
-            sec100 = Content.Load<SoundEffect>("100secondsAudio");
-            sec130 = Content.Load<SoundEffect>("NumberOne");
+          
 
             //font
             font = Content.Load<SpriteFont>("fastFont");
