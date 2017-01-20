@@ -571,7 +571,7 @@ namespace CarGame
                         state = GameState.EndEndGame;
             }
 
-            
+            /*
             if (playerRectangle.Intersects(treeRectangle1) && t1.TotalSeconds > 2)
             {
                 state = GameState.EndEndGame;
@@ -593,7 +593,7 @@ namespace CarGame
                 state = GameState.EndEndGame;
             }
                    
-            
+            */
             // Reset Cars
             if (Lane4.X > 2000)
                 Lane4.X = -100;
