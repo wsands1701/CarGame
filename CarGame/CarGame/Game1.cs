@@ -120,7 +120,9 @@ namespace CarGame
         SoundEffect carStart;
         SoundEffect losingSound;
         SoundEffect crash;
-       SoundEffectInstance menuSound;
+        SoundEffect sec100;
+        SoundEffect sec130;
+        SoundEffectInstance menuSound;
 
         //arraylist for car types
         ArrayList TrafficOptions = new ArrayList();
@@ -177,7 +179,7 @@ namespace CarGame
             treeRectangle5 = new Rectangle(GraphicsDevice.Viewport.Width, 700, 110, 90);
 
             playRectangle = new Rectangle(50, 630, 300, 150);
-            playRectangle2 = new Rectangle(50, 330, 100, 150);
+            playRectangle2 = new Rectangle(950, 430, 300, 150);
             endRectangle = new Rectangle(950, 630, 300, 150);
             picRectangle = new Rectangle(100, 100, 1100, 500);
             helpRectangle = new Rectangle(650, 630, 300, 150);
@@ -235,8 +237,6 @@ namespace CarGame
             road1 = new Scrollingbackground(Content.Load<Texture2D>("Road"), new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height));
             road2 = new Scrollingbackground(Content.Load<Texture2D>("Road"), new Rectangle(GraphicsDevice.Viewport.Width, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height));
 
-           
-
             //button textures
             play = Content.Load<Texture2D>("play.png");
             end = Content.Load<Texture2D>("end.png");
@@ -246,12 +246,15 @@ namespace CarGame
             carStartImage = Content.Load<Texture2D>("CarStartImage");
             playerRectangle.X = 0;
             playerRectangle.Y = 150;
+
             //music - sounds
             menu = Content.Load<SoundEffect>("menuMusic");
             menuSound = menu.CreateInstance();
             carStart = Content.Load<SoundEffect>("car_start");
             losingSound = Content.Load<SoundEffect>("losing_sound");
             crash = Content.Load<SoundEffect>("crash");
+            sec100 = Content.Load<SoundEffect>("100secondsAudio");
+            sec130 = Content.Load<SoundEffect>("NumberOne");
 
             //font
             font = Content.Load<SpriteFont>("fastFont");
@@ -266,9 +269,6 @@ namespace CarGame
             Obstacles greyTraffic = new Moving(50, 50, 150, false, greyCar);
             Obstacles orangeTraffic = new Moving(50, 50, 150, false, orangeCar);
             Obstacles whiteTraffic = new Moving(50, 50, 150, false, whiteCar);
-            
-
-
 
             //add car to arraylist
             TrafficOptions.Add(redTraffic);
@@ -278,8 +278,6 @@ namespace CarGame
             TrafficOptions.Add(orangeTraffic);
             TrafficOptions.Add(whiteTraffic);
             */
-
-
 
         }
 
@@ -626,7 +624,17 @@ namespace CarGame
 
                     break;
             }
-           
+
+            if(t1.Equals(100))
+            {
+                sec100.Play();
+            }
+
+            if(t1.Equals(130))
+            {
+                sec130.Play();
+            }
+
             base.Update(gameTime);
         }
 
