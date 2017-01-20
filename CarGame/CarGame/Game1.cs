@@ -748,6 +748,8 @@ namespace CarGame
 
         public void DisplayEndEndGame()
         {
+            double endtime = t1.TotalSeconds;
+            spriteBatch.DrawString(titlefont, "Your Score: " + endtime.ToString("####.##"), new Vector2(100, 100), Color.White);
             spriteBatch.Draw(end, endRectangle, Color.White);
             spriteBatch.Draw(play, playRectangle2, Color.White);
         }
