@@ -54,7 +54,7 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>95FDBD75614CE1F2FEECD638B5BB8C6E7298AC32</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>893F1543ED61A9CDA9B72B1A693A65E5F681F960</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestKeyFile>CarGame_TemporaryKey.pfx</ManifestKeyFile>
@@ -166,6 +166,7 @@
     <MonoGameContentReference Include="Content\Content.mgcb" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="CarGame_TemporaryKey.pfx" />
     <None Include="ClassDiagram1.cd" />
     <None Include="Properties\app.manifest" />
   </ItemGroup>
