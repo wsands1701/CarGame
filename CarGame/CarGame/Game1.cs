@@ -546,7 +546,7 @@ namespace CarGame
             {
                         state = GameState.EndEndGame;
             }
-             if (playerRectangle.Intersects(Lane1b) && t1.TotalSeconds > 2)
+            if (playerRectangle.Intersects(Lane1b) && t1.TotalSeconds > 2)
             {
                         state = GameState.EndEndGame;
                     }
@@ -554,7 +554,7 @@ namespace CarGame
             {
                         state = GameState.EndEndGame;
             }
-             if (playerRectangle.Intersects(Lane4b) && t1.TotalSeconds > 2)
+            if (playerRectangle.Intersects(Lane4b) && t1.TotalSeconds > 2)
             {
                         state = GameState.EndEndGame;
             }
