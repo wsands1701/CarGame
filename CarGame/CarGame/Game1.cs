@@ -389,6 +389,7 @@ namespace CarGame
                     if (colorSelected && (newMousePoint.X > 0 && newMousePoint.Y > 0))
                     {
                         state = GameState.MainMenu;
+                        colorSelected = false;
                     }
 
                     break;
@@ -536,12 +537,12 @@ namespace CarGame
                     double x = t1.TotalSeconds;
 
             // make the cars move
-            Lane4.X += speedoflines + (int)(.12*x) + 1;
-            Lane4b.X += speedoflines + (int)(.12*x)+1;
-            Lane3.X += speedoflines + (int)(.15*x) +1;
-            Lane2.X -= speedoflines + (int)(.13*x)+1;
-            Lane1.X -= speedoflines + (int)(.12*x)+1;
-            Lane1b.X -= speedoflines + (int)(.12*x)+1;
+            Lane4.X += speedoflines + (int)(.06*x) + 1;
+            Lane4b.X += speedoflines + (int)(.06*x)+1;
+            Lane3.X += speedoflines + (int)(.08*x) +1;
+            Lane2.X -= speedoflines + (int)(.07*x)+2;
+            Lane1.X -= speedoflines + (int)(.06*x)+1;
+            Lane1b.X -= speedoflines + (int)(.06*x)+1;
 
 
 
@@ -570,6 +571,29 @@ namespace CarGame
                         state = GameState.EndEndGame;
             }
 
+            
+            if (playerRectangle.Intersects(treeRectangle1) && t1.TotalSeconds > 2)
+            {
+                state = GameState.EndEndGame;
+            }
+            if (playerRectangle.Intersects(treeRectangle2) && t1.TotalSeconds > 2)
+            {
+                state = GameState.EndEndGame;
+            }
+            if (playerRectangle.Intersects(treeRectangle3) && t1.TotalSeconds > 2)
+            {
+                state = GameState.EndEndGame;
+            }
+            if (playerRectangle.Intersects(treeRectangle4) && t1.TotalSeconds > 2)
+            {
+                state = GameState.EndEndGame;
+            }
+            if (playerRectangle.Intersects(treeRectangle5) && t1.TotalSeconds > 2)
+            {
+                state = GameState.EndEndGame;
+            }
+                   
+            
             // Reset Cars
             if (Lane4.X > 2000)
                 Lane4.X = -100;
@@ -736,7 +760,7 @@ namespace CarGame
         public void DisplayChooseColor()
         {
             GraphicsDevice.Clear(Color.Black);
-            spriteBatch.DrawString(font, "Please choose a car color listed below.", new Vector2(500, 50), Color.White);
+            spriteBatch.DrawString(font, "Please choose a car color listed below.", new Vector2(435, 50), Color.White);
 
             spriteBatch.Draw(redCar, redRectangle, Color.White);
             spriteBatch.Draw(greenCar, greenRectangle, Color.White);
