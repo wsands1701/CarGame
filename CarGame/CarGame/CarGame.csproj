@@ -171,7 +171,9 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <MonoGameContentReference Include="Content\Content.mgcb" />
+    <MonoGameContentReference Include="Content\Content.mgcb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </MonoGameContentReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="CarGame_TemporaryKey.pfx" />
