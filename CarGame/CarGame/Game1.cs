@@ -386,6 +386,7 @@ namespace CarGame
                     if (colorSelected && (newMousePoint.X > 0 && newMousePoint.Y > 0))
                     {
                         state = GameState.MainMenu;
+                        colorSelected = false;
                     }
 
                     break;
