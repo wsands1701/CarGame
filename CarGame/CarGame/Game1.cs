@@ -755,7 +755,7 @@ namespace CarGame
         public void DisplayChooseColor()
         {
             GraphicsDevice.Clear(Color.Black);
-            spriteBatch.DrawString(font, "Please choose a car color listed below.", new Vector2(50, 50), Color.White);
+            spriteBatch.DrawString(font, "Please choose a car color listed below.", new Vector2(500, 50), Color.White);
 
             spriteBatch.Draw(redCar, redRectangle, Color.White);
             spriteBatch.Draw(greenCar, greenRectangle, Color.White);
