@@ -177,7 +177,7 @@ namespace CarGame
             treeRectangle5 = new Rectangle(GraphicsDevice.Viewport.Width, 700, 110, 90);
 
             playRectangle = new Rectangle(50, 630, 300, 150);
-            playRectangle2 = new Rectangle(50, 330, 100, 150);
+            playRectangle2 = new Rectangle(950, 430, 300, 150);
             endRectangle = new Rectangle(950, 630, 300, 150);
             picRectangle = new Rectangle(100, 100, 1100, 500);
             helpRectangle = new Rectangle(650, 630, 300, 150);
