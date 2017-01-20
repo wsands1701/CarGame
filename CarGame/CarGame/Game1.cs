@@ -386,6 +386,7 @@ namespace CarGame
                     if (colorSelected && (newMousePoint.X > 0 && newMousePoint.Y > 0))
                     {
                         state = GameState.MainMenu;
+                        colorSelected = false;
                     }
 
                     break;
@@ -588,8 +589,8 @@ namespace CarGame
                     }
                    
 
-                    // Reset Cars
-                    if (Lane4.X > 2000)
+            // Reset Cars
+            if (Lane4.X > 2000)
                 Lane4.X = -100;
             if (Lane4b.X > 2000)
                 Lane4b.X = -400;
