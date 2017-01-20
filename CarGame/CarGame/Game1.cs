@@ -110,6 +110,7 @@ namespace CarGame
         Texture2D help;
         Texture2D back;
         Texture2D ChooseColor;
+        Texture2D paulWalker;
 
         //font
         SpriteFont font;
@@ -194,6 +195,7 @@ namespace CarGame
             yellowRectangle = new Rectangle(300, 300, 200, 100); 
             choose_colorRectangle = new Rectangle(350, 630, 300, 150);
            
+
             // cars
             Lane4 = new Rectangle(-100, 550, 170, 95);
             Lane4b = new Rectangle(-300, 550, 170, 95);
@@ -231,6 +233,7 @@ namespace CarGame
             pinkCar = this.Content.Load<Texture2D>("PinkCar");
             aquaCar = Content.Load<Texture2D>("AquaCar");
             yellowCar = Content.Load<Texture2D>("YellowCar");
+            paulWalker = Content.Load<Texture2D>("paulWalker");
             //lines.get(lines.go(dank));
 
             //background
@@ -752,6 +755,7 @@ namespace CarGame
             spriteBatch.DrawString(titlefont, "Your Score: " + endtime.ToString("####.##"), new Vector2(100, 100), Color.White);
             spriteBatch.Draw(end, endRectangle, Color.White);
             spriteBatch.Draw(play, playRectangle2, Color.White);
+            spriteBatch.Draw(paulWalker, new Vector2(100, 175), Color.White);
         }
         public void EndTheGame()
         {
